@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oficinas AAA Bogotá 2019–2025</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f5f5f3;color:#1a1a18;font-size:15px}
+.hdr{background:#1a3a5c;color:#fff;padding:2rem 1.5rem 1.5rem}
+.hdr h1{font-size:24px;font-weight:600;margin-bottom:4px}
+.hdr p{font-size:13px;color:rgba(255,255,255,0.65);margin-bottom:12px}
+.hdr-tags{display:flex;flex-wrap:wrap;gap:8px}
+.htag{font-size:11px;padding:3px 10px;border-radius:20px;border:1px solid rgba(255,255,255,0.3);color:rgba(255,255,255,0.8)}
+.nav{background:#fff;border-bottom:1px solid #e0e0e0;position:sticky;top:0;z-index:100;overflow-x:auto;display:flex}
+.tab{padding:13px 18px;font-size:13px;font-weight:500;color:#777;cursor:pointer;border:none;background:none;border-bottom:2.5px solid transparent;white-space:nowrap}
+.tab:hover{color:#1a1a18}
+.tab.on{color:#1a3a5c;border-bottom-color:#1a3a5c}
+.body{max-width:1080px;margin:0 auto;padding:1.5rem 1rem 4rem}
+.sec{display:none}.sec.on{display:block}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:1.5rem}
+.kpi{background:#fff;border:1px solid #e0e0e0;border-radius:10px;padding:1rem;border-left:3px solid #1a3a5c}
+.kpi.g{border-left-color:#2d7a3a}.kpi.a{border-left-color:#c8973a}.kpi.r{border-left-color:#b53c2e}.kpi.p{border-left-color:#6b3fa8}
+.kl{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
+.kv{font-size:21px;font-weight:600;color:#1a1a18;line-height:1.1}
+.ks{font-size:11px;color:#aaa;margin-top:3px}
+.card{background:#fff;border:1px solid #e0e0e0;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1.25rem}
+.ct{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.06em;margin-bottom:1rem}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1.25rem}
+.cw{position:relative;width:100%}
+.cw.sm{height:200px}.cw.md{height:270px}.cw.lg{height:330px}
+.sub-btns{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1.25rem}
+.sb{padding:6px 14px;font-size:12px;font-weight:500;border:1px solid #ccc;border-radius:20px;background:#fff;color:#666;cursor:pointer}
+.sb.on{background:#1a3a5c;border-color:#1a3a5c;color:#fff}
+.tbl{width:100%;border-collapse:collapse;font-size:12.5px}
+.tbl th{background:#f5f5f3;font-size:10.5px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.04em;padding:8px 10px;text-align:left;border-bottom:1px solid #e0e0e0}
+.tbl td{padding:8px 10px;border-bottom:1px solid #f0f0f0;color:#1a1a18}
+.tbl tr:last-child td{border:none}
+.tbl tr:hover td{background:#f9f9f8}
+.tr{text-align:right}
+.bg{display:inline-block;font-size:10px;padding:2px 7px;border-radius:4px;font-weight:500}
+.bg-g{background:#e6f4ea;color:#2d7a3a}.bg-r{background:#fdecea;color:#b53c2e}
+.br{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.bn{font-size:12px;color:#777;min-width:115px}
+.bt{flex:1;background:#f0f0ee;border-radius:3px;height:14px;overflow:hidden}
+.bf{height:100%;border-radius:3px}
+.bv{font-size:12px;font-weight:500;min-width:50px;text-align:right}
+.tgg{display:flex;gap:4px;margin-bottom:1rem}
+.tg{padding:5px 12px;font-size:12px;border:1px solid #ccc;border-radius:6px;background:#fff;color:#777;cursor:pointer}
+.tg.on{background:#1a3a5c;border-color:#1a3a5c;color:#fff}
+.note{font-size:11px;color:#aaa;margin-top:8px}
+.ctx{font-size:14px;color:#666;line-height:1.8;margin-bottom:10px}
+.ftr{background:#1a3a5c;color:rgba(255,255,255,.5);text-align:center;padding:1.25rem;font-size:11px}
+@media(max-width:640px){.g2,.g3{grid-template-columns:1fr}.kpis{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div style="font-size:10px;color:rgba(255,255,255,.5);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">Análisis de Mercado · Real Estate</div>
+  <h1>Mercado de Oficinas AAA — Bogotá</h1>
+  <p>Serie histórica 2019–2025 · 8 submercados · 28 trimestres · Fuente: Cushman &amp; Wakefield y otras firmas especializadas</p>
+  <div class="hdr-tags">
+    <span class="htag">Inversionistas</span>
+    <span class="htag">Desarrolladores</span>
+    <span class="htag">Brokers</span>
+    <span class="htag">Actualizado: 2025-Q4</span>
+  </div>
+</div>
+
+<div class="nav" role="tablist">
+  <button class="tab on" data-sec="resumen">Resumen</button>
+  <button class="tab" data-sec="oferta">Oferta &amp; Vacancia</button>
+  <button class="tab" data-sec="absorcion">Absorción</button>
+  <button class="tab" data-sec="renta">Rentas</button>
+  <button class="tab" data-sec="pipeline">Pipeline</button>
+  <button class="tab" data-sec="submercados">Submercados</button>
+  <button class="tab" data-sec="datos">Datos</button>
+</div>
+
+<div class="body">
+
+<!-- RESUMEN -->
+<div class="sec on" id="sec-resumen">
+  <div class="kpis">
+    <div class="kpi r"><div class="kl">Vacancia Bogotá</div><div class="kv">6.7%</div><div class="ks">91,478 m² · 2025-Q4</div></div>
+    <div class="kpi g"><div class="kl">Absorción neta 2025</div><div class="kv">+131,662 m²</div><div class="ks">Mejor año desde 2019</div></div>
+    <div class="kpi a"><div class="kl">Renta prime USD</div><div class="kv">USD 23.0</div><div class="ks">/m²/mes · 2025-Q4</div></div>
+    <div class="kpi"><div class="kl">Renta prime COP</div><div class="kv">$85,303</div><div class="ks">/m²/mes · 2025-Q4</div></div>
+    <div class="kpi p"><div class="kl">En construcción</div><div class="kv">214,163 m²</div><div class="ks">2025-Q4</div></div>
+    <div class="kpi"><div class="kl">En proyecto</div><div class="kv">600,267 m²</div><div class="ks">2025-Q4</div></div>
+  </div>
+  <div class="g2">
+    <div class="card"><div class="ct">Vacancia % — Bogotá total</div><div class="cw md"><canvas id="r1"></canvas></div></div>
+    <div class="card"><div class="ct">Absorción neta trimestral (m²)</div><div class="cw md"><canvas id="r2"></canvas></div></div>
+  </div>
+  <div class="card">
+    <div class="ct">Vacancia por submercado — 2025-Q4</div>
+    <div id="vacanciaBars"></div>
+    <p class="note">Fuente: Cushman &amp; Wakefield, JLL, Colliers · Elaboración propia</p>
+  </div>
+  <div class="card">
+    <div class="ct">Contexto del mercado</div>
+    <p class="ctx">El mercado de oficinas AAA de Bogotá cerró 2025 con señales claras de recuperación. La vacancia cayó al <strong>6.7%</strong>, su nivel más bajo desde 2019, impulsada por absorción positiva en todos los trimestres del año.</p>
+    <p class="ctx">Los submercados de <strong>Nogal-Andino, Avenida Chile y Calle 100</strong> muestran vacancia inferior al 1%, evidenciando escasez real de espacio premium. El <strong>Centro</strong> continúa con la mayor vacancia (34.5%), reflejando su proceso de reconversión.</p>
+    <p class="ctx" style="margin:0">Las rentas en USD alcanzaron su nivel máximo del período (USD 23.0/m²/mes), recuperándose del mínimo de USD 15.5 registrado en 2022-Q4.</p>
+  </div>
+</div>
+
+<!-- OFERTA -->
+<div class="sec" id="sec-oferta">
+  <div class="card"><div class="ct">Superficie disponible (m²) — Bogotá total</div><div class="cw lg"><canvas id="o1"></canvas></div><p class="note">Pico: 239,898 m² en 2021-Q3. Mínimo reciente: 91,478 m² en 2025-Q4.</p></div>
+  <div class="card"><div class="ct">Tasa de vacancia (%) — Bogotá total</div><div class="cw md"><canvas id="o2"></canvas></div></div>
+  <div class="card"><div class="ct">Vacancia por submercado — 2025-Q4 (m² y %)</div><div class="cw" style="height:290px"><canvas id="o3"></canvas></div><p class="note">El Centro concentra la mayor vacancia absoluta y relativa del mercado (34.5%).</p></div>
+</div>
+
+<!-- ABSORCIÓN -->
+<div class="sec" id="sec-absorcion">
+  <div class="card"><div class="ct">Absorción neta trimestral — Bogotá (m²)</div><div class="cw lg"><canvas id="a1"></canvas></div><p class="note">Valores negativos indican desabsorción. 2020-Q2 y 2020-Q3 reflejan el impacto COVID-19.</p></div>
+  <div class="card"><div class="ct">Absorción acumulada anual — Bogotá (m²)</div><div class="cw md"><canvas id="a2"></canvas></div></div>
+  <div class="card"><div class="ct">Absorción por submercado — 2025-Q4 (m²)</div><div class="cw" style="height:270px"><canvas id="a3"></canvas></div><p class="note">Salitre lidera la absorción absoluta. Santa Bárbara registró absorción negativa en 2025-Q4.</p></div>
+</div>
+
+<!-- RENTA -->
+<div class="sec" id="sec-renta">
+  <div class="tgg">
+    <button class="tg on" data-renta="usd">USD / m² / mes</button>
+    <button class="tg" data-renta="cop">COP / m² / mes</button>
+  </div>
+  <div class="card"><div class="ct" id="rentaTit">Renta Bogotá — USD/m²/mes</div><div class="cw lg"><canvas id="rn1"></canvas></div><p class="note">Mínimo: USD 15.5 en 2022-Q4. Máximo: USD 23.0 en 2025-Q4.</p></div>
+  <div class="card"><div class="ct">Renta por submercado — USD/m²/mes · 2025-Q4</div><div class="cw" style="height:270px"><canvas id="rn2"></canvas></div><p class="note">Santa Bárbara lidera con USD 33.7/m²/mes. Salitre y Noroccidente son los más económicos.</p></div>
+  <div class="card"><div class="ct">Variación anual de renta (%)</div><div class="cw md"><canvas id="rn3"></canvas></div></div>
+</div>
+
+<!-- PIPELINE -->
+<div class="sec" id="sec-pipeline">
+  <div class="kpis">
+    <div class="kpi p"><div class="kl">En construcción</div><div class="kv">214,163 m²</div><div class="ks">2025-Q4</div></div>
+    <div class="kpi a"><div class="kl">En proyecto</div><div class="kv">600,267 m²</div><div class="ks">2025-Q4</div></div>
+    <div class="kpi"><div class="kl">Pipeline total</div><div class="kv">814,430 m²</div><div class="ks">Constr. + Proyecto</div></div>
+  </div>
+  <div class="card"><div class="ct">Evolución del pipeline — Bogotá (m²)</div><div class="cw lg"><canvas id="p1"></canvas></div><p class="note">Pico en construcción: 305,737 m² en 2019-Q1. La desaceleración post-2020 explica la escasez de oferta nueva en 2025.</p></div>
+  <div class="card"><div class="ct">Pipeline por submercado — 2025-Q4 (m²)</div><div class="cw" style="height:290px"><canvas id="p2"></canvas></div><p class="note">Salitre y Noroccidente concentran el mayor volumen en proyecto. Nogal-Andino lidera en construcción relativa a su inventario.</p></div>
+</div>
+
+<!-- SUBMERCADOS -->
+<div class="sec" id="sec-submercados">
+  <div class="sub-btns" id="subBtns"></div>
+  <div class="kpis" id="subKpis"></div>
+  <div class="g2">
+    <div class="card"><div class="ct">Vacancia (%)</div><div class="cw sm"><canvas id="sv1"></canvas></div></div>
+    <div class="card"><div class="ct">Absorción neta (m²)</div><div class="cw sm"><canvas id="sv2"></canvas></div></div>
+  </div>
+  <div class="g2">
+    <div class="card"><div class="ct">Renta USD/m²/mes</div><div class="cw sm"><canvas id="sv3"></canvas></div></div>
+    <div class="card"><div class="ct">Pipeline (m²)</div><div class="cw sm"><canvas id="sv4"></canvas></div></div>
+  </div>
+</div>
+
+<!-- DATOS -->
+<div class="sec" id="sec-datos">
+  <div class="card" style="padding:0;overflow:hidden">
+    <div style="padding:.85rem 1.25rem;border-bottom:1px solid #e8e8e8;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+      <span style="font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.05em">Datos completos</span>
+      <div class="tgg" style="margin:0;margin-left:auto">
+        <button class="tg on" data-tabla="bog">Bogotá total</button>
+        <button class="tg" data-tabla="sub">Por submercado</button>
+      </div>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="tbl" id="tBog">
+        <thead><tr><th>Período</th><th class="tr">Vacancia m²</th><th class="tr">Vacancia %</th><th class="tr">Absorción m²</th><th class="tr">Construcc. m²</th><th class="tr">Proyecto m²</th><th class="tr">Renta USD</th><th class="tr">Renta COP</th></tr></thead>
+        <tbody id="tbBog"></tbody>
+      </table>
+      <table class="tbl" id="tSub" style="display:none">
+        <thead><tr><th>Período</th><th>Submercado</th><th class="tr">Inventario m²</th><th class="tr">Vacancia m²</th><th class="tr">Vacancia %</th><th class="tr">Absorción m²</th><th class="tr">Renta USD</th><th class="tr">Renta COP</th></tr></thead>
+        <tbody id="tbSub"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+</div>
+<div class="ftr">Mercado de Oficinas AAA Bogotá · 2019–2025 · Fuente: Cushman &amp; Wakefield y otras firmas especializadas · Elaboración propia</div>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────
+const BOG = {"periodos":["2019-Q1","2019-Q2","2019-Q3","2019-Q4","2020-Q1","2020-Q2","2020-Q3","2020-Q4","2021-Q1","2021-Q2","2021-Q3","2021-Q4","2022-Q1","2022-Q2","2022-Q3","2022-Q4","2023-Q1","2023-Q2","2023-Q3","2023-Q4","2024-Q1","2024-Q2","2024-Q3","2024-Q4","2025-Q1","2025-Q2","2025-Q3","2025-Q4"],"vacancia_m2":[21374,137333,116958,145839,122316,143347,158575,228356,222960,216383,239898,220373,207571,198415,198500,198664,178498,207355,188614,190000,198000,194779,177903,189735,148456,133887,123754,91478],"vacancia_pct":[7.8,9.1,7.6,9.3,7.7,9.0,10.0,13.6,13.2,12.9,14.3,13.1,12.3,11.7,11.6,11.6,10.3,12.3,10.7,10.6,11.2,11.0,10.1,10.5,11.0,9.9,9.1,6.7],"absorcion":[68329,11730,49375,10489,33523,-10801,-15228,21123,5422,6577,-23515,19525,20064,14956,21417,7561,35014,37590,57718,60000,8500,-8836,7993,29587,7270,23950,34083,66359],"construccion":[305737,293606,249606,197308,187308,215445,215445,145945,143490,154125,154125,159665,128220,122520,150133,160645,159395,150015,145956,160000,140000,143569,140538,130892,130892,130892,130892,214163],"proyecto":[829611,523874,523874,423874,423874,543212,577212,655712,659680,639680,639680,639680,639680,639680,679740,683541,739266,771226,764013,770000,757752,757752,757752,774127,660867,668080,668538,600267],"renta_usd":[21.1,20.4,19.9,20.2,16.6,17.5,17.0,21.3,20.0,19.4,18.5,18.1,19.6,17.8,16.4,15.5,16.2,17.8,18.2,18.0,17.9,18.0,17.9,16.9,19.2,20.1,21.2,23.0],"renta_cop":[66745,66070,69000,66100,67534,65721,65891,74293,73212,72804,70975,72041,73467,73276,74519,74554,75173,74761,73870,74000,74500,74662,74488,74433,80299,81832,82683,85303]};
+
+const SUB = {"Avenida Chile":{"periodos":["2019-Q1","2019-Q2","2019-Q3","2019-Q4","2020-Q1","2020-Q2","2020-Q3","2020-Q4","2021-Q1","2021-Q2","2021-Q3","2021-Q4","2022-Q1","2022-Q2","2022-Q3","2022-Q4","2023-Q1","2023-Q2","2023-Q3","2023-Q4","2024-Q1","2024-Q2","2024-Q3","2024-Q4","2025-Q1","2025-Q2","2025-Q3","2025-Q4"],"inventario":[92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,51118,65168,65168,65168],"vacancia_m2":[3890,1999,1167,958,2249,2496,2482,8093,7486,10181,11997,10674,7982,7321,7610,7700,4982,8447,8475,8400,5435,5324,5629,5629,4304,630,805,268],"vacancia_pct":[4.2,2.2,1.3,1.0,2.4,2.7,2.7,8.8,8.1,11.1,13.0,11.6,8.7,7.9,8.3,8.4,5.4,9.2,9.2,9.1,5.9,5.8,6.1,6.1,8.4,1.0,1.2,0.4],"absorcion":[0,0,0,209,-1291,-1538,-1524,-7135,612,-2088,-3904,-2581,1280,1234,1140,1100,3705,3214,211,500,1682,1793,1488,1535,-120,3554,3379,3916],"construccion":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"proyecto":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"renta_usd":[19.6,19.0,19.4,20.9,17.7,17.6,17.3,19.2,18.3,18.1,17.6,17.3,15.9,16.1,16.5,16.7,14.4,16.6,17.2,17.0,17.6,17.7,18.4,17.3,17.5,18.4,18.3,20.2],"renta_cop":[61342,60000,67000,68426,78098,66271,66951,67249,67053,68025,67520,69069,70568,72010,74000,75000,66688,69689,69600,69500,67739,73361,76802,76138,73226,75000,71534,75000]},"Calle 100":{"periodos":["2019-Q1","2019-Q2","2019-Q3","2019-Q4","2020-Q1","2020-Q2","2020-Q3","2020-Q4","2021-Q1","2021-Q2","2021-Q3","2021-Q4","2022-Q1","2022-Q2","2022-Q3","2022-Q4","2023-Q1","2023-Q2","2023-Q3","2023-Q4","2024-Q1","2024-Q2","2024-Q3","2024-Q4","2025-Q1","2025-Q2","2025-Q3","2025-Q4"],"inventario":[164657,164657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,183479,147770,147770,147770],"vacancia_m2":[10884,8154,5580,4976,4281,6730,7476,12334,15803,28119,27790,20739,19495,17862,17581,17600,19499,20685,14286,14000,11529,13249,8061,7672,3379,1986,1655,1129],"vacancia_pct":[6.6,5.0,3.2,2.8,2.4,3.8,4.3,7.0,9.0,16.0,15.8,11.8,11.1,10.2,10.0,10.0,11.1,11.8,8.1,8.0,6.6,7.5,4.6,4.4,1.8,1.3,1.1,0.8],"absorcion":[0,0,0,604,695,-1754,-2500,-7358,-3469,-15761,-15432,-8381,-1732,2839,3100,3200,-2447,-2936,2770,2800,2259,539,5527,6154,1351,1060,1391,1917],"construccion":[132400,80000,69000,69000,69000,76600,76600,76600,76600,76600,76600,76600,79200,79200,79200,79200,79200,79200,79200,79200,79200,79200,79200,79200,79200,79200,79200,79200],"proyecto":[0,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400],"renta_usd":[21.0,20.0,18.5,20.0,16.8,17.3,15.4,18.4,17.4,17.5,16.4,16.4,15.6,16.5,16.9,17.0,15.1,16.8,16.9,17.0,17.0,16.0,16.6,15.1,18.7,23.0,23.2,23.6],"renta_cop":[65819,64702,64169,65429,68443,64490,59656,64379,63873,65662,62799,65389,69360,72600,73500,74000,70013,70451,68325,68500,65229,66692,69305,66691,78526,93717,90684,87400]},"Centro":{"periodos":["2019-Q1","2019-Q2","2019-Q3","2019-Q4","2020-Q1","2020-Q2","2020-Q3","2020-Q4","2021-Q1","2021-Q2","2021-Q3","2021-Q4","2022-Q1","2022-Q2","2022-Q3","2022-Q4","2023-Q1","2023-Q2","2023-Q3","2023-Q4","2024-Q1","2024-Q2","2024-Q3","2024-Q4","2025-Q1","2025-Q2","2025-Q3","2025-Q4"],"inventario":[31178,31178,31178,31178,31178,31178,31178,96178,96178,96178,96178,96178,96178,96178,96178,96178,96178,96178,96178,96178,96178,96178,96178,96178,96178,74178,74178,74178],"vacancia_m2":[3555,688,600,12109,12092,11922,4116,44116,43872,46072,48399,45764,43121,42311,42500,43000,41792,45829,47818,47000,41229,41229,34931,34931,32806,28534,26454,25585],"vacancia_pct":[11.4,2.2,1.9,38.8,38.8,38.2,13.2,45.9,45.6,47.9,50.3,47.6,44.8,44.0,44.2,44.7,43.5,47.7,49.7,48.9,42.9,42.9,36.3,36.3,34.1,38.5,35.7,34.5],"absorcion":[0,0,0,-11509,17,187,7993,32993,244,-1956,-4283,-1648,2501,-273,310,300,4536,3148,-1489,-1500,3059,3059,9357,9357,131,3202,5282,6151],"construccion":[224000,64000,64000,64000,64000,64000,64000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"proyecto":[0,160000,160000,600000,60000,60000,66000,166000,166000,166000,166000,166000,160000,160000,160000,160000,166000,166000,166000,166000,166000,160000,160000,160000,100000,100000,100000,100000],"renta_usd":[18.5,19.0,18.8,18.6,14.6,16.0,16.0,27.6,25.9,24.8,23.9,23.4,20.4,21.0,21.5,21.7,20.5,22.0,22.5,22.0,24.8,23.0,22.8,21.5,24.8,25.5,27.1,29.0],"renta_cop":[58097,60000,65000,60862,59198,59956,62032,96457,94763,93007,91661,93196,90885,93020,94000,95000,95043,92363,91224,91000,95457,95457,94884,94884,104067,103938,105811,107500]},"Chicó":{"periodos":["2019-Q1","2019-Q2","2019-Q3","2019-Q4","2020-Q1","2020-Q2","2020-Q3","2020-Q4","2021-Q1","2021-Q2","2021-Q3","2021-Q4","2022-Q1","2022-Q2","2022-Q3","2022-Q4","2023-Q1","2023-Q2","2023-Q3","2023-Q4","2024-Q1","2024-Q2","2024-Q3","2024-Q4","2025-Q1","2025-Q2","2025-Q3","2025-Q4"],"inventario":[130106,150467,150467,150467,150467,160697,160697,160697,160697,160697,160697,160697,176651,176651,183770,183770,176651,179711,183770,183770,183770,183770,183770,183770,163417,175821,175821,175821],"vacancia_m2":[5715,25910,19357,18998,16329,19558,24471,21568,14562,15019,15987,15169,11782,10691,10000,10100,11407,10021,4185,4200,5473,10021,11937,7897,6819,6659,2360,2520],"vacancia_pct":[4.4,17.2,12.9,12.6,10.9,12.2,15.2,13.4,9.1,9.3,9.9,9.4,6.7,6.0,5.4,5.5,6.5,5.6,2.3,2.3,3.0,5.5,6.5,4.3,4.2,3.8,1.3,1.4],"absorcion":[0,0,0,359,2669,9670,4757,7660,7027,6549,5581,6399,510,4211,5120,5000,10395,11672,21652,21500,36,-4512,-6428,-2388,62,502,4801,4641],"construccion":[26,10230,10230,10230,10230,19120,19120,19120,21120,13120,13120,13120,9390,9390,5331,5331,9390,9390,5331,5331,5331,5331,5331,5331,5331,5331,5331,21389],"proyecto":[0,0,0,0,0,31600,31600,31600,25056,25056,25056,25056,16081,16081,16441,16441,16081,16081,16441,16441,16441,22880,22880,28880,28880,28880,29338,13280],"renta_usd":[21.2,23.0,22.8,24.0,19.4,20.2,19.6,23.2,20.8,20.6,19.7,18.8,17.0,17.6,18.2,18.4,16.5,16.9,18.4,18.5,21.2,19.5,18.8,17.8,19.2,20.1,25.9,26.9],"renta_cop":[66498,73725,78774,78606,79028,76025,77052,80892,76353,77236,75501,74796,75821,77030,77500,78000,76430,70721,74553,74600,81343,80704,78323,78326,80549,81756,101007,99548]},"Nogal-Andino":{"periodos":["2019-Q1","2019-Q2","2019-Q3","2019-Q4","2020-Q1","2020-Q2","2020-Q3","2020-Q4","2021-Q1","2021-Q2","2021-Q3","2021-Q4","2022-Q1","2022-Q2","2022-Q3","2022-Q4","2023-Q1","2023-Q2","2023-Q3","2023-Q4","2024-Q1","2024-Q2","2024-Q3","2024-Q4","2025-Q1","2025-Q2","2025-Q3","2025-Q4"],"inventario":[141757,141757,141757,141757,141757,141757,141757,151657,151657,151657,151657,151657,157457,157457,157457,157457,157457,157457,157457,157457,164270,164270,164270,164270,67056,98989,98989,98989],"vacancia_m2":[7636,6289,8153,6619,7686,7037,6451,18575,16110,12735,13396,14160,7053,6889,6900,6950,5920,6933,4995,5000,3174,2532,2813,2756,0,1073,596,229],"vacancia_pct":[5.4,4.4,5.8,4.7,5.4,5.0,4.6,12.2,10.6,8.4,8.8,9.3,4.5,4.4,4.4,4.4,4.0,4.4,3.2,3.2,1.9,1.5,1.7,1.7,0.0,1.1,0.6,0.2],"absorcion":[0,0,0,1534,-1067,-418,168,-2056,2465,5840,5179,4415,1590,2701,2780,2800,5881,5509,6806,6800,492,1134,853,910,0,-137,340,707],"construccion":[41000,11000,11000,11000,11000,23000,23000,12000,7545,5700,5700,5700,17325,17325,17325,17325,17325,17325,17325,17325,17512,17512,17512,17512,17512,17512,17512,84725],"proyecto":[0,30000,30000,30000,30000,30000,58000,58000,68512,68512,68512,68512,72313,72313,72313,72313,72313,72313,64700,64700,58000,58000,58000,70000,70000,95213,95213,28000],"renta_usd":[27.0,26.0,26.5,25.7,21.3,20.9,20.0,24.9,23.5,21.3,20.2,19.1,18.1,18.5,18.9,19.1,17.6,19.9,20.2,20.0,24.2,22.3,21.2,18.5,18.5,23.2,24.4,25.6],"renta_cop":[84686,83719,91662,84079,86517,78629,77760,86985,86079,79865,77288,75972,79463,80010,80500,81000,81596,83440,81913,82000,92833,92306,88274,81404,81404,94305,95000,95000]},"Salitre":{"periodos":["2019-Q1","2019-Q2","2019-Q3","2019-Q4","2020-Q1","2020-Q2","2020-Q3","2020-Q4","2021-Q1","2021-Q2","2021-Q3","2021-Q4","2022-Q1","2022-Q2","2022-Q3","2022-Q4","2023-Q1","2023-Q2","2023-Q3","2023-Q4","2024-Q1","2024-Q2","2024-Q3","2024-Q4","2025-Q1","2025-Q2","2025-Q3","2025-Q4"],"inventario":[520446,520446,538446,576595,576595,576595,576595,592599,592599,592599,592599,592599,614099,636553,636553,636553,614099,636553,636553,636553,636553,636553,636553,636553,601813,613764,613764,613764],"vacancia_m2":[32416,39508,26207,55514,35340,45971,55063,61061,60918,43570,47393,39898,50648,58160,60000,60500,52642,79532,69709,70000,79469,80878,81049,75273,67891,74677,70988,47518],"vacancia_pct":[6.2,7.6,4.9,9.6,6.1,8.0,9.5,10.3,10.3,7.4,8.0,6.7,8.2,9.1,9.4,9.5,8.6,12.5,11.0,11.0,12.5,12.7,12.7,11.8,11.3,12.2,11.6,7.7],"absorcion":[0,0,0,10063,20174,9543,451,10457,143,17491,13668,21163,7568,2451,2500,2550,2013,3193,13717,13700,-9311,-10720,-10888,-5081,2655,2499,6188,29658],"construccion":[300493,105448,72448,33078,33078,32725,32725,38225,38225,58705,58705,58705,20480,0,0,0,20480,0,0,0,0,0,0,23700,23700,23700,23700,23700],"proyecto":[0,210045,210045,210045,210045,230045,230045,208545,208545,188545,188545,188545,245505,277505,277505,277505,245505,277505,277505,277505,277505,277505,277505,275880,222620,222620,222620,237620],"renta_usd":[18.4,18.0,17.4,18.6,15.7,16.4,15.5,17.5,17.0,16.9,16.4,16.0,15.2,15.4,15.6,15.8,14.6,16.0,16.5,16.5,17.6,16.5,16.3,15.3,17.3,18.2,19.0,19.9],"renta_cop":[57576,59544,60234,60956,63690,61755,60168,60976,62132,63636,62852,63806,67500,68200,69000,69500,67706,67170,66914,67000,67979,68285,68014,67603,72671,74326,73980,73844]},"Santa Bárbara":{"periodos":["2019-Q1","2019-Q2","2019-Q3","2019-Q4","2020-Q1","2020-Q2","2020-Q3","2020-Q4","2021-Q1","2021-Q2","2021-Q3","2021-Q4","2022-Q1","2022-Q2","2022-Q3","2022-Q4","2023-Q1","2023-Q2","2023-Q3","2023-Q4","2024-Q1","2024-Q2","2024-Q3","2024-Q4","2025-Q1","2025-Q2","2025-Q3","2025-Q4"],"inventario":[207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,41923,49329,49329,49329],"vacancia_m2":[19106,15413,15297,15066,13879,17398,25556,27112,29346,25399,27916,27891,13400,12740,12000,12100,12981,10701,9822,9800,6761,6657,5904,5146,556,556,1128,1128],"vacancia_pct":[9.2,7.4,7.4,7.2,6.7,8.4,12.3,13.0,14.1,12.2,13.4,13.4,6.4,6.1,5.8,5.8,6.2,5.2,4.7,4.7,3.3,3.2,2.8,2.5,1.3,1.1,2.3,2.3],"absorcion":[0,0,0,231,1187,-2332,-10490,-12046,-2234,1728,-789,-764,4647,1966,1800,1850,1304,1304,4473,4500,783,3604,4328,5057,0,0,-572,-572],"construccion":[0,0,0,0,0,0,0,0,0,0,0,5540,0,11100,11100,11100,0,11100,11100,11100,8180,8180,5149,5149,5149,5149,5149,5149],"proyecto":[0,0,0,0,0,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738],"renta_usd":[24.5,23.0,21.9,22.6,17.9,19.1,19.0,21.3,19.9,19.0,18.7,18.2,16.7,17.2,17.6,17.8,16.3,17.7,19.5,19.5,17.2,19.3,19.1,18.4,21.9,22.5,32.0,33.7],"renta_cop":[76780,74754,75726,74225,72865,71622,73572,74305,73103,71351,71614,72542,74714,76040,77000,77500,75352,74129,79151,79200,75688,80256,79486,81322,91753,91752,125000,125000]},"Noroccidente":{"periodos":["2019-Q1","2019-Q2","2019-Q3","2019-Q4","2020-Q1","2020-Q2","2020-Q3","2020-Q4","2021-Q1","2021-Q2","2021-Q3","2021-Q4","2022-Q1","2022-Q2","2022-Q3","2022-Q4","2023-Q1","2023-Q2","2023-Q3","2023-Q4","2024-Q1","2024-Q2","2024-Q3","2024-Q4","2025-Q1","2025-Q2","2025-Q3","2025-Q4"],"inventario":[183682,196182,196182,196182,206182,206182,206182,206182,206182,206182,206182,206182,211722,211722,211722,211722,211722,211722,211722,211722,211722,211722,211722,244722,144380,131106,131106,131106],"vacancia_m2":[31700,39372,40597,31599,30460,32235,32960,35497,34863,35288,47020,46078,33192,27842,28000,28200,29275,33207,29324,29300,38620,34889,27579,50431,32701,19772,19768,13101],"vacancia_pct":[17.3,20.1,20.7,16.1,14.8,15.6,16.0,17.2,16.9,17.1,22.8,22.3,15.7,13.1,13.2,13.3,13.8,15.7,13.9,13.8,18.2,16.5,13.0,20.6,22.6,15.1,15.1,10.0],"absorcion":[0,0,0,8998,11139,9364,8639,6102,634,209,-11523,-10581,0,1637,1600,1650,9627,10196,9578,9600,-7435,-3733,3548,14042,3191,13270,13274,19941],"construccion":[105077,22928,22928,10000,0,0,0,0,0,0,0,0,33000,33000,33000,33000,33000,33000,33000,33000,33346,33346,33346,0,0,0,0,0],"proyecto":[0,71429,71429,71429,71429,89429,89429,89429,89429,89429,89429,89429,137229,137229,137229,137229,137229,137229,137229,137229,137229,137229,137229,137229,137229,119229,119229,119229],"renta_usd":[21.6,19.1,18.4,18.9,15.1,16.3,15.8,18.3,17.4,16.4,15.6,14.9,13.9,14.5,15.0,15.2,13.2,15.0,15.5,15.5,17.0,15.4,15.5,15.8,17.4,18.8,19.8,20.8],"renta_cop":[67748,62059,63694,61870,61458,61375,61424,64043,63840,61424,59866,59423,62140,63500,64000,64500,61156,62716,62807,62900,65247,64014,64585,69758,73159,76711,77071,77219]}};
+
+const SNMS = Object.keys(SUB);
+const CLR = {"Avenida Chile":"#2563b0","Calle 100":"#2d7a3a","Centro":"#b53c2e","Chicó":"#6b3fa8","Nogal-Andino":"#c8973a","Salitre":"#1e7070","Santa Bárbara":"#c2185b","Noroccidente":"#455a64"};
+const G = {color:'rgba(0,0,0,0.07)'}, TK = {color:'#888',font:{size:11}};
+const ch = {};
+function mk(id,cfg){if(ch[id])ch[id].destroy();ch[id]=new Chart(document.getElementById(id),cfg);}
+const skip4 = arr => arr.map((v,i)=>i%4===0?v:'');
+const fmt = n => n.toLocaleString('es-CO');
+
+// ── NAVEGACIÓN ────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function(){
+
+  // Tabs principales
+  document.querySelectorAll('.tab').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var sec = this.dataset.sec;
+      document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on');});
+      document.querySelectorAll('.sec').forEach(function(s){s.classList.remove('on');});
+      this.classList.add('on');
+      document.getElementById('sec-'+sec).classList.add('on');
+      if(sec==='submercados' && !window.subDone) initSub();
+      if(sec==='datos' && !window.datosDone) buildTablas();
+    });
+  });
+
+  // Toggle renta USD/COP
+  document.querySelectorAll('.tg[data-renta]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.tg[data-renta]').forEach(function(b){b.classList.remove('on');});
+      this.classList.add('on');
+      var m = this.dataset.renta;
+      document.getElementById('rentaTit').textContent = m==='usd' ? 'Renta Bogotá — USD/m²/mes' : 'Renta Bogotá — COP/m²/mes';
+      mkRentaLine(m);
+    });
+  });
+
+  // Toggle tablas
+  document.querySelectorAll('.tg[data-tabla]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.tg[data-tabla]').forEach(function(b){b.classList.remove('on');});
+      this.classList.add('on');
+      var w = this.dataset.tabla;
+      document.getElementById('tBog').style.display = w==='bog' ? '' : 'none';
+      document.getElementById('tSub').style.display = w==='sub' ? '' : 'none';
+    });
+  });
+
+  // Construir todos los gráficos iniciales
+  buildResumen();
+  buildOferta();
+  buildAbsorcion();
+  mkRentaLine('usd');
+  mkRentaSubBar();
+  mkRentaVarAnual();
+  buildPipeline();
+});
+
+// ── RESUMEN ───────────────────────────────────────────────────────
+function buildResumen(){
+  mk('r1',{type:'line',data:{labels:BOG.periodos,datasets:[{label:'Vacancia %',data:BOG.vacancia_pct,borderColor:'#b53c2e',backgroundColor:'rgba(181,60,46,0.08)',borderWidth:2,fill:true,tension:0.3,pointRadius:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{...TK,callback:function(v,i){return i%4===0?BOG.periodos[i]:''}},grid:G},y:{ticks:{...TK,callback:function(v){return v+'%'}},grid:G}}}});
+  mk('r2',{type:'bar',data:{labels:BOG.periodos,datasets:[{label:'Absorción m²',data:BOG.absorcion,backgroundColor:BOG.absorcion.map(function(v){return v>=0?'rgba(45,122,58,0.75)':'rgba(181,60,46,0.75)'}),borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{...TK,callback:function(v,i){return i%4===0?BOG.periodos[i]:''}},grid:{display:false}},y:{ticks:TK,grid:G}}}});
+  // Barras vacancia submercados
+  var datos = SNMS.map(function(n){return{name:n,val:SUB[n].vacancia_pct[SUB[n].vacancia_pct.length-1]};}).sort(function(a,b){return b.val-a.val;});
+  var mx = Math.max.apply(null,datos.map(function(d){return d.val;}));
+  document.getElementById('vacanciaBars').innerHTML = datos.map(function(d){
+    return '<div class="br"><span class="bn">'+d.name+'</span><div class="bt"><div class="bf" style="width:'+Math.max(d.val/mx*100,2)+'%;background:'+CLR[d.name]+'"></div></div><span class="bv">'+d.val.toFixed(1)+'%</span></div>';
+  }).join('');
+}
+
+// ── OFERTA ────────────────────────────────────────────────────────
+function buildOferta(){
+  mk('o1',{type:'line',data:{labels:BOG.periodos,datasets:[{label:'Superficie disponible m²',data:BOG.vacancia_m2,borderColor:'#2563b0',backgroundColor:'rgba(37,99,176,0.08)',borderWidth:2,fill:true,tension:0.3,pointRadius:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{...TK,callback:function(v,i){return i%4===0?BOG.periodos[i]:''}},grid:G},y:{ticks:{...TK,callback:function(v){return Math.round(v/1000)+'k'}},grid:G}}}});
+  mk('o2',{type:'line',data:{labels:BOG.periodos,datasets:[{label:'Vacancia %',data:BOG.vacancia_pct,borderColor:'#b53c2e',backgroundColor:'rgba(181,60,46,0.08)',borderWidth:2,fill:true,tension:0.3,pointRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{...TK,callback:function(v,i){return i%4===0?BOG.periodos[i]:''}},grid:G},y:{ticks:{...TK,callback:function(v){return v+'%'}},grid:G}}}});
+  mk('o3',{type:'bar',data:{labels:SNMS,datasets:[{label:'Vacancia m²',data:SNMS.map(function(n){return SUB[n].vacancia_m2[SUB[n].vacancia_m2.length-1];}),backgroundColor:SNMS.map(function(n){return CLR[n]+'cc';}),borderRadius:4,yAxisID:'y'},{type:'line',label:'Vacancia %',data:SNMS.map(function(n){return SUB[n].vacancia_pct[SUB[n].vacancia_pct.length-1];}),borderColor:'#333',borderWidth:1.5,pointRadius:5,yAxisID:'y2',backgroundColor:'transparent'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'top',labels:{font:{size:11},boxWidth:12}}},scales:{x:{ticks:{...TK,maxRotation:30},grid:{display:false}},y:{ticks:{...TK,callback:function(v){return Math.round(v/1000)+'k'}},grid:G},y2:{position:'right',ticks:{...TK,callback:function(v){return v+'%'}},grid:{display:false}}}}});
+}
+
+// ── ABSORCIÓN ─────────────────────────────────────────────────────
+function buildAbsorcion(){
+  mk('a1',{type:'bar',data:{labels:BOG.periodos,datasets:[{label:'Absorción neta m²',data:BOG.absorcion,backgroundColor:BOG.absorcion.map(function(v){return v>=0?'rgba(45,122,58,0.75)':'rgba(181,60,46,0.75)';}),borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{...TK,callback:function(v,i){return i%4===0?BOG.periodos[i]:''},maxRotation:0},grid:{display:false}},y:{ticks:TK,grid:G}}}});
+  var anos=['2019','2020','2021','2022','2023','2024','2025'];
+  var anual=anos.map(function(y){return BOG.absorcion.reduce(function(s,v,i){return BOG.periodos[i].startsWith(y)?s+v:s;},0);});
+  mk('a2',{type:'bar',data:{labels:anos,datasets:[{label:'Absorción anual m²',data:anual,backgroundColor:anual.map(function(v){return v>=0?'rgba(45,122,58,0.75)':'rgba(181,60,46,0.75)';}),borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:TK,grid:{display:false}},y:{ticks:TK,grid:G}}}});
+  var absLast=SNMS.map(function(n){return SUB[n].absorcion[SUB[n].absorcion.length-1];});
+  mk('a3',{type:'bar',data:{labels:SNMS,datasets:[{label:'Absorción m²',data:absLast,backgroundColor:absLast.map(function(v,i){return v>=0?CLR[SNMS[i]]+'cc':'rgba(181,60,46,0.75)';}),borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{...TK,maxRotation:30},grid:{display:false}},y:{ticks:TK,grid:G}}}});
+}
+
+// ── RENTAS ────────────────────────────────────────────────────────
+function mkRentaLine(mode){
+  var data = mode==='usd' ? BOG.renta_usd : BOG.renta_cop;
+  mk('rn1',{type:'line',data:{labels:BOG.periodos,datasets:[{label:mode==='usd'?'USD/m²/mes':'COP/m²/mes',data:data,borderColor:'#c8973a',backgroundColor:'rgba(200,151,58,0.08)',borderWidth:2.5,fill:true,tension:0.3,pointRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{...TK,callback:function(v,i){return i%4===0?BOG.periodos[i]:''}},grid:G},y:{ticks:{...TK,callback:function(v){return mode==='usd'?'USD '+v:'$'+Math.round(v/1000)+'k';}},grid:G}}}});
+}
+function mkRentaSubBar(){
+  mk('rn2',{type:'bar',data:{labels:SNMS,datasets:[{label:'USD/m²/mes',data:SNMS.map(function(n){return SUB[n].renta_usd[SUB[n].renta_usd.length-1];}),backgroundColor:SNMS.map(function(n){return CLR[n]+'cc';}),borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{...TK,maxRotation:30},grid:{display:false}},y:{min:0,max:40,ticks:{...TK,callback:function(v){return 'USD '+v;}},grid:G}}}});
+}
+function mkRentaVarAnual(){
+  var inc=[0,0,0,0,1.18,-0.53,-4.51,12.39,8.41,10.78,7.72,-3.03,0.35,0.65,4.99,3.49,2.32,2.03,-0.87,-0.74,-0.9,-0.13,0.84,0.59,7.78,9.6,11.0,14.6];
+  mk('rn3',{type:'bar',data:{labels:BOG.periodos,datasets:[{label:'Var. anual %',data:inc,backgroundColor:inc.map(function(v){return v>=0?'rgba(45,122,58,0.7)':'rgba(181,60,46,0.7)';}),borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{...TK,callback:function(v,i){return i%4===0?BOG.periodos[i]:''}},grid:{display:false}},y:{ticks:{...TK,callback:function(v){return v+'%';}},grid:G}}}});
+}
+
+// ── PIPELINE ──────────────────────────────────────────────────────
+function buildPipeline(){
+  mk('p1',{type:'line',data:{labels:BOG.periodos,datasets:[{label:'En construcción m²',data:BOG.construccion,borderColor:'#2563b0',backgroundColor:'rgba(37,99,176,0.1)',borderWidth:2,fill:true,tension:0.3,pointRadius:2},{label:'En proyecto m²',data:BOG.proyecto,borderColor:'#c8973a',backgroundColor:'rgba(200,151,58,0.07)',borderWidth:2,fill:true,tension:0.3,pointRadius:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'top',labels:{font:{size:11},boxWidth:12}}},scales:{x:{ticks:{...TK,callback:function(v,i){return i%4===0?BOG.periodos[i]:''}},grid:G},y:{ticks:{...TK,callback:function(v){return Math.round(v/1000)+'k'}},grid:G}}}});
+  mk('p2',{type:'bar',data:{labels:SNMS,datasets:[{label:'En construcción m²',data:SNMS.map(function(n){return SUB[n].construccion[SUB[n].construccion.length-1];}),backgroundColor:SNMS.map(function(n){return CLR[n]+'cc';}),borderRadius:4},{label:'En proyecto m²',data:SNMS.map(function(n){return SUB[n].proyecto[SUB[n].proyecto.length-1];}),backgroundColor:SNMS.map(function(n){return CLR[n]+'44';}),borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'top',labels:{font:{size:11},boxWidth:12}}},scales:{x:{ticks:{...TK,maxRotation:30},grid:{display:false}},y:{ticks:{...TK,callback:function(v){return Math.round(v/1000)+'k'}},grid:G}}}});
+}
+
+// ── SUBMERCADOS ───────────────────────────────────────────────────
+window.subDone = false;
+window.curSub = SNMS[0];
+
+function initSub(){
+  window.subDone = true;
+  var btns = document.getElementById('subBtns');
+  btns.innerHTML = SNMS.map(function(n){
+    return '<button class="sb'+(n===window.curSub?' on':'')+'" data-sub="'+n+'">'+n+'</button>';
+  }).join('');
+  btns.querySelectorAll('.sb').forEach(function(b){
+    b.addEventListener('click',function(){
+      btns.querySelectorAll('.sb').forEach(function(x){x.classList.remove('on');});
+      this.classList.add('on');
+      window.curSub = this.dataset.sub;
+      renderSub();
+    });
+  });
+  renderSub();
+}
+
+function renderSub(){
+  var s = window.curSub;
+  var d = SUB[s];
+  var n = d.periodos.length;
+  var c = CLR[s];
+  var lp = d.periodos[n-1];
+  document.getElementById('subKpis').innerHTML = [
+    '<div class="kpi"><div class="kl">Inventario</div><div class="kv">'+Math.round(d.inventario[n-1]/1000)+'k m²</div><div class="ks">'+lp+'</div></div>',
+    '<div class="kpi r"><div class="kl">Vacancia</div><div class="kv">'+d.vacancia_pct[n-1].toFixed(1)+'%</div><div class="ks">'+fmt(d.vacancia_m2[n-1])+' m²</div></div>',
+    '<div class="kpi g"><div class="kl">Absorción neta</div><div class="kv">'+(d.absorcion[n-1]>=0?'+':'')+fmt(d.absorcion[n-1])+' m²</div><div class="ks">'+lp+'</div></div>',
+    '<div class="kpi a"><div class="kl">Renta USD</div><div class="kv">USD '+d.renta_usd[n-1].toFixed(1)+'</div><div class="ks">/m²/mes</div></div>',
+    '<div class="kpi"><div class="kl">Renta COP</div><div class="kv">$'+fmt(d.renta_cop[n-1])+'</div><div class="ks">/m²/mes</div></div>',
+    '<div class="kpi p"><div class="kl">En construcción</div><div class="kv">'+Math.round(d.construccion[n-1]/1000)+'k m²</div><div class="ks">'+lp+'</div></div>'
+  ].join('');
+  var sk = function(v,i){return i%4===0?d.periodos[i]:'';};
+  mk('sv1',{type:'line',data:{labels:d.periodos,datasets:[{label:'Vacancia %',data:d.vacancia_pct,borderColor:c,backgroundColor:c+'18',borderWidth:2,fill:true,tension:0.3,pointRadius:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{...TK,callback:sk},grid:G},y:{ticks:{...TK,callback:function(v){return v+'%'}},grid:G}}}});
+  mk('sv2',{type:'bar',data:{labels:d.periodos,datasets:[{label:'Absorción m²',data:d.absorcion,backgroundColor:d.absorcion.map(function(v){return v>=0?c+'cc':'rgba(181,60,46,0.75)';}),borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{...TK,callback:sk},grid:{display:false}},y:{ticks:TK,grid:G}}}});
+  mk('sv3',{type:'line',data:{labels:d.periodos,datasets:[{label:'USD/m²/mes',data:d.renta_usd,borderColor:'#c8973a',backgroundColor:'rgba(200,151,58,0.08)',borderWidth:2,fill:true,tension:0.3,pointRadius:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{...TK,callback:sk},grid:G},y:{ticks:TK,grid:G}}}});
+  mk('sv4',{type:'line',data:{labels:d.periodos,datasets:[{label:'En construcción',data:d.construccion,borderColor:'#2563b0',borderWidth:2,tension:0.3,pointRadius:2},{label:'En proyecto',data:d.proyecto,borderColor:'#c8973a',borderWidth:2,borderDash:[4,4],tension:0.3,pointRadius:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'top',labels:{font:{size:11},boxWidth:10}}},scales:{x:{ticks:{...TK,callback:sk},grid:G},y:{ticks:{...TK,callback:function(v){return Math.round(v/1000)+'k'}},grid:G}}}});
+}
+
+// ── TABLAS ────────────────────────────────────────────────────────
+window.datosDone = false;
+function buildTablas(){
+  window.datosDone = true;
+  document.getElementById('tbBog').innerHTML = BOG.periodos.map(function(p,i){
+    var a=BOG.absorcion[i];
+    return '<tr><td>'+p+'</td><td class="tr">'+fmt(BOG.vacancia_m2[i])+'</td><td class="tr">'+BOG.vacancia_pct[i].toFixed(1)+'%</td><td class="tr"><span class="bg '+(a>=0?'bg-g':'bg-r')+'">'+(a>=0?'+':'')+fmt(a)+'</span></td><td class="tr">'+fmt(BOG.construccion[i])+'</td><td class="tr">'+fmt(BOG.proyecto[i])+'</td><td class="tr">USD '+BOG.renta_usd[i].toFixed(1)+'</td><td class="tr">$'+fmt(BOG.renta_cop[i])+'</td></tr>';
+  }).join('');
+  var rows=[];
+  SNMS.forEach(function(name){
+    var d=SUB[name];
+    d.periodos.forEach(function(p,i){
+      var a=d.absorcion[i];
+      rows.push('<tr><td>'+p+'</td><td><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:'+CLR[name]+';margin-right:6px;vertical-align:middle"></span>'+name+'</td><td class="tr">'+fmt(d.inventario[i])+'</td><td class="tr">'+fmt(d.vacancia_m2[i])+'</td><td class="tr">'+d.vacancia_pct[i].toFixed(1)+'%</td><td class="tr"><span class="bg '+(a>=0?'bg-g':'bg-r')+'">'+(a>=0?'+':'')+fmt(a)+'</span></td><td class="tr">USD '+d.renta_usd[i].toFixed(1)+'</td><td class="tr">$'+fmt(d.renta_cop[i])+'</td></tr>');
+    });
+  });
+  document.getElementById('tbSub').innerHTML = rows.join('');
+}
+</script>
+</body>
+</html>
