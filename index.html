@@ -11,6 +11,7 @@
 :root{
   --bg:#06090f;--surface:#0d1420;--surface2:#111c2e;--border:#1a2640;
   --cw:#00d4a8;--cw-dim:rgba(0,212,168,0.12);--cw-border:rgba(0,212,168,0.3);
+  --cbre:#3b9eff;--cbre-dim:rgba(59,158,255,0.12);--cbre-border:rgba(59,158,255,0.3);
   --gold:#f0b429;--danger:#ff5c5c;
   --text:#e2e8f4;--muted:#6b809a;--light:#a8bcd4;
 }
@@ -44,6 +45,13 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-
   cursor:pointer;background:none;color:var(--muted);transition:all .2s;white-space:nowrap;}
 .mod-btn:hover{color:var(--text);background:rgba(255,255,255,0.04);}
 .mod-btn.active-cw{color:var(--cw);background:var(--cw-dim);border-color:var(--cw-border);}
+.mod-btn.active-cbre{color:var(--cbre);background:var(--cbre-dim);border-color:var(--cbre-border);}
+.kpi.cbre-kpi::before{background:linear-gradient(90deg,var(--cbre),transparent);}
+.sub-nav button.active-cbre{color:var(--cbre);border-bottom-color:var(--cbre);}
+.sub-detail-panel.cbre-panel{border-left-color:var(--cbre);}
+.sub-detail-name.cbre-c{color:var(--cbre);}
+.hdivider.cbre-line{background:linear-gradient(90deg,var(--cbre),transparent);}
+.disc-source-tag.cbre-tag{background:var(--cbre-dim);border:1px solid var(--cbre-border);color:var(--cbre);}
 .mod-dot{width:7px;height:7px;border-radius:50%;background:var(--cw);}
 .update-chip{font-size:0.68rem;color:var(--muted);white-space:nowrap;}
 .update-chip strong{color:var(--light);}
@@ -209,7 +217,7 @@ tfoot td:first-child{text-align:left;}
 .sub-kpi{background:var(--surface2);border-radius:10px;padding:14px;border:1px solid var(--border);}
 .sub-kpi-lbl{font-size:0.63rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:6px;}
 .sub-kpi-val{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;line-height:1;}
-.sub-kpi-val.cw-c{color:var(--cw);}.sub-kpi-val.gold-c{color:var(--gold);}.sub-kpi-val.red-c{color:var(--danger);}
+.sub-kpi-val.cw-c{color:var(--cw);}.sub-kpi-val.cbre-c{color:var(--cbre);}.sub-kpi-val.gold-c{color:var(--gold);}.sub-kpi-val.red-c{color:var(--danger);}
 
 /* DIVIDER */
 .hdivider{height:1px;background:linear-gradient(90deg,var(--cw),transparent);margin:0 40px 0;}
@@ -266,7 +274,10 @@ tfoot td:first-child{text-align:left;}
     <button class="logo-btn" onclick="showView('landing')">Oficinas<span>Bogotá</span></button>
     <div class="module-tabs">
       <button class="mod-btn active-cw" id="btn-cw" onclick="showView('cw')">
-        <span class="mod-dot"></span>C&amp;W — Clase AAA · Serie Trimestral
+        <span class="mod-dot"></span>C&amp;W — Clase AAA
+      </button>
+      <button class="mod-btn" id="btn-cbre" onclick="showView('cbre')">
+        <span class="mod-dot" style="background:var(--cbre)"></span>CBRE — A+/A/B
       </button>
     </div>
     <div class="currency-toggle" id="currencyToggle">
@@ -281,40 +292,58 @@ tfoot td:first-child{text-align:left;}
 <div class="view" id="view-landing">
   <div class="landing">
     <div class="hero-eyebrow">Inteligencia Inmobiliaria Comercial · Bogotá</div>
-    <h1 class="hero-title">Mercado de Oficinas<br><em>Clase AAA</em> — Bogotá 2019–2025</h1>
-    <p class="hero-desc">Análisis cuantitativo del segmento premium de oficinas en Bogotá. Datos reales trimestres de Cushman &amp; Wakefield — absorción desagregada del YTD, 8 submercados, 28 períodos.</p>
+    <h1 class="hero-title">Mercado de Oficinas<br><em>Bogotá</em> 2019–2025</h1>
+    <p class="hero-desc">Análisis cuantitativo del mercado corporativo de oficinas en Bogotá, construido sobre reportes de las dos firmas líderes en research inmobiliario. Dos fuentes, dos metodologías, una visión completa.</p>
 
     <div class="stats-strip">
-      <div class="stat-item"><div class="stat-num sn-green">6.7%</div><div class="stat-lbl">Vacancia AAA · 2025-Q4</div></div>
-      <div class="stat-item"><div class="stat-num sn-green">+66,359 m²</div><div class="stat-lbl">Absorción neta 2025</div></div>
-      <div class="stat-item"><div class="stat-num sn-gold">USD 23.0</div><div class="stat-lbl">Renta prime /m²/mes</div></div>
-      <div class="stat-item"><div class="stat-num sn-gold">214,163 m²</div><div class="stat-lbl">En construcción 2025-Q4</div></div>
-      <div class="stat-item"><div class="stat-num sn-green">8</div><div class="stat-lbl">Submercados analizados</div></div>
-      <div class="stat-item"><div class="stat-num sn-green">28</div><div class="stat-lbl">Trimestres · 2019–2025</div></div>
+      <div class="stat-item"><div class="stat-num sn-green">6.7%</div><div class="stat-lbl">Vacancia AAA · C&amp;W 2025-Q4</div></div>
+      <div class="stat-item"><div class="stat-num" style="color:var(--cbre)">8.7%</div><div class="stat-lbl">Vacancia A+/A/B · CBRE 4Q 2025</div></div>
+      <div class="stat-item"><div class="stat-num sn-gold">USD 23.0</div><div class="stat-lbl">Renta prime AAA /m²/mes</div></div>
+      <div class="stat-item"><div class="stat-num sn-gold">$104,200</div><div class="stat-lbl">Precio A+ CBD COP · CBRE</div></div>
+      <div class="stat-item"><div class="stat-num sn-green">+66,359 m²</div><div class="stat-lbl">Absorción neta C&amp;W 2025</div></div>
+      <div class="stat-item"><div class="stat-num" style="color:var(--cbre)">+65,000 m²</div><div class="stat-lbl">Absorción neta CBRE 2025</div></div>
     </div>
 
-    <div class="modules-label">Módulo de análisis</div>
-    <div style="max-width:620px;">
+    <div class="modules-label">Módulos de análisis</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:960px;margin-bottom:56px;">
       <div class="mod-card" onclick="showView('cw')">
         <div class="card-stripe"></div>
         <div class="card-inner">
           <div class="card-badge"><span class="mod-dot"></span>Cushman &amp; Wakefield Colombia</div>
           <div class="card-title">Mercado AAA · Bogotá</div>
-          <div class="card-desc">Análisis trimestral del segmento premium. Cubre exclusivamente edificios Clase AAA. La absorción se desagrega del YTD reportado para obtener valores trimestrales reales.</div>
+          <div class="card-desc">Análisis trimestral del segmento premium. Cubre exclusivamente edificios Clase AAA. Absorción desagregada del YTD para obtener valores trimestrales reales.</div>
           <div class="card-specs">
             <div><div class="spec-lbl">Segmento</div><div class="spec-val">Clase AAA</div></div>
             <div><div class="spec-lbl">Periodicidad</div><div class="spec-val">Trimestral · 28 períodos</div></div>
             <div><div class="spec-lbl">Cobertura</div><div class="spec-val">2019-Q1 a 2025-Q4</div></div>
-            <div><div class="spec-lbl">Moneda renta</div><div class="spec-val">USD y COP / m² / mes</div></div>
             <div><div class="spec-lbl">Submercados</div><div class="spec-val">8 corredores</div></div>
-            <div><div class="spec-lbl">Secciones</div><div class="spec-val">7 pestañas</div></div>
           </div>
           <div class="card-pills">
             <span class="pill">Resumen</span><span class="pill">Oferta &amp; Vacancia</span>
             <span class="pill">Absorción</span><span class="pill">Rentas</span>
             <span class="pill">Pipeline</span><span class="pill">Submercados</span><span class="pill">Datos</span>
           </div>
-          <button class="card-cta">Explorar análisis <span class="cta-arrow">→</span></button>
+          <button class="card-cta">Explorar C&amp;W <span class="cta-arrow">→</span></button>
+        </div>
+      </div>
+      <div class="mod-card" style="border-color:var(--cbre-border);" onmouseover="this.style.borderColor='var(--cbre-border)';this.style.boxShadow='0 20px 50px rgba(59,158,255,0.08)'" onmouseout="this.style.borderColor='var(--border)';this.style.boxShadow=''" onclick="showView('cbre')">
+        <div class="card-stripe" style="background:linear-gradient(90deg,var(--cbre),transparent)"></div>
+        <div class="card-inner">
+          <div class="card-badge" style="background:var(--cbre-dim);border-color:var(--cbre-border);color:var(--cbre)"><span class="mod-dot" style="background:var(--cbre)"></span>CBRE Colombia Research</div>
+          <div class="card-title">Mercado A+/A/B · Bogotá</div>
+          <div class="card-desc">Análisis anual del mercado corporativo ampliado. Cubre Clase A+, A y B en propiedad única y horizontal — la visión más completa del parque de oficinas de la ciudad.</div>
+          <div class="card-specs">
+            <div><div class="spec-lbl">Segmento</div><div class="spec-val">Clase A+, A y B</div></div>
+            <div><div class="spec-lbl">Periodicidad</div><div class="spec-val">Anual · 7 períodos</div></div>
+            <div><div class="spec-lbl">Cobertura</div><div class="spec-val">1S 2020 · 4Q 2020–2025</div></div>
+            <div><div class="spec-lbl">Submercados</div><div class="spec-val">10 corredores</div></div>
+          </div>
+          <div class="card-pills">
+            <span class="pill">Resumen</span><span class="pill">Oferta &amp; Vacancia</span>
+            <span class="pill">Absorción</span><span class="pill">Rentas</span>
+            <span class="pill">Submercados</span><span class="pill">Datos</span>
+          </div>
+          <button class="card-cta" style="background:var(--cbre);color:#fff">Explorar CBRE <span class="cta-arrow">→</span></button>
         </div>
       </div>
     </div>
@@ -608,8 +637,200 @@ tfoot td:first-child{text-align:left;}
   </footer>
 </div>
 
+<!-- ══════ MÓDULO CBRE ══════ -->
+<div class="view" id="view-cbre">
+  <div class="module-shell">
+    <div class="module-header">
+      <div class="module-title-row">
+        <div class="module-title">Oficinas A+/A/B · Bogotá<br><span style="color:var(--cbre)">CBRE Colombia Research</span></div>
+        <div class="module-meta"><strong>Clase A+, A y B · Anual</strong>1S 2020 · 4Q 2020–2025 · 10 corredores</div>
+      </div>
+    </div>
+    <div class="hdivider cbre-line"></div>
+    <div class="sub-nav" id="cbre-nav">
+      <button class="active-cbre" data-tab="cbre-resumen">Resumen</button>
+      <button data-tab="cbre-oferta">Oferta &amp; Vacancia</button>
+      <button data-tab="cbre-absorcion">Absorción &amp; Pipeline</button>
+      <button data-tab="cbre-rentas">Rentas</button>
+      <button data-tab="cbre-submercados">Submercados</button>
+      <button data-tab="cbre-datos">Datos</button>
+    </div>
+
+    <!-- RESUMEN CBRE -->
+    <div class="tab-section active" id="cbre-resumen">
+      <div class="sec-title">Panorama General — 4Q 2025</div>
+      <div class="sec-desc">Indicadores del mercado ampliado de oficinas Clase A+, A y B al cierre de 2025. Inventario de 3.14M m², vacancia en mínimo de 9 años y absorción neta superior a 65,000 m².</div>
+      <div class="kpi-grid">
+        <div class="kpi cbre-kpi"><div class="kpi-lbl">Tasa de Vacancia</div><div class="kpi-val" style="color:var(--cbre)">8.7%</div><div class="kpi-sub">274,135 m² disponibles</div><div class="kpi-trend up">▼ Mínimo 9 años</div></div>
+        <div class="kpi cbre-kpi"><div class="kpi-lbl">Absorción Neta 2025</div><div class="kpi-val kv-green">+65,000 m²</div><div class="kpi-sub">+35% vs 2024</div><div class="kpi-trend up">▲ Crecimiento sostenido</div></div>
+        <div class="kpi gold-kpi"><div class="kpi-lbl">Precio CBD A+/A</div><div class="kpi-val kv-gold">$104,200</div><div class="kpi-sub">COP/m²/mes · +19% anual</div></div>
+        <div class="kpi cbre-kpi"><div class="kpi-lbl">Precio Fuera CBD A+/A</div><div class="kpi-val" style="color:var(--cbre)">$87,000</div><div class="kpi-sub">COP/m²/mes · 4Q 2025</div></div>
+        <div class="kpi cbre-kpi"><div class="kpi-lbl">Inventario Total</div><div class="kpi-val">3,139,289</div><div class="kpi-sub">m² clase A+/A/B</div></div>
+        <div class="kpi cbre-kpi"><div class="kpi-lbl">Nueva área 2025</div><div class="kpi-val kv-red">4,500 m²</div><div class="kpi-sub">Mínimo histórico · -87% vs 2024</div></div>
+        <div class="kpi cbre-kpi"><div class="kpi-lbl">Oferta futura</div><div class="kpi-val">131,900 m²</div><div class="kpi-sub">Pipeline confirmado</div></div>
+        <div class="kpi cbre-kpi"><div class="kpi-lbl">Períodos analizados</div><div class="kpi-val">7</div><div class="kpi-sub">1S 2020 · 4Q 2020–2025</div></div>
+      </div>
+      <div class="chart-grid">
+        <div class="chart-card wide"><div class="ct">Inventario, Área Vacante y Tasa de Vacancia — Anual 2020–2025</div><div class="cs">Barras apiladas: ocupado + vacante · Línea azul = vacancia % (eje derecho) · Fuente: CBRE Research</div><div class="cw-r tall"><canvas id="cbre_r_main"></canvas></div></div>
+        <div class="chart-card"><div class="ct">Absorción Neta Anual (m²)</div><div class="cs">Único año negativo: 2020 · Recuperación 2021–2025</div><div class="cw-r"><canvas id="cbre_r_abs"></canvas></div></div>
+        <div class="chart-card"><div class="ct">Vacancia 4Q 2025 por Corredor (%)</div><div class="cs">% sobre inventario del corredor · Centro Internacional líder en vacancia</div><div class="cw-r"><canvas id="cbre_r_subvac"></canvas></div></div>
+      </div>
+      <div class="alert" style="background:rgba(59,158,255,0.07);border:1px solid rgba(59,158,255,0.25);color:#7ab8f5;border-radius:11px;padding:13px 17px;font-size:0.77rem;line-height:1.65;margin-bottom:20px;display:flex;gap:9px;">
+        <span style="flex-shrink:0;font-size:0.9rem;margin-top:2px;">ℹ️</span>
+        <div><strong>Nota metodológica:</strong> CBRE cubre las clases A+, A y B, tanto en propiedad única como horizontal — universo 2.3× mayor que C&W. Los submercados difieren: CBRE incluye Córdoba y Sector Financiero, en lugar de Avenida Chile y Noroccidente. Las rentas se reportan en COP/m²/mes. La periodicidad es anual (cierre 4Q), excepto 1S 2020.</div>
+      </div>
+    </div>
+
+    <!-- OFERTA & VACANCIA CBRE -->
+    <div class="tab-section" id="cbre-oferta">
+      <div class="sec-title">Oferta y Vacancia</div>
+      <div class="sec-desc">Evolución del inventario total y la tasa de vacancia 2020–2025. El mercado pasó del 12.2% (2020) al 8.7% (2025), recuperando niveles previos a la pandemia y alcanzando el mínimo de 9 años.</div>
+      <div class="chart-grid">
+        <div class="chart-card"><div class="ct">Tasa de Vacancia Total — Anual 2020–2025</div><div class="cs">Pico: 13.2% en 2021 · Mínimo: 8.7% en 2025</div><div class="cw-r"><canvas id="cbre_o_vac"></canvas></div></div>
+        <div class="chart-card"><div class="ct">Vacancia por Clase — Anual 2020–2025</div><div class="cs">A+: 21% → 13.9% · A: 10.8% → 9.5% · B: 14.2% → 9.5%</div><div class="cw-r"><canvas id="cbre_o_clase"></canvas></div></div>
+        <div class="chart-card wide"><div class="ct">Inventario y Vacancia por Submercado — 4Q 2025 (m²)</div><div class="cs">m² vacantes por corredor · línea = tasa de vacancia % · Fuente: CBRE Research</div><div class="cw-r tall"><canvas id="cbre_o_subm2"></canvas></div></div>
+      </div>
+    </div>
+
+    <!-- ABSORCIÓN & PIPELINE CBRE -->
+    <div class="tab-section" id="cbre-absorcion">
+      <div class="sec-title">Absorción &amp; Pipeline</div>
+      <div class="sec-desc">La absorción neta superó 65,000 m² en 2025 (+35% vs 2024), impulsada por Salitre y Calle 100. El pipeline de nueva área cae a mínimos históricos: solo 4,500 m² inaugurados en 2025.</div>
+      <div class="chart-grid">
+        <div class="chart-card wide"><div class="ct">Absorción Neta y Nueva Área Inaugurada — Anual 2020–2025</div><div class="cs">Verde = absorción neta · Morado = nueva área · Fuente: CBRE Research</div><div class="cw-r tall"><canvas id="cbre_a_main"></canvas></div></div>
+        <div class="chart-card"><div class="ct">Nueva Área Inaugurada por Año (m²)</div><div class="cs">Pico 2020: 62,000 m² · Mínimo 2025: 4,500 m²</div><div class="cw-r"><canvas id="cbre_a_nueva"></canvas></div></div>
+        <div class="chart-card"><div class="ct">Oferta Futura Confirmada (m²)</div><div class="cs">Pipeline descendente 2020–2025 · 131,900 m² proyectados</div><div class="cw-r"><canvas id="cbre_a_fut"></canvas></div></div>
+      </div>
+    </div>
+
+    <!-- RENTAS CBRE -->
+    <div class="tab-section" id="cbre-rentas">
+      <div class="sec-title">Precios de Lista</div>
+      <div class="sec-desc">Precios promedio de lista en COP/m²/mes por clase y corredor. El precio A+ CBD alcanzó $104,200 en 2025 (+19% anual). Los activos Clase A registraron el mayor incremento acumulado del período.</div>
+      <div class="chart-grid">
+        <div class="chart-card wide"><div class="ct">Precio Promedio de Lista por Clase — COP/m²/mes · 2020–2025</div><div class="cs">Clase A+, A y B · Total ciudad · Fuente: CBRE Research</div><div class="cw-r tall"><canvas id="cbre_rent_clase"></canvas></div></div>
+        <div class="chart-card"><div class="ct">Variación Anual por Clase (%)</div><div class="cs">Cambio año a año en precio de lista · 2021–2025</div><div class="cw-r"><canvas id="cbre_rent_var"></canvas></div></div>
+        <div class="chart-card wide"><div class="ct">Precio de Lista por Submercado y Clase — COP/m²/mes · 4Q 2025</div><div class="cs">A+ (dorado) · A (azul) · B (gris) · Sin dato = clase no disponible en el corredor</div><div class="cw-r tall"><canvas id="cbre_rent_sub"></canvas></div></div>
+      </div>
+    </div>
+
+    <!-- SUBMERCADOS CBRE -->
+    <div class="tab-section" id="cbre-submercados">
+      <div class="sec-title">Submercados</div>
+      <div class="sec-desc">CBRE analiza 10 corredores en Bogotá incluyendo Córdoba (con Connecta 80) y Sector Financiero. Selecciona un corredor para ver su detalle.</div>
+      <div class="chip-bar" id="cbre-chip-bar"></div>
+      <div class="sub-detail-panel cbre-panel">
+        <div class="sub-detail-header">
+          <div class="sub-detail-name cbre-c" id="cbre-detail-name">—</div>
+          <div class="sub-detail-badge">CBRE · Clase A+/A/B · 4Q 2025</div>
+        </div>
+        <div class="sub-kpi-grid" id="cbre-detail-kpis"></div>
+        <div class="chart-grid" style="margin-top:16px;">
+          <div class="chart-card"><div class="ct" id="cbre-detail-vac-title">Vacancia % — Histórica</div><div class="cs">Serie anual 2020–2025</div><div class="cw-r"><canvas id="cbre_det_vac"></canvas></div></div>
+          <div class="chart-card"><div class="ct" id="cbre-detail-price-title">Precios por Clase — COP/m²/mes</div><div class="cs">A+, A y B disponibles en el corredor · 4Q 2025</div><div class="cw-r"><canvas id="cbre_det_price"></canvas></div></div>
+        </div>
+      </div>
+      <div class="chart-grid">
+        <div class="chart-card wide"><div class="ct">Vacancia % por Corredor — Evolución Anual 2020–2025</div><div class="cs">10 corredores CBRE · Serie histórica</div><div class="cw-r tall"><canvas id="cbre_sub_evol"></canvas></div></div>
+      </div>
+    </div>
+
+    <!-- DATOS CBRE -->
+    <div class="tab-section" id="cbre-datos">
+      <div class="sec-title">Base de Datos CBRE</div>
+      <div class="sec-desc">Tablas completas extraídas de los 7 reportes CBRE Colombia: 1S 2020 · 4Q 2020 · 4Q 2021 · 4Q 2022 · 4Q 2023 · 4Q 2024 · 4Q 2025.</div>
+      <div class="alert" style="background:rgba(59,158,255,0.07);border:1px solid rgba(59,158,255,0.25);color:#7ab8f5;border-radius:11px;padding:13px 17px;font-size:0.77rem;line-height:1.65;margin-bottom:20px;display:flex;gap:9px;">
+        <span style="flex-shrink:0;">ℹ️</span>
+        <div>El reporte 1S 2020 reporta un único precio promedio ($61,600) sin desglose por clase. Para los demás períodos se dispone de precios A+, A y B por corredor.</div>
+      </div>
+      <div class="chart-card" style="padding:0;overflow:hidden;margin-bottom:20px;">
+        <div style="padding:.85rem 1.25rem;border-bottom:1px solid var(--border);font-size:0.7rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;">Indicadores Globales Bogotá</div>
+        <div class="tbl-wrap">
+          <table><thead><tr><th>Período</th><th>Inventario m²</th><th>Vacancia m²</th><th>Vacancia %</th><th>Absorción Neta m²</th><th>Precio Prom. COP</th><th>Precio A+ COP</th><th>Precio A COP</th><th>Precio B COP</th><th>Oferta Futura m²</th><th>Nueva Área m²</th></tr></thead>
+          <tbody id="tbCBRE"></tbody></table>
+        </div>
+      </div>
+      <div class="chart-card" style="padding:0;overflow:hidden;">
+        <div style="padding:.85rem 1.25rem;border-bottom:1px solid var(--border);font-size:0.7rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;">Submercados — 4Q 2025</div>
+        <div class="tbl-wrap">
+          <table><thead><tr><th>Submercado</th><th>Inventario m²</th><th>Vacancia m²</th><th>Vacancia %</th><th>Precio A+ COP</th><th>Precio A COP</th><th>Precio B COP</th></tr></thead>
+          <tbody id="tbCBRESub"></tbody></table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="disc-footer">
+    <div class="disc-footer-inner">
+      <div class="disc-footer-icon">⚖</div>
+      <div class="disc-footer-content">
+        <div class="disc-footer-label">Aviso Legal</div>
+        <p class="disc-footer-text">Este tablero es elaborado por <strong>Mario Botero Ramírez</strong> con fines exclusivamente académicos e investigativos. Los datos provienen de reportes publicados por <strong>CBRE Colombia Research</strong>, reconocidos como fuente original. Las visualizaciones son de elaboración propia. Este tablero <strong>no constituye asesoría de inversión</strong> ni oferta de servicios.</p>
+        <div class="disc-footer-sources">
+          <span class="disc-source-tag cbre-tag">● CBRE Colombia Research</span>
+          <span class="disc-source-tag neutral">Elaboración propia · Fines académicos</span>
+          <span class="disc-source-tag neutral">© Mario Botero Ramírez · 2025</span>
+        </div>
+      </div>
+      <div class="disc-footer-author"><strong>Mario Botero Ramírez</strong>Análisis Inmobiliario Comercial<br>Bogotá, Colombia · 2025</div>
+    </div>
+  </footer>
+</div>
+
 <!-- ══════ JAVASCRIPT ══════ -->
 <script>
+// ═══ DATA CBRE — Extraído de reportes oficiales CBRE Colombia Research ═══
+// Fuentes: 1S 2020, 4Q 2020, 4Q 2021, 4Q 2022, 4Q 2023, 4Q 2024, 4Q 2025
+
+const CBRE_Y = ['1S 2020','4Q 2020','4Q 2021','4Q 2022','4Q 2023','4Q 2024','4Q 2025'];
+const CBRE_Y_SHORT = ['2020H1','2020','2021','2022','2023','2024','2025'];
+
+// Globales Bogotá
+const CBRE_INV    = [2944844, 2960510, 3015049, 3070614, 3092279, 3128679, 3139289];
+const CBRE_VACM2  = [315030,  361619,  399017,  381086,  337391,  325957,  274135];
+const CBRE_VACPCT = [10.7,    12.2,    13.2,    12.4,    10.9,    10.4,    8.7];
+const CBRE_ABS    = [11331,  -19592,   17141,   73496,   64864,   48354,   65000];
+const CBRE_NUEVA  = [30000,   15600,   62000,   55500,   21665,   36400,   4500];
+const CBRE_FUT    = [192957,  145280,  230839,  186939,  168139,  150911,  131900];
+const CBRE_OCCM2  = CBRE_INV.map((v,i) => v - CBRE_VACM2[i]);
+
+// Precios por clase — ciudad total (COP/m²/mes)
+const CBRE_PAP  = [83700,  83500,  77800,  83300,  88700,  87300, 100400]; // A+
+const CBRE_PA   = [71500,  63100,  63800,  68100,  72000,  82000,  83100]; // A
+const CBRE_PB   = [59050,  59100,  58700,  58100,  64900,  65200,  74400]; // B
+const CBRE_PAVG = [61600,  64200,  63100,  62800,  71100,  70900,  95600]; // promedio total
+
+// Vacancia por clase (%)
+const CBRE_VAC_AP = [null, 14.5, 16.6, 22.4, 20.0, 15.0, 13.9];
+const CBRE_VAC_A  = [null, 10.5, 10.8,  9.6,  8.5,  8.5,  9.5];
+const CBRE_VAC_B  = [null, 14.2, 14.2, 11.5, 10.0,  9.5,  9.5];
+
+// Submercados 4Q 2025
+const CBRE_SUBN = ['Andino','Calle 100','C. Internacional','Chicó','Córdoba','Norte','Salitre','Santa Bárbara','S. Financiero','Otros'];
+const CBRE_SUBINV  = [192556, 430444, 181130, 395384, 143679, 116892, 809664, 373962, 269186, 229246];
+const CBRE_SUBVAC  = [4525,   22338,   54704,  18193,  24315,  21078,  80746,  13533,   5677,  29026];
+const CBRE_SUBVPCT = [2.4,     5.2,    30.2,    4.6,   16.9,   18.0,   10.0,    3.6,    2.1,   12.6];
+const CBRE_SUBPAP  = [null,    null,   106800, 110000,  89000,   null,  81400, 105000,   null,   null];
+const CBRE_SUBPA   = [107500,  91300,   51800,  90000,  80600,  53500,  81200,  95000,  99800,  78600];
+const CBRE_SUBPB   = [96000,   70800,   65100,  82300,   null,  66100,  59300,  84600,  89100,  69000];
+
+// Evolución vacancia por corredor (serie anual 4Q: 2020-2025, sin 1S 2020)
+const CBRE_EVOL_Y = ['2020','2021','2022','2023','2024','2025'];
+const CBRE_SUB_EVOL = {
+  'Andino':           [14.5, 10.9,  5.2,  5.6,  4.5,  2.4],
+  'Calle 100':        [10.5, 15.8, 12.1, 10.2,  6.7,  5.2],
+  'C. Internacional': [31.2, 43.6, 40.2, 41.2, 37.3, 30.2],
+  'Chicó':            [13.0, 12.4,  9.7,  5.0,  6.3,  4.6],
+  'Norte':            [ 7.4, 11.4, 13.5, 12.7, 11.2, 18.0],
+  'Salitre':          [10.6,  9.6, 12.7, 11.6, 12.6, 10.0],
+  'Santa Bárbara':    [ 8.1,  7.9,  7.2,  4.8,  3.4,  3.6],
+};
+
+const CBRE_BLUE = '#3b9eff';
+const CBRE_PURPLE = '#a78bfa';
+const TCBRE = {color:'#4a6a8a', font:{size:10}};
+const LCBRE = {labels:{color:'#a0b4cc', font:{size:10}, boxWidth:11}};
+
 // ═══ DATA REAL — C&W trimestral (absorción desagregada del YTD) ═══
 const CWQ=['2019-Q1','2019-Q2','2019-Q3','2019-Q4','2020-Q1','2020-Q2','2020-Q3','2020-Q4',
   '2021-Q1','2021-Q2','2021-Q3','2021-Q4','2022-Q1','2022-Q2','2022-Q3','2022-Q4',
@@ -763,13 +984,21 @@ function updateAllRentaCharts(){
 function showView(which){
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   document.getElementById('view-'+which).classList.add('active');
-  const btnCW = document.getElementById('btn-cw');
+  const btnCW   = document.getElementById('btn-cw');
+  const btnCBRE = document.getElementById('btn-cbre');
   btnCW.classList.remove('active-cw');
-  if(which==='cw') btnCW.classList.add('active-cw');
-  if(which==='cw' && !window.cwBuilt){ buildCWCharts(); window.cwBuilt=true; }
+  btnCBRE.classList.remove('active-cbre');
+  if(which==='cw'){
+    btnCW.classList.add('active-cw');
+    if(!window.cwBuilt){ buildCWCharts(); window.cwBuilt=true; }
+  } else if(which==='cbre'){
+    btnCBRE.classList.add('active-cbre');
+    if(!window.cbreBuilt){ buildCBRECharts(); window.cbreBuilt=true; }
+  }
   window.scrollTo(0,0);
 }
-window.cwBuilt = false;
+window.cwBuilt   = false;
+window.cbreBuilt = false;
 
 document.addEventListener('DOMContentLoaded',()=>{
   // Toggle global de moneda en topbar
@@ -822,6 +1051,20 @@ document.addEventListener('DOMContentLoaded',()=>{
       document.getElementById('tSub').style.display=w==='sub'?'':'none';
     });
   });
+
+  // Sub-nav CBRE
+  const cbreNav = document.getElementById('cbre-nav');
+  if(cbreNav){
+    cbreNav.addEventListener('click', e=>{
+      const btn = e.target.closest('button'); if(!btn) return;
+      const tab = btn.dataset.tab; if(!tab) return;
+      if(!window.cbreBuilt){ buildCBRECharts(); window.cbreBuilt=true; }
+      cbreNav.querySelectorAll('button').forEach(b=>b.classList.remove('active-cbre'));
+      btn.classList.add('active-cbre');
+      document.querySelectorAll('#view-cbre .tab-section').forEach(s=>s.classList.remove('active'));
+      const t=document.getElementById(tab); if(t) t.classList.add('active');
+    });
+  }
 
   // Build on first load (view-cw is active)
   buildCWCharts(); window.cwBuilt=true;
@@ -1189,7 +1432,268 @@ function renderSubDetail(idx){
     scales:{x:{grid:G,ticks:{...TCW,callback:sk,maxRotation:45}},y:{grid:G,ticks:{...TCW,callback:v=>Math.round(v/1000)+'k'}}}}});
 }
 
-// ─── TABLAS ─────────────────────────────────────────────────────
+// ═══ CBRE CHARTS ══════════════════════════════════════════════════
+function buildCBRECharts(){
+  const bo = {
+    responsive:true, maintainAspectRatio:false,
+    plugins:{legend:LCBRE, tooltip:TT},
+    scales:{x:{grid:G,ticks:TCBRE}, y:{grid:G,ticks:TCBRE}}
+  };
+  const fCOP = v => '$'+v.toLocaleString('es-CO');
+
+  // ── RESUMEN ────────────────────────────────────────────────────
+  // Gráfico principal: stacked bar + línea vacancia
+  mk('cbre_r_main',{type:'bar',data:{labels:CBRE_Y,datasets:[
+    {label:'Área Ocupada m²', data:CBRE_OCCM2,
+      backgroundColor:'rgba(59,158,255,0.2)', borderColor:'rgba(59,158,255,0.4)',
+      borderWidth:1, stack:'s', yAxisID:'y1'},
+    {label:'Área Vacante m²', data:CBRE_VACM2,
+      backgroundColor:'rgba(240,180,41,0.55)', borderColor:GOLD,
+      borderWidth:1, borderRadius:3, stack:'s', yAxisID:'y1'},
+    {type:'line', label:'Vacancia %', data:CBRE_VACPCT,
+      borderColor:CBRE_BLUE, backgroundColor:'transparent',
+      borderWidth:2.5, pointRadius:5, tension:0.3, yAxisID:'y2'}
+  ]},options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:LCBRE,tooltip:{...TT,callbacks:{label:ctx=>{
+      if(ctx.datasetIndex===2) return ` Vacancia: ${ctx.raw.toFixed(1)}%`;
+      return ` ${ctx.dataset.label}: ${fmt(ctx.raw)} m²`;
+    }}}},
+    scales:{
+      x:{grid:G,ticks:TCBRE,stacked:true},
+      y1:{grid:G,ticks:{...TCBRE,callback:v=>Math.round(v/1000000)+'M'},position:'left',stacked:true},
+      y2:{grid:{display:false},ticks:{...TCBRE,callback:v=>v+'%'},position:'right'}
+    }}});
+
+  // Absorción neta anual — resumen
+  mk('cbre_r_abs',{type:'bar',data:{labels:CBRE_Y,datasets:[
+    {label:'Absorción Neta m²', data:CBRE_ABS,
+      backgroundColor:CBRE_ABS.map(v=>v>=0?'rgba(0,212,168,0.5)':'rgba(255,92,92,0.5)'),
+      borderColor:CBRE_ABS.map(v=>v>=0?CW_GREEN:RED),
+      borderWidth:1.5, borderRadius:4}
+  ]},options:{...bo,plugins:{legend:{display:false},tooltip:TT},
+    scales:{x:{grid:G,ticks:TCBRE},y:{grid:G,ticks:TCBRE}}}});
+
+  // Vacancia por submercado barras horizontales — resumen
+  const svc = CBRE_SUBVPCT.map(v=>v>20?'rgba(255,92,92,0.55)':v>10?'rgba(240,180,41,0.55)':'rgba(59,158,255,0.55)');
+  const svb = CBRE_SUBVPCT.map(v=>v>20?RED:v>10?GOLD:CBRE_BLUE);
+  mk('cbre_r_subvac',{type:'bar',data:{labels:CBRE_SUBN,datasets:[
+    {label:'Vacancia %', data:CBRE_SUBVPCT,
+      backgroundColor:svc, borderColor:svb, borderWidth:1.5, borderRadius:4}
+  ]},options:{...bo,indexAxis:'y',
+    plugins:{legend:{display:false},tooltip:TT},
+    scales:{x:{grid:G,ticks:{...TCBRE,callback:v=>v+'%'}},y:{grid:G,ticks:TCBRE}}}});
+
+  // ── OFERTA & VACANCIA ──────────────────────────────────────────
+  mk('cbre_o_vac',{type:'line',data:{labels:CBRE_Y,datasets:[
+    {...lDS('Vacancia % Total',CBRE_VACPCT,CBRE_BLUE),
+      fill:true, backgroundColor:'rgba(59,158,255,0.08)',pointRadius:5}
+  ]},options:{...bo,plugins:{legend:{display:false},tooltip:TT},
+    scales:{x:{grid:G,ticks:TCBRE},y:{grid:G,ticks:{...TCBRE,callback:v=>v+'%'}}}}});
+
+  mk('cbre_o_clase',{type:'line',data:{labels:CBRE_Y,datasets:[
+    {...lDS('Clase A+', CBRE_VAC_AP, GOLD),   pointRadius:5},
+    {...lDS('Clase A',  CBRE_VAC_A,  CBRE_BLUE), pointRadius:5},
+    {...lDS('Clase B',  CBRE_VAC_B,  '#6b809a'), pointRadius:5}
+  ]},options:{...bo,scales:{x:{grid:G,ticks:TCBRE},y:{grid:G,ticks:{...TCBRE,callback:v=>v!=null?v+'%':''}}}}}); 
+
+  // Barras + línea submercados
+  mk('cbre_o_subm2',{type:'bar',data:{labels:CBRE_SUBN,datasets:[
+    {label:'Vacancia m²', data:CBRE_SUBVAC,
+      backgroundColor:svc, borderColor:svb, borderWidth:1.5, borderRadius:4, yAxisID:'y'},
+    {type:'line',label:'Vacancia %', data:CBRE_SUBVPCT,
+      borderColor:GOLD, backgroundColor:'transparent', borderWidth:2,
+      pointRadius:5, yAxisID:'y2'}
+  ]},options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:LCBRE,tooltip:TT},
+    scales:{
+      x:{grid:G,ticks:{...TCBRE,maxRotation:30}},
+      y:{grid:G,ticks:{...TCBRE,callback:v=>Math.round(v/1000)+'k'},position:'left'},
+      y2:{grid:{display:false},ticks:{...TCBRE,callback:v=>v+'%'},position:'right'}
+    }}});
+
+  // ── ABSORCIÓN & PIPELINE ───────────────────────────────────────
+  mk('cbre_a_main',{type:'bar',data:{labels:CBRE_Y,datasets:[
+    {label:'Nueva Área m²', data:CBRE_NUEVA,
+      backgroundColor:'rgba(167,139,250,0.45)', borderColor:CBRE_PURPLE,
+      borderWidth:1.5, borderRadius:3},
+    {label:'Absorción Neta m²', data:CBRE_ABS,
+      backgroundColor:CBRE_ABS.map(v=>v>=0?'rgba(0,212,168,0.5)':'rgba(255,92,92,0.5)'),
+      borderColor:CBRE_ABS.map(v=>v>=0?CW_GREEN:RED),
+      borderWidth:1.5, borderRadius:3}
+  ]},options:{...bo,scales:{x:{grid:G,ticks:TCBRE},y:{grid:G,ticks:TCBRE}}}});
+
+  mk('cbre_a_nueva',{type:'bar',data:{labels:CBRE_Y,datasets:[
+    {label:'m² inaugurados', data:CBRE_NUEVA,
+      backgroundColor:CBRE_NUEVA.map((_,i)=>i===6?'rgba(255,92,92,0.55)':'rgba(59,158,255,0.45)'),
+      borderColor:CBRE_NUEVA.map((_,i)=>i===6?RED:CBRE_BLUE),
+      borderWidth:1.5, borderRadius:4}
+  ]},options:{...bo,plugins:{legend:{display:false},tooltip:TT},
+    scales:{x:{grid:G,ticks:TCBRE},y:{grid:G,ticks:{...TCBRE,callback:v=>Math.round(v/1000)+'k'}}}}});
+
+  mk('cbre_a_fut',{type:'line',data:{labels:CBRE_Y,datasets:[
+    {...lDS('Oferta Futura m²',CBRE_FUT,CBRE_BLUE),
+      fill:true,backgroundColor:'rgba(59,158,255,0.07)',pointRadius:5}
+  ]},options:{...bo,plugins:{legend:{display:false},tooltip:TT},
+    scales:{x:{grid:G,ticks:TCBRE},y:{grid:G,ticks:{...TCBRE,callback:v=>Math.round(v/1000)+'k'}}}}});
+
+  // ── RENTAS ─────────────────────────────────────────────────────
+  mk('cbre_rent_clase',{type:'line',data:{labels:CBRE_Y,datasets:[
+    {...lDS('Clase A+',CBRE_PAP,GOLD),    fill:true,backgroundColor:'rgba(240,180,41,0.07)',pointRadius:5},
+    {...lDS('Clase A', CBRE_PA, CBRE_BLUE),fill:true,backgroundColor:'rgba(59,158,255,0.07)',pointRadius:5},
+    {...lDS('Clase B', CBRE_PB, '#6b809a'),pointRadius:5}
+  ]},options:{...bo,scales:{x:{grid:G,ticks:TCBRE},
+    y:{grid:G,ticks:{...TCBRE,callback:v=>fCOP(v)}}}}});
+
+  // Variación anual por clase
+  const varAp=CBRE_PAP.map((v,i)=>i===0?null:+((v/CBRE_PAP[i-1]-1)*100).toFixed(1));
+  const varA =CBRE_PA.map((v,i) =>i===0?null:+((v/CBRE_PA[i-1]-1)*100).toFixed(1));
+  const varB =CBRE_PB.map((v,i) =>i===0?null:+((v/CBRE_PB[i-1]-1)*100).toFixed(1));
+  mk('cbre_rent_var',{type:'bar',data:{labels:CBRE_Y.slice(1),datasets:[
+    {label:'Var% A+', data:varAp.slice(1),
+      backgroundColor:'rgba(240,180,41,0.5)', borderColor:GOLD,borderWidth:1,borderRadius:3},
+    {label:'Var% A',  data:varA.slice(1),
+      backgroundColor:'rgba(59,158,255,0.45)',borderColor:CBRE_BLUE,borderWidth:1,borderRadius:3},
+    {label:'Var% B',  data:varB.slice(1),
+      backgroundColor:'rgba(107,128,154,0.4)',borderColor:'#6b809a',borderWidth:1,borderRadius:3}
+  ]},options:{...bo,scales:{x:{grid:G,ticks:TCBRE},
+    y:{grid:G,ticks:{...TCBRE,callback:v=>v==null?'':v+'%'}}}}});
+
+  // Precios por submercado y clase — grouped bar
+  mk('cbre_rent_sub',{type:'bar',data:{labels:CBRE_SUBN,datasets:[
+    {label:'Clase A+', data:CBRE_SUBPAP.map(v=>v||0),
+      backgroundColor:'rgba(240,180,41,0.5)',borderColor:GOLD,borderWidth:1,borderRadius:3},
+    {label:'Clase A',  data:CBRE_SUBPA,
+      backgroundColor:'rgba(59,158,255,0.45)',borderColor:CBRE_BLUE,borderWidth:1,borderRadius:3},
+    {label:'Clase B',  data:CBRE_SUBPB.map(v=>v||0),
+      backgroundColor:'rgba(107,128,154,0.35)',borderColor:'#6b809a',borderWidth:1,borderRadius:3}
+  ]},options:{...bo,
+    plugins:{legend:LCBRE,tooltip:{...TT,callbacks:{label:ctx=>` ${ctx.dataset.label}: ${ctx.raw?fCOP(ctx.raw):'N/D'}`}}},
+    scales:{x:{grid:G,ticks:{...TCBRE,maxRotation:30}},
+      y:{grid:G,ticks:{...TCBRE,callback:v=>v?fCOP(v):'$0'}}}}});
+
+  // ── SUBMERCADOS ────────────────────────────────────────────────
+  // Evolución vacancia por corredor
+  const ec=['#3b9eff','#00d4a8','#f0b429','#ff5c5c','#a78bfa','#34d399','#fb923c'];
+  mk('cbre_sub_evol',{type:'line',data:{labels:CBRE_EVOL_Y,datasets:
+    Object.entries(CBRE_SUB_EVOL).map(([name,data],i)=>({
+      ...lDS(name,data,ec[i]),pointRadius:4
+    }))
+  },options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:true,position:'top',labels:{color:'#a0b4cc',font:{size:10},boxWidth:10}},tooltip:TT},
+    scales:{x:{grid:G,ticks:TCBRE},y:{grid:G,ticks:{...TCBRE,callback:v=>v+'%'}}}}});
+
+  // Chips interactivos submercados CBRE
+  const chipBarC = document.getElementById('cbre-chip-bar');
+  if(chipBarC){
+    chipBarC.innerHTML = CBRE_SUBN.map((n,i)=>
+      `<span class="sub-chip chip-btn${i===0?' chip-active-cbre':''}" data-idx="${i}"
+        style="${i===0?'background:var(--cbre-dim);border-color:var(--cbre);color:var(--cbre);':''}">${n}</span>`
+    ).join('');
+    chipBarC.querySelectorAll('.chip-btn').forEach(b=>{
+      b.addEventListener('click',()=>{
+        chipBarC.querySelectorAll('.chip-btn').forEach(x=>{
+          x.classList.remove('chip-active-cbre');
+          x.style.background=''; x.style.borderColor=''; x.style.color='';
+        });
+        b.classList.add('chip-active-cbre');
+        b.style.background='var(--cbre-dim)'; b.style.borderColor='var(--cbre)'; b.style.color='var(--cbre)';
+        renderCBRESubDetail(parseInt(b.dataset.idx));
+      });
+    });
+    renderCBRESubDetail(0);
+  }
+
+  // ── TABLAS CBRE ────────────────────────────────────────────────
+  const tbG = document.getElementById('tbCBRE');
+  if(tbG){
+    tbG.innerHTML = CBRE_Y.map((p,i)=>{
+      const a=CBRE_ABS[i];
+      return `<tr>
+        <td>${p}</td><td>${fmt(CBRE_INV[i])}</td><td>${fmt(CBRE_VACM2[i])}</td>
+        <td class="${CBRE_VACPCT[i]>12?'vh':CBRE_VACPCT[i]>10?'vm':'vl'}">${CBRE_VACPCT[i].toFixed(1)}%</td>
+        <td><span class="${a>=0?'bg-g':'bg-r'}">${a>=0?'+':''}${fmt(a)}</span></td>
+        <td>${fmtCOP(CBRE_PAVG[i])}</td>
+        <td>${fmtCOP(CBRE_PAP[i])}</td><td>${fmtCOP(CBRE_PA[i])}</td><td>${fmtCOP(CBRE_PB[i])}</td>
+        <td>${fmt(CBRE_FUT[i])}</td><td>${fmt(CBRE_NUEVA[i])}</td>
+      </tr>`;
+    }).join('');
+  }
+
+  const tbS = document.getElementById('tbCBRESub');
+  if(tbS){
+    tbS.innerHTML = CBRE_SUBN.map((n,i)=>{
+      const v=CBRE_SUBVPCT[i];
+      return `<tr>
+        <td>${n}</td><td>${fmt(CBRE_SUBINV[i])}</td><td>${fmt(CBRE_SUBVAC[i])}</td>
+        <td class="${v>20?'vh':v>10?'vm':'vl'}">${v.toFixed(1)}%</td>
+        <td>${fmtCOP(CBRE_SUBPAP[i])}</td><td>${fmtCOP(CBRE_SUBPA[i])}</td><td>${fmtCOP(CBRE_SUBPB[i])}</td>
+      </tr>`;
+    }).join('');
+  }
+}
+
+// ── Submarket detail CBRE ────────────────────────────────────────
+function renderCBRESubDetail(idx){
+  const name   = CBRE_SUBN[idx];
+  const inv    = CBRE_SUBINV[idx];
+  const vac    = CBRE_SUBVAC[idx];
+  const vpct   = CBRE_SUBVPCT[idx];
+  const pAp    = CBRE_SUBPAP[idx];
+  const pA     = CBRE_SUBPA[idx];
+  const pB     = CBRE_SUBPB[idx];
+  const evolData = CBRE_SUB_EVOL[name] || null;
+
+  document.getElementById('cbre-detail-name').textContent = name;
+  document.getElementById('cbre-detail-vac-title').textContent = `Vacancia % — ${name} · 2020–2025`;
+  document.getElementById('cbre-detail-price-title').textContent = `Precios por Clase — ${name} · 4Q 2025`;
+
+  const vacCls = vpct>20?'red-c':vpct>10?'gold-c':'cbre-c';
+  document.getElementById('cbre-detail-kpis').innerHTML = `
+    <div class="sub-kpi"><div class="sub-kpi-lbl">Inventario</div><div class="sub-kpi-val">${fmt(inv)} m²</div></div>
+    <div class="sub-kpi"><div class="sub-kpi-lbl">Vacancia m²</div><div class="sub-kpi-val ${vacCls}">${fmt(vac)} m²</div></div>
+    <div class="sub-kpi"><div class="sub-kpi-lbl">Vacancia %</div><div class="sub-kpi-val ${vacCls}">${vpct.toFixed(1)}%</div></div>
+    <div class="sub-kpi"><div class="sub-kpi-lbl">Precio A+</div><div class="sub-kpi-val gold-c">${pAp?fmtCOP(pAp):'—'}</div></div>
+    <div class="sub-kpi"><div class="sub-kpi-lbl">Precio A</div><div class="sub-kpi-val gold-c">${fmtCOP(pA)}</div></div>
+    <div class="sub-kpi"><div class="sub-kpi-lbl">Precio B</div><div class="sub-kpi-val">${pB?fmtCOP(pB):'—'}</div></div>
+  `;
+
+  // Gráfico evolución vacancia
+  ['cbre_det_vac','cbre_det_price'].forEach(id=>{if(charts[id])charts[id].destroy();});
+
+  if(evolData){
+    mk('cbre_det_vac',{type:'line',data:{labels:CBRE_EVOL_Y,datasets:[{
+      label:'Vacancia %', data:evolData,
+      borderColor:CBRE_BLUE, backgroundColor:'rgba(59,158,255,0.08)',
+      borderWidth:2.5, fill:true, tension:0.3, pointRadius:5
+    }]},options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:TT},
+      scales:{x:{grid:G,ticks:TCBRE},y:{grid:G,ticks:{...TCBRE,callback:v=>v+'%'},min:0}}}});
+  } else {
+    // Si no hay serie histórica mostrar el valor actual como barra única
+    mk('cbre_det_vac',{type:'bar',data:{labels:['4Q 2025'],datasets:[{
+      label:'Vacancia %', data:[vpct],
+      backgroundColor:'rgba(59,158,255,0.5)',borderColor:CBRE_BLUE,borderWidth:1.5,borderRadius:6
+    }]},options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:TT},
+      scales:{x:{grid:G,ticks:TCBRE},y:{grid:G,ticks:{...TCBRE,callback:v=>v+'%'},min:0}}}});
+  }
+
+  // Gráfico precios por clase
+  const priceLabels=['Clase A+','Clase A','Clase B'].filter((_,i)=>[pAp,pA,pB][i]);
+  const priceData  =[pAp,pA,pB].filter(v=>v);
+  const priceColors=['rgba(240,180,41,0.55)','rgba(59,158,255,0.5)','rgba(107,128,154,0.4)'].filter((_,i)=>[pAp,pA,pB][i]);
+  const priceBorder=[GOLD,CBRE_BLUE,'#6b809a'].filter((_,i)=>[pAp,pA,pB][i]);
+  mk('cbre_det_price',{type:'bar',data:{labels:priceLabels,datasets:[{
+    label:'COP/m²/mes', data:priceData,
+    backgroundColor:priceColors, borderColor:priceBorder,
+    borderWidth:1.5, borderRadius:5
+  }]},options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{...TT,callbacks:{label:ctx=>' '+fmtCOP(ctx.raw)}}},
+    scales:{x:{grid:G,ticks:TCBRE},
+      y:{grid:G,ticks:{...TCBRE,callback:v=>'$'+Math.round(v/1000)+'k'}}}}});
+}
+
+
 window.datosDone=false;
 function buildTablas(){
   window.datosDone=true;
