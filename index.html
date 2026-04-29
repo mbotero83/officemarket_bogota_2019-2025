@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mercado de Oficinas AAA — Bogotá 2019–2025</title>
+<title>Mercado de Oficinas AAA — Bogotá 2019–2026</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -54,7 +54,7 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-
 .disc-source-tag.cbre-tag{background:var(--cbre-dim);border:1px solid var(--cbre-border);color:var(--cbre);}
 .mod-dot{width:7px;height:7px;border-radius:50%;background:var(--cw);}
 .update-chip{font-size:0.68rem;color:var(--muted);white-space:nowrap;}
-.update-chip strong{color:var(--light);}
+.update-chip strong{color:var(--cw);}
 .currency-toggle{display:flex;align-items:center;gap:2px;background:var(--surface2);
   border:1px solid var(--border);border-radius:8px;padding:3px;margin-left:16px;}
 .cur-btn{font-family:'Outfit',sans-serif;font-size:0.72rem;font-weight:600;
@@ -177,6 +177,8 @@ thead th{background:var(--surface2);color:var(--muted);font-weight:600;text-tran
 thead th:first-child{text-align:left;}
 tbody tr{border-bottom:1px solid rgba(26,38,64,0.5);transition:background .15s;}
 tbody tr:hover{background:rgba(255,255,255,0.02);}
+tbody tr.new-row{background:rgba(0,212,168,0.04);}
+tbody tr.new-row td:first-child{color:var(--cw);font-weight:600;}
 tbody td{padding:8px 13px;text-align:right;color:var(--light);}
 tbody td:first-child{text-align:left;font-weight:500;color:var(--text);}
 tfoot td{padding:9px 13px;text-align:right;font-weight:700;color:var(--text);
@@ -222,7 +224,7 @@ tfoot td:first-child{text-align:left;}
 /* DIVIDER */
 .hdivider{height:1px;background:linear-gradient(90deg,var(--cw),transparent);margin:0 40px 0;}
 
-/* BAR RACE (vacancia horizontal) */
+/* BAR RACE */
 .bar-race{display:flex;flex-direction:column;gap:10px;padding:8px 0;}
 .br-row{display:flex;align-items:center;gap:12px;}
 .br-lbl{font-size:0.72rem;color:var(--light);min-width:120px;text-align:right;}
@@ -284,7 +286,7 @@ tfoot td:first-child{text-align:left;}
       <button class="cur-btn active" data-cur="usd">USD</button>
       <button class="cur-btn" data-cur="cop">COP</button>
     </div>
-    <div class="update-chip" style="margin-left:16px;">Actualizado <strong>2025-Q4</strong></div>
+    <div class="update-chip" style="margin-left:16px;">Actualizado <strong>2026-Q1</strong></div>
   </div>
 </div>
 
@@ -292,15 +294,15 @@ tfoot td:first-child{text-align:left;}
 <div class="view" id="view-landing">
   <div class="landing">
     <div class="hero-eyebrow">Inteligencia Inmobiliaria Comercial · Bogotá</div>
-    <h1 class="hero-title">Mercado de Oficinas<br><em>Bogotá</em> 2019–2025</h1>
+    <h1 class="hero-title">Mercado de Oficinas<br><em>Bogotá</em> 2019–2026</h1>
     <p class="hero-desc">Análisis cuantitativo del mercado corporativo de oficinas en Bogotá, construido sobre reportes de las dos firmas líderes en research inmobiliario. Dos fuentes, dos metodologías, una visión completa.</p>
 
     <div class="stats-strip">
-      <div class="stat-item"><div class="stat-num sn-green">6.7%</div><div class="stat-lbl">Vacancia AAA · C&amp;W 2025-Q4</div></div>
+      <div class="stat-item"><div class="stat-num sn-green">5.9%</div><div class="stat-lbl">Vacancia AAA · C&amp;W 2026-Q1</div></div>
       <div class="stat-item"><div class="stat-num" style="color:var(--cbre)">8.7%</div><div class="stat-lbl">Vacancia A+/A/B · CBRE 4Q 2025</div></div>
-      <div class="stat-item"><div class="stat-num sn-gold">USD 23.0</div><div class="stat-lbl">Renta prime AAA /m²/mes</div></div>
+      <div class="stat-item"><div class="stat-num sn-gold">USD 24.5</div><div class="stat-lbl">Renta prime AAA /m²/mes · 2026-Q1</div></div>
       <div class="stat-item"><div class="stat-num sn-gold">$104,200</div><div class="stat-lbl">Precio A+ CBD COP · CBRE</div></div>
-      <div class="stat-item"><div class="stat-num sn-green">+66,359 m²</div><div class="stat-lbl">Absorción neta C&amp;W 2025</div></div>
+      <div class="stat-item"><div class="stat-num sn-green">+11,921 m²</div><div class="stat-lbl">Absorción neta C&amp;W 2026-Q1</div></div>
       <div class="stat-item"><div class="stat-num" style="color:var(--cbre)">+65,000 m²</div><div class="stat-lbl">Absorción neta CBRE 2025</div></div>
     </div>
 
@@ -314,8 +316,8 @@ tfoot td:first-child{text-align:left;}
           <div class="card-desc">Análisis trimestral del segmento premium. Cubre exclusivamente edificios Clase AAA. Absorción desagregada del YTD para obtener valores trimestrales reales.</div>
           <div class="card-specs">
             <div><div class="spec-lbl">Segmento</div><div class="spec-val">Clase AAA</div></div>
-            <div><div class="spec-lbl">Periodicidad</div><div class="spec-val">Trimestral · 28 períodos</div></div>
-            <div><div class="spec-lbl">Cobertura</div><div class="spec-val">2019-Q1 a 2025-Q4</div></div>
+            <div><div class="spec-lbl">Periodicidad</div><div class="spec-val">Trimestral · 29 períodos</div></div>
+            <div><div class="spec-lbl">Cobertura</div><div class="spec-val">2019-Q1 a 2026-Q1</div></div>
             <div><div class="spec-lbl">Submercados</div><div class="spec-val">8 corredores</div></div>
           </div>
           <div class="card-pills">
@@ -359,12 +361,12 @@ tfoot td:first-child{text-align:left;}
         <div class="method-card">
           <div class="method-icon">🗺️</div>
           <div class="method-lbl">8 submercados C&amp;W</div>
-          <div class="method-text">Avenida Chile, Calle 100, Centro, Chicó, <strong>Nogal-Andino</strong>, Salitre, Santa Bárbara y Noroccidente. Cada corredor cuenta con serie histórica completa de 28 trimestres.</div>
+          <div class="method-text">Avenida Chile, Calle 100, Centro, Chicó, <strong>Nogal-Andino</strong>, Salitre, Santa Bárbara y Noroccidente. Cada corredor cuenta con serie histórica completa de 29 trimestres.</div>
         </div>
         <div class="method-card">
           <div class="method-icon">💱</div>
           <div class="method-lbl">Moneda y segmento</div>
-          <div class="method-text">Rentas en <strong>USD/m²/mes</strong> con equivalencia en COP. Cubre únicamente edificios <strong>Clase AAA</strong> con estándares internacionales de especificación técnica.</div>
+          <div class="method-text">Rentas en <strong>USD/m²/mes</strong> con equivalencia en COP. TRM 2026-Q1: 3,669 COP/USD. Cubre únicamente edificios <strong>Clase AAA</strong> con estándares internacionales de especificación técnica.</div>
         </div>
       </div>
     </div>
@@ -392,7 +394,7 @@ tfoot td:first-child{text-align:left;}
     <div class="module-header">
       <div class="module-title-row">
         <div class="module-title">Oficinas Clase AAA · Bogotá<br><span class="cw-c">Cushman &amp; Wakefield</span></div>
-        <div class="module-meta"><strong>Clase AAA · Trimestral</strong>2019-Q1 a 2025-Q4 · 8 submercados · 28 períodos</div>
+        <div class="module-meta"><strong>Clase AAA · Trimestral</strong>2019-Q1 a 2026-Q1 · 8 submercados · 29 períodos</div>
       </div>
     </div>
     <div class="hdivider"></div>
@@ -408,60 +410,60 @@ tfoot td:first-child{text-align:left;}
 
     <!-- RESUMEN -->
     <div class="tab-section active" id="cw-resumen">
-      <div class="sec-title">Panorama General — 2025-Q4</div>
-      <div class="sec-desc">Indicadores clave del segmento AAA al cierre del cuarto trimestre de 2025. El mercado registra su mejor desempeño del período: vacancia mínima histórica y rentas en máximo.</div>
+      <div class="sec-title">Panorama General — 2026-Q1</div>
+      <div class="sec-desc">Indicadores clave del segmento AAA al cierre del primer trimestre de 2026. Nuevo mínimo histórico de vacancia (5.9%) y rentas en máximo absoluto del período (USD 24.5/m²/mes). TRM: 3,669 COP/USD.</div>
       <div class="kpi-grid">
-        <div class="kpi cw-kpi"><div class="kpi-lbl">Tasa de Vacancia</div><div class="kpi-val kv-green">6.7%</div><div class="kpi-sub">91,478 m² disponibles</div><div class="kpi-trend up">▼ Mínimo desde 2019</div></div>
-        <div class="kpi cw-kpi"><div class="kpi-lbl">Absorción neta 2025</div><div class="kpi-val kv-green">+66,359 m²</div><div class="kpi-sub">Acumulado anual</div><div class="kpi-trend up">▲ Recuperación sostenida</div></div>
-        <div class="kpi gold-kpi"><div class="kpi-lbl">Renta Prime USD</div><div class="kpi-val kv-gold">USD 23.0</div><div class="kpi-sub">/m²/mes · Máximo histórico</div><div class="kpi-trend up">▲ +36.1% vs mínimo 2022</div></div>
-        <div class="kpi cw-kpi"><div class="kpi-lbl">Renta Prime COP</div><div class="kpi-val kv-green">$85,303</div><div class="kpi-sub">/m²/mes · 2025-Q4</div></div>
-        <div class="kpi cw-kpi"><div class="kpi-lbl">En Construcción</div><div class="kpi-val">214,163 m²</div><div class="kpi-sub">2025-Q4 · Activo</div></div>
-        <div class="kpi cw-kpi"><div class="kpi-lbl">En Proyecto</div><div class="kpi-val">600,267 m²</div><div class="kpi-sub">2025-Q4 · Planeación</div></div>
+        <div class="kpi cw-kpi"><div class="kpi-lbl">Tasa de Vacancia</div><div class="kpi-val kv-green">5.9%</div><div class="kpi-sub">79,557 m² disponibles</div><div class="kpi-trend up">▼ Mínimo histórico 2019–2026</div></div>
+        <div class="kpi cw-kpi"><div class="kpi-lbl">Absorción neta Q1 2026</div><div class="kpi-val kv-green">+11,921 m²</div><div class="kpi-sub">YTD · Motor: Salitre</div><div class="kpi-trend up">▲ Trimestre positivo</div></div>
+        <div class="kpi gold-kpi"><div class="kpi-lbl">Renta Prime USD</div><div class="kpi-val kv-gold">USD 24.5</div><div class="kpi-sub">/m²/mes · Máximo histórico</div><div class="kpi-trend up">▲ +58% vs mínimo 2022</div></div>
+        <div class="kpi cw-kpi"><div class="kpi-lbl">Renta Prime COP</div><div class="kpi-val kv-green">$90,067</div><div class="kpi-sub">/m²/mes · +11% interanual</div></div>
+        <div class="kpi cw-kpi"><div class="kpi-lbl">En Construcción</div><div class="kpi-val">214,163 m²</div><div class="kpi-sub">2026-Q1 · Activo</div></div>
+        <div class="kpi cw-kpi"><div class="kpi-lbl">En Proyecto</div><div class="kpi-val">600,267 m²</div><div class="kpi-sub">2026-Q1 · Planeación</div></div>
         <div class="kpi gold-kpi"><div class="kpi-lbl">Pipeline Total</div><div class="kpi-val kv-gold">814,430 m²</div><div class="kpi-sub">Constr. + Proyecto</div></div>
-        <div class="kpi cw-kpi"><div class="kpi-lbl">Períodos analizados</div><div class="kpi-val">28</div><div class="kpi-sub">Trimestres 2019–2025</div></div>
+        <div class="kpi cw-kpi"><div class="kpi-lbl">Períodos analizados</div><div class="kpi-val">29</div><div class="kpi-sub">Trimestres 2019–2026</div></div>
       </div>
       <div class="chart-grid">
         <div class="chart-card wide">
-          <div class="ct">Vacancia % y Absorción Neta — Serie Trimestral 2019–2025</div>
+          <div class="ct">Vacancia % y Absorción Neta — Serie Trimestral 2019–2026</div>
           <div class="cs">Barras = absorción neta m² · Línea dorada = vacancia % (eje derecho) · Fuente: C&amp;W · Valores trimestrales reales</div>
           <div class="cw-r tall"><canvas id="cw_r_main"></canvas></div>
         </div>
         <div class="chart-card">
-          <div class="ct">Vacancia por Submercado — 2025-Q4</div>
+          <div class="ct">Vacancia por Submercado — 2026-Q1</div>
           <div class="cs">% sobre inventario del corredor · Orden descendente</div>
           <div id="cw_vac_bars" class="bar-race" style="padding:16px 0 4px;"></div>
         </div>
         <div class="chart-card">
           <div class="ct" id="tit-resumen-renta">Renta USD/m²/mes — Trimestral</div>
-          <div class="cs" id="sub-resumen-renta">Mínimo USD 15.5 (2022-Q4) · Máximo USD 23.0 (2025-Q4)</div>
+          <div class="cs" id="sub-resumen-renta">Mínimo USD 15.5 (2022-Q4) · Máximo USD 24.5 (2026-Q1)</div>
           <div class="cw-r"><canvas id="cw_r_renta"></canvas></div>
         </div>
       </div>
-      <div class="alert alert-info"><span class="alert-icon">ℹ️</span><div><strong>Contexto 2025:</strong> Nogal-Andino, Avenida Chile y Calle 100 muestran vacancia inferior al 1%, evidenciando escasez real de espacio premium. El Centro continúa con 34.5% de vacancia reflejando su proceso de reconversión. Las rentas en USD alcanzan su nivel máximo del período analizado.</div></div>
+      <div class="alert alert-info"><span class="alert-icon">ℹ️</span><div><strong>Contexto 2026-Q1:</strong> Salitre lideró la absorción del trimestre con +13,664 m². Calle 100, Chicó y Nogal-Andino registraron liberaciones puntuales asociadas a movimientos estratégicos de usuarios — estos submercados mantienen vacancia inferior al 2%, anticipando rápida recolocación. El mercado consolida su evolución hacia un mercado de propietarios.</div></div>
     </div>
 
     <!-- OFERTA & VACANCIA -->
     <div class="tab-section" id="cw-oferta">
       <div class="sec-title">Oferta y Vacancia</div>
-      <div class="sec-desc">Evolución trimestral de la superficie disponible y la tasa de vacancia del segmento AAA. El mercado tocó fondo en 2021-Q3 (239,898 m²) y desde entonces registra una recuperación sostenida.</div>
+      <div class="sec-desc">Evolución trimestral de la superficie disponible y la tasa de vacancia del segmento AAA. El mercado tocó fondo en 2021-Q3 (239,898 m²) y registra recuperación sostenida, alcanzando nuevo mínimo histórico en 2026-Q1.</div>
       <div class="chart-grid">
         <div class="chart-card wide">
-          <div class="ct">Superficie Disponible (m²) — Trimestral 2019–2025</div>
-          <div class="cs">Pico: 239,898 m² en 2021-Q3 · Mínimo: 91,478 m² en 2025-Q4 · Fuente: C&amp;W</div>
+          <div class="ct">Superficie Disponible (m²) — Trimestral 2019–2026</div>
+          <div class="cs">Pico: 239,898 m² en 2021-Q3 · Mínimo histórico: 79,557 m² en 2026-Q1 · Fuente: C&amp;W</div>
           <div class="cw-r tall"><canvas id="cw_o_m2"></canvas></div>
         </div>
         <div class="chart-card">
           <div class="ct">Tasa de Vacancia (%) — Trimestral</div>
-          <div class="cs">Pico 14.3% en 2021-Q3 · Mínimo 6.7% en 2025-Q4</div>
+          <div class="cs">Pico 14.3% en 2021-Q3 · Mínimo histórico 5.9% en 2026-Q1</div>
           <div class="cw-r"><canvas id="cw_o_vac"></canvas></div>
         </div>
         <div class="chart-card">
-          <div class="ct">Vacancia por Submercado — 2025-Q4 (m²)</div>
+          <div class="ct">Vacancia por Submercado — 2026-Q1 (m²)</div>
           <div class="cs">m² disponibles · eje dual con % (línea)</div>
           <div class="cw-r"><canvas id="cw_o_subm2"></canvas></div>
         </div>
         <div class="chart-card">
-          <div class="ct">Vacancia % por Submercado — 2025-Q4</div>
+          <div class="ct">Vacancia % por Submercado — 2026-Q1</div>
           <div class="cs">% sobre inventario del corredor · rojo &gt;20% · amarillo &gt;10%</div>
           <div class="cw-r"><canvas id="cw_o_subpct"></canvas></div>
         </div>
@@ -474,18 +476,18 @@ tfoot td:first-child{text-align:left;}
       <div class="sec-desc">Metros cuadrados netos efectivamente ocupados por trimestre. Valores positivos indican demanda activa; negativos, devolución neta de espacio. 2020 fue el único año con absorción anual negativa.</div>
       <div class="chart-grid">
         <div class="chart-card wide">
-          <div class="ct">Absorción Neta Trimestral (m²) — 2019–2025</div>
+          <div class="ct">Absorción Neta Trimestral (m²) — 2019–2026</div>
           <div class="cs">Verde = ocupación neta · Rojo = desabsorción · Valores trimestrales reales desagregados del YTD · Fuente: C&amp;W</div>
           <div class="cw-r tall"><canvas id="cw_a_trim"></canvas></div>
         </div>
         <div class="chart-card">
           <div class="ct">Absorción Acumulada Anual (m²)</div>
-          <div class="cs">Total neto por año calendario · 2020 único año negativo del período</div>
+          <div class="cs">Total neto por año calendario · 2026 = YTD (barra con borde) · 2020 único año negativo</div>
           <div class="cw-r"><canvas id="cw_a_anual"></canvas></div>
         </div>
         <div class="chart-card">
-          <div class="ct">Absorción Anual por Submercado — 2025 (m²)</div>
-          <div class="cs">Suma de los 4 trimestres 2025 por corredor</div>
+          <div class="ct">Absorción por Submercado — 2026-Q1 (m²)</div>
+          <div class="cs">Salitre lidera con +13,664 m² · Calle 100, Chicó y Nogal-Andino con liberaciones estratégicas</div>
           <div class="cw-r"><canvas id="cw_a_sub"></canvas></div>
         </div>
       </div>
@@ -502,13 +504,13 @@ tfoot td:first-child{text-align:left;}
       </div>
       <div class="chart-grid">
         <div class="chart-card wide">
-          <div class="ct" id="rentaTit">Renta Prime AAA — USD/m²/mes · Trimestral 2019–2025</div>
-          <div class="cs" id="rentaSub">Mínimo USD 15.5 (2022-Q4) · Máximo USD 23.0 (2025-Q4) · Fuente: C&amp;W</div>
+          <div class="ct" id="rentaTit">Renta Prime AAA — USD/m²/mes · Trimestral 2019–2026</div>
+          <div class="cs" id="rentaSub">Mínimo USD 15.5 (2022-Q4) · Máximo USD 24.5 (2026-Q1) · TRM 2026-Q1: 3,669 COP/USD · Fuente: C&amp;W</div>
           <div class="cw-r tall"><canvas id="cw_rent_line"></canvas></div>
         </div>
         <div class="chart-card">
-          <div class="ct" id="tit-rent-sub">Renta por Submercado — USD/m²/mes · 2025-Q4</div>
-          <div class="cs">Santa Bárbara y Nogal-Andino lideran · Salitre y Noroccidente son los más económicos</div>
+          <div class="ct" id="tit-rent-sub">Renta por Submercado — USD/m²/mes · 2026-Q1</div>
+          <div class="cs">Santa Bárbara lidera (USD 34.1) · Salitre es el más económico (USD 20.1)</div>
           <div class="cw-r"><canvas id="cw_rent_sub"></canvas></div>
         </div>
         <div class="chart-card">
@@ -517,7 +519,7 @@ tfoot td:first-child{text-align:left;}
           <div class="cw-r"><canvas id="cw_rent_var"></canvas></div>
         </div>
         <div class="chart-card wide">
-          <div class="ct" id="tit-rent-scatter">Vacancia vs Renta USD — Por Submercado · Scatter Trimestral</div>
+          <div class="ct" id="tit-rent-scatter">Vacancia vs Renta USD — Por Submercado · Scatter Anual 4Q</div>
           <div class="cs" id="sub-rent-scatter">Cada punto = un trimestre · Color por corredor · Correlación negativa esperada · Fuente: C&amp;W</div>
           <div class="cw-r tall"><canvas id="cw_rent_scatter"></canvas></div>
         </div>
@@ -527,26 +529,26 @@ tfoot td:first-child{text-align:left;}
     <!-- PIPELINE -->
     <div class="tab-section" id="cw-pipeline">
       <div class="sec-title">Pipeline</div>
-      <div class="sec-desc">Proyectos en construcción activa y en etapa de planeación. El pipeline determina la oferta futura y condiciona la evolución de vacancia y rentas en los próximos 2–4 años.</div>
+      <div class="sec-desc">Proyectos en construcción activa y en etapa de planeación. El pipeline determina la oferta futura y condiciona la evolución de vacancia y rentas. Se prevé entrega de ~48,000 m² durante 2026.</div>
       <div class="kpi-grid">
-        <div class="kpi cw-kpi"><div class="kpi-lbl">En Construcción</div><div class="kpi-val kv-green">214,163 m²</div><div class="kpi-sub">2025-Q4 · Activo</div></div>
-        <div class="kpi cw-kpi"><div class="kpi-lbl">En Proyecto</div><div class="kpi-val">600,267 m²</div><div class="kpi-sub">2025-Q4 · Planeación</div></div>
+        <div class="kpi cw-kpi"><div class="kpi-lbl">En Construcción</div><div class="kpi-val kv-green">214,163 m²</div><div class="kpi-sub">2026-Q1 · Activo</div></div>
+        <div class="kpi cw-kpi"><div class="kpi-lbl">En Proyecto</div><div class="kpi-val">600,267 m²</div><div class="kpi-sub">2026-Q1 · Planeación</div></div>
         <div class="kpi gold-kpi"><div class="kpi-lbl">Pipeline Total</div><div class="kpi-val kv-gold">814,430 m²</div><div class="kpi-sub">Constr. + Proyecto</div></div>
         <div class="kpi red-kpi"><div class="kpi-lbl">Pico histórico</div><div class="kpi-val">305,737 m²</div><div class="kpi-sub">En construcción · 2019-Q1</div></div>
       </div>
       <div class="chart-grid">
         <div class="chart-card wide">
-          <div class="ct">En Construcción y En Proyecto — Trimestral 2019–2025</div>
-          <div class="cs">Evolución del pipeline total · Fuente: C&amp;W</div>
+          <div class="ct">En Construcción y En Proyecto — Trimestral 2019–2026</div>
+          <div class="cs">Evolución del pipeline total · Fuente: C&amp;W · Entrega estimada 2026: ~48,000 m² en Chicó, Calle 100 y Nogal-Andino</div>
           <div class="cw-r tall"><canvas id="cw_pip_main"></canvas></div>
         </div>
         <div class="chart-card">
           <div class="ct">En Construcción (m²) — Trimestral</div>
-          <div class="cs">La desaceleración post-2020 explica la escasez de oferta en 2024-2025</div>
+          <div class="cs">La desaceleración post-2020 explica la escasez de oferta en 2024-2026</div>
           <div class="cw-r"><canvas id="cw_pip_constr"></canvas></div>
         </div>
         <div class="chart-card">
-          <div class="ct">Pipeline por Submercado — 2025-Q4 (m²)</div>
+          <div class="ct">Pipeline por Submercado — 2026-Q1 (m²)</div>
           <div class="cs">Construcción activa + proyecto por corredor</div>
           <div class="cw-r"><canvas id="cw_pip_sub"></canvas></div>
         </div>
@@ -561,13 +563,13 @@ tfoot td:first-child{text-align:left;}
       <div class="sub-detail-panel">
         <div class="sub-detail-header">
           <div class="sub-detail-name" id="cw-detail-name">—</div>
-          <div class="sub-detail-badge">C&amp;W · Clase AAA · 2025-Q4</div>
+          <div class="sub-detail-badge">C&amp;W · Clase AAA · 2026-Q1</div>
         </div>
         <div class="sub-kpi-grid" id="cw-detail-kpis"></div>
         <div class="chart-grid" style="margin-top:16px;">
           <div class="chart-card">
             <div class="ct" id="cw-detail-vac-title">Vacancia % — Histórica</div>
-            <div class="cs">Serie trimestral completa 2019-Q1 a 2025-Q4</div>
+            <div class="cs">Serie trimestral completa 2019-Q1 a 2026-Q1</div>
             <div class="cw-r"><canvas id="cw_det_vac"></canvas></div>
           </div>
           <div class="chart-card">
@@ -590,7 +592,7 @@ tfoot td:first-child{text-align:left;}
       <div class="chart-grid">
         <div class="chart-card wide">
           <div class="ct">Vacancia % por Submercado — Comparativo Anual</div>
-          <div class="cs">4Q de cada año · 8 corredores · 2019–2025</div>
+          <div class="cs">4Q de cada año + 2026-Q1 · 8 corredores · 2019–2026</div>
           <div class="cw-r tall"><canvas id="cw_sub_evol"></canvas></div>
         </div>
       </div>
@@ -599,7 +601,7 @@ tfoot td:first-child{text-align:left;}
     <!-- DATOS -->
     <div class="tab-section" id="cw-datos">
       <div class="sec-title">Base de Datos Completa</div>
-      <div class="sec-desc">Serie histórica completa de 28 trimestres (2019-Q1 a 2025-Q4) para Bogotá total y los 8 submercados.</div>
+      <div class="sec-desc">Serie histórica completa de 29 trimestres (2019-Q1 a 2026-Q1) para Bogotá total y los 8 submercados. La fila 2026-Q1 corresponde al MarketBeat T1 2026 de C&amp;W (TRM: 3,669 COP/USD).</div>
       <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><strong>Nota:</strong> La absorción presentada es <strong>trimestral real</strong>, desagregada del YTD reportado por C&amp;W. No corresponde a los valores YTD originales de los informes.</div></div>
       <div class="toggle-row">
         <button class="tgl on" data-tabla="bog">Bogotá total</button>
@@ -779,13 +781,9 @@ tfoot td:first-child{text-align:left;}
 
 <!-- ══════ JAVASCRIPT ══════ -->
 <script>
-// ═══ DATA CBRE — Extraído de reportes oficiales CBRE Colombia Research ═══
-// Fuentes: 1S 2020, 4Q 2020, 4Q 2021, 4Q 2022, 4Q 2023, 4Q 2024, 4Q 2025
-
+// ═══ DATA CBRE — Sin cambios (última fuente: 4Q 2025) ═══════════
 const CBRE_Y = ['1S 2020','4Q 2020','4Q 2021','4Q 2022','4Q 2023','4Q 2024','4Q 2025'];
 const CBRE_Y_SHORT = ['2020H1','2020','2021','2022','2023','2024','2025'];
-
-// Globales Bogotá
 const CBRE_INV    = [2944844, 2960510, 3015049, 3070614, 3092279, 3128679, 3139289];
 const CBRE_VACM2  = [315030,  361619,  399017,  381086,  337391,  325957,  274135];
 const CBRE_VACPCT = [10.7,    12.2,    13.2,    12.4,    10.9,    10.4,    8.7];
@@ -793,19 +791,13 @@ const CBRE_ABS    = [11331,  -19592,   17141,   73496,   64864,   48354,   65000
 const CBRE_NUEVA  = [30000,   15600,   62000,   55500,   21665,   36400,   4500];
 const CBRE_FUT    = [192957,  145280,  230839,  186939,  168139,  150911,  131900];
 const CBRE_OCCM2  = CBRE_INV.map((v,i) => v - CBRE_VACM2[i]);
-
-// Precios por clase — ciudad total (COP/m²/mes)
-const CBRE_PAP  = [83700,  83500,  77800,  83300,  88700,  87300, 100400]; // A+
-const CBRE_PA   = [71500,  63100,  63800,  68100,  72000,  82000,  83100]; // A
-const CBRE_PB   = [59050,  59100,  58700,  58100,  64900,  65200,  74400]; // B
-const CBRE_PAVG = [61600,  64200,  63100,  62800,  71100,  70900,  95600]; // promedio total
-
-// Vacancia por clase (%)
+const CBRE_PAP  = [83700,  83500,  77800,  83300,  88700,  87300, 100400];
+const CBRE_PA   = [71500,  63100,  63800,  68100,  72000,  82000,  83100];
+const CBRE_PB   = [59050,  59100,  58700,  58100,  64900,  65200,  74400];
+const CBRE_PAVG = [61600,  64200,  63100,  62800,  71100,  70900,  95600];
 const CBRE_VAC_AP = [null, 14.5, 16.6, 22.4, 20.0, 15.0, 13.9];
 const CBRE_VAC_A  = [null, 10.5, 10.8,  9.6,  8.5,  8.5,  9.5];
 const CBRE_VAC_B  = [null, 14.2, 14.2, 11.5, 10.0,  9.5,  9.5];
-
-// Submercados 4Q 2025
 const CBRE_SUBN = ['Andino','Calle 100','C. Internacional','Chicó','Córdoba','Norte','Salitre','Santa Bárbara','S. Financiero','Otros'];
 const CBRE_SUBINV  = [192556, 430444, 181130, 395384, 143679, 116892, 809664, 373962, 269186, 229246];
 const CBRE_SUBVAC  = [4525,   22338,   54704,  18193,  24315,  21078,  80746,  13533,   5677,  29026];
@@ -813,8 +805,6 @@ const CBRE_SUBVPCT = [2.4,     5.2,    30.2,    4.6,   16.9,   18.0,   10.0,    
 const CBRE_SUBPAP  = [null,    null,   106800, 110000,  89000,   null,  81400, 105000,   null,   null];
 const CBRE_SUBPA   = [107500,  91300,   51800,  90000,  80600,  53500,  81200,  95000,  99800,  78600];
 const CBRE_SUBPB   = [96000,   70800,   65100,  82300,   null,  66100,  59300,  84600,  89100,  69000];
-
-// Evolución vacancia por corredor (serie anual 4Q: 2020-2025, sin 1S 2020)
 const CBRE_EVOL_Y = ['2020','2021','2022','2023','2024','2025'];
 const CBRE_SUB_EVOL = {
   'Andino':           [14.5, 10.9,  5.2,  5.6,  4.5,  2.4],
@@ -825,108 +815,112 @@ const CBRE_SUB_EVOL = {
   'Salitre':          [10.6,  9.6, 12.7, 11.6, 12.6, 10.0],
   'Santa Bárbara':    [ 8.1,  7.9,  7.2,  4.8,  3.4,  3.6],
 };
-
 const CBRE_BLUE = '#3b9eff';
 const CBRE_PURPLE = '#a78bfa';
 const TCBRE = {color:'#4a6a8a', font:{size:10}};
 const LCBRE = {labels:{color:'#a0b4cc', font:{size:10}, boxWidth:11}};
 
-// ═══ DATA REAL — C&W trimestral (absorción desagregada del YTD) ═══
-const CWQ=['2019-Q1','2019-Q2','2019-Q3','2019-Q4','2020-Q1','2020-Q2','2020-Q3','2020-Q4',
+// ═══ DATA C&W — Serie 2019-Q1 a 2026-Q1 (29 trimestres) ════════
+// Último índice = 28 (0-based)
+const CWQ=[
+  '2019-Q1','2019-Q2','2019-Q3','2019-Q4','2020-Q1','2020-Q2','2020-Q3','2020-Q4',
   '2021-Q1','2021-Q2','2021-Q3','2021-Q4','2022-Q1','2022-Q2','2022-Q3','2022-Q4',
   '2023-Q1','2023-Q2','2023-Q3','2023-Q4','2024-Q1','2024-Q2','2024-Q3','2024-Q4',
-  '2025-Q1','2025-Q2','2025-Q3','2025-Q4'];
+  '2025-Q1','2025-Q2','2025-Q3','2025-Q4','2026-Q1'
+];
+
+const LAST = 28; // índice del último período
 
 const BOG = {
-  vacancia_m2:[21374,137333,116958,145839,122316,143347,158575,228356,222960,216383,239898,220373,207571,198415,198500,198664,178498,207355,188614,190000,198000,194779,177903,189735,148456,133887,123754,91478],
-  vacancia_pct:[7.8,9.1,7.6,9.3,7.7,9.0,10.0,13.6,13.2,12.9,14.3,13.1,12.3,11.7,11.6,11.6,10.3,12.3,10.7,10.6,11.2,11.0,10.1,10.5,11.0,9.9,9.1,6.7],
-  absorcion:[68329,11730,49375,10489,33523,-10801,-15228,21123,5422,6577,-23515,19525,20064,14956,21417,7561,35014,2576,20128,2282,-5718,-3118,16829,21594,7270,16680,10133,32276],
-  construccion:[305737,293606,249606,197308,187308,215445,215445,145945,143490,154125,154125,159665,128220,122520,150133,160645,159395,150015,145956,160000,140000,143569,140538,130892,130892,130892,130892,214163],
-  proyecto:[829611,523874,523874,423874,423874,543212,577212,655712,659680,639680,639680,639680,639680,639680,679740,683541,739266,771226,764013,770000,757752,757752,757752,774127,660867,668080,668538,600267],
-  renta_usd:[21.1,20.4,19.9,20.2,16.6,17.5,17.0,21.3,20.0,19.4,18.5,18.1,19.6,17.8,16.4,15.5,16.2,17.8,18.2,18.0,17.9,18.0,17.9,16.9,19.2,20.1,21.2,23.0],
-  renta_cop:[66745,66070,69000,66100,67534,65721,65891,74293,73212,72804,70975,72041,73467,73276,74519,74554,75173,74761,73870,74000,74500,74662,74488,74433,80299,81832,82683,85303]
+  vacancia_m2:[21374,137333,116958,145839,122316,143347,158575,228356,222960,216383,239898,220373,207571,198415,198500,198664,178498,207355,188614,190000,198000,194779,177903,189735,148456,133887,123754,91478,79557],
+  vacancia_pct:[7.8,9.1,7.6,9.3,7.7,9.0,10.0,13.6,13.2,12.9,14.3,13.1,12.3,11.7,11.6,11.6,10.3,12.3,10.7,10.6,11.2,11.0,10.1,10.5,11.0,9.9,9.1,6.7,5.9],
+  absorcion:[68329,11730,49375,10489,33523,-10801,-15228,21123,5422,6577,-23515,19525,20064,14956,21417,7561,35014,2576,20128,2282,-5718,-3118,16829,21594,7270,16680,10133,32276,11921],
+  construccion:[305737,293606,249606,197308,187308,215445,215445,145945,143490,154125,154125,159665,128220,122520,150133,160645,159395,150015,145956,160000,140000,143569,140538,130892,130892,130892,130892,214163,214163],
+  proyecto:[829611,523874,523874,423874,423874,543212,577212,655712,659680,639680,639680,639680,639680,639680,679740,683541,739266,771226,764013,770000,757752,757752,757752,774127,660867,668080,668538,600267,600267],
+  renta_usd:[21.1,20.4,19.9,20.2,16.6,17.5,17.0,21.3,20.0,19.4,18.5,18.1,19.6,17.8,16.4,15.5,16.2,17.8,18.2,18.0,17.9,18.0,17.9,16.9,19.2,20.1,21.2,23.0,24.5],
+  renta_cop:[66745,66070,69000,66100,67534,65721,65891,74293,73212,72804,70975,72041,73467,73276,74519,74554,75173,74761,73870,74000,74500,74662,74488,74433,80299,81832,82683,85303,90067]
 };
 
 const SUB = {
   "Avenida Chile":{
-    inventario:[92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,51118,65168,65168,65168],
-    vacancia_m2:[3890,1999,1167,958,2249,2496,2482,8093,7486,10181,11997,10674,7982,7321,7610,7700,4982,8447,8475,8400,5435,5324,5629,5629,4304,630,805,268],
-    vacancia_pct:[4.2,2.2,1.3,1.0,2.4,2.7,2.7,8.8,8.1,11.1,13.0,11.6,8.7,7.9,8.3,8.4,5.4,9.2,9.2,9.1,5.9,5.8,6.1,6.1,8.4,1.0,1.2,0.4],
-    absorcion:[0,0,0,209,-1291,-1538,-1524,-7135,612,-2088,-3904,-2581,1280,1234,1140,1100,3705,-491,-3003,289,-120,1913,-305,47,-120,3674,-175,537],
-    construccion:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    proyecto:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    renta_usd:[19.6,19.0,19.4,20.9,17.7,17.6,17.3,19.2,18.3,18.1,17.6,17.3,15.9,16.1,16.5,16.7,14.4,16.6,17.2,17.0,17.6,17.7,18.4,17.3,17.5,18.4,18.3,20.2],
-    renta_cop:[61342,60000,67000,68426,78098,66271,66951,67249,67053,68025,67520,69069,70568,72010,74000,75000,66688,69689,69600,69500,67739,73361,76802,76138,73226,75000,71534,75000]
+    inventario:[92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,92118,51118,65168,65168,65168,65168],
+    vacancia_m2:[3890,1999,1167,958,2249,2496,2482,8093,7486,10181,11997,10674,7982,7321,7610,7700,4982,8447,8475,8400,5435,5324,5629,5629,4304,630,805,268,100],
+    vacancia_pct:[4.2,2.2,1.3,1.0,2.4,2.7,2.7,8.8,8.1,11.1,13.0,11.6,8.7,7.9,8.3,8.4,5.4,9.2,9.2,9.1,5.9,5.8,6.1,6.1,8.4,1.0,1.2,0.4,0.2],
+    absorcion:[0,0,0,209,-1291,-1538,-1524,-7135,612,-2088,-3904,-2581,1280,1234,1140,1100,3705,-491,-3003,289,-120,1913,-305,47,-120,3674,-175,537,168],
+    construccion:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    proyecto:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    renta_usd:[19.6,19.0,19.4,20.9,17.7,17.6,17.3,19.2,18.3,18.1,17.6,17.3,15.9,16.1,16.5,16.7,14.4,16.6,17.2,17.0,17.6,17.7,18.4,17.3,17.5,18.4,18.3,20.2,21.3],
+    renta_cop:[61342,60000,67000,68426,78098,66271,66951,67249,67053,68025,67520,69069,70568,72010,74000,75000,66688,69689,69600,69500,67739,73361,76802,76138,73226,75000,71534,75000,78000]
   },
   "Calle 100":{
-    inventario:[164657,164657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,183479,147770,147770,147770],
-    vacancia_m2:[10884,8154,5580,4976,4281,6730,7476,12334,15803,28119,27790,20739,19495,17862,17581,17600,19499,20685,14286,14000,11529,13249,8061,7672,3379,1986,1655,1129],
-    vacancia_pct:[6.6,5.0,3.2,2.8,2.4,3.8,4.3,7.0,9.0,16.0,15.8,11.8,11.1,10.2,10.0,10.0,11.1,11.8,8.1,8.0,6.6,7.5,4.6,4.4,1.8,1.3,1.1,0.8],
-    absorcion:[0,0,0,604,695,-1754,-2500,-7358,-3469,-15761,-15432,-8381,-1732,2839,3100,3200,-2447,-489,5706,30,2259,-1720,4988,627,1351,-291,331,526],
-    construccion:[132400,80000,69000,69000,69000,76600,76600,76600,76600,76600,76600,76600,79200,79200,79200,79200,79200,79200,79200,79200,79200,79200,79200,79200,79200,79200,79200,79200],
-    proyecto:[0,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400],
-    renta_usd:[21.0,20.0,18.5,20.0,16.8,17.3,15.4,18.4,17.4,17.5,16.4,16.4,15.6,16.5,16.9,17.0,15.1,16.8,16.9,17.0,17.0,16.0,16.6,15.1,18.7,23.0,23.2,23.6],
-    renta_cop:[65819,64702,64169,65429,68443,64490,59656,64379,63873,65662,62799,65389,69360,72600,73500,74000,70013,70451,68325,68500,65229,66692,69305,66691,78526,93717,90684,87400]
+    inventario:[164657,164657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,175657,183479,147770,147770,147770,147770],
+    vacancia_m2:[10884,8154,5580,4976,4281,6730,7476,12334,15803,28119,27790,20739,19495,17862,17581,17600,19499,20685,14286,14000,11529,13249,8061,7672,3379,1986,1655,1129,2257],
+    vacancia_pct:[6.6,5.0,3.2,2.8,2.4,3.8,4.3,7.0,9.0,16.0,15.8,11.8,11.1,10.2,10.0,10.0,11.1,11.8,8.1,8.0,6.6,7.5,4.6,4.4,1.8,1.3,1.1,0.8,1.5],
+    absorcion:[0,0,0,604,695,-1754,-2500,-7358,-3469,-15761,-15432,-8381,-1732,2839,3100,3200,-2447,-489,5706,30,2259,-1720,4988,627,1351,-291,331,526,-1128],
+    construccion:[132400,80000,69000,69000,69000,76600,76600,76600,76600,76600,76600,76600,79200,79200,79200,79200,79200,79200,79200,79200,79200,79200,79200,79200,79200,79200,79200,79200,79200],
+    proyecto:[0,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400,52400],
+    renta_usd:[21.0,20.0,18.5,20.0,16.8,17.3,15.4,18.4,17.4,17.5,16.4,16.4,15.6,16.5,16.9,17.0,15.1,16.8,16.9,17.0,17.0,16.0,16.6,15.1,18.7,23.0,23.2,23.6,21.8],
+    renta_cop:[65819,64702,64169,65429,68443,64490,59656,64379,63873,65662,62799,65389,69360,72600,73500,74000,70013,70451,68325,68500,65229,66692,69305,66691,78526,93717,90684,87400,80092]
   },
   "Centro":{
-    inventario:[31178,31178,31178,31178,31178,31178,31178,96178,96178,96178,96178,96178,96178,96178,96178,96178,96178,96178,96178,96178,96178,96178,96178,96178,96178,74178,74178,74178],
-    vacancia_m2:[3555,688,600,12109,12092,11922,4116,44116,43872,46072,48399,45764,43121,42311,42500,43000,41792,45829,47818,47000,41229,41229,34931,34931,32806,28534,26454,25585],
-    vacancia_pct:[11.4,2.2,1.9,38.8,38.8,38.2,13.2,45.9,45.6,47.9,50.3,47.6,44.8,44.0,44.2,44.7,43.5,47.7,49.7,48.9,42.9,42.9,36.3,36.3,34.1,38.5,35.7,34.5],
-    absorcion:[0,0,0,-11509,17,187,7993,32993,244,-1956,-4283,-1648,2501,-273,310,300,4536,-1388,-4637,-11,3059,0,6298,0,131,3071,2080,869],
-    construccion:[224000,64000,64000,64000,64000,64000,64000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    proyecto:[0,160000,160000,600000,60000,60000,66000,166000,166000,166000,166000,166000,160000,160000,160000,160000,166000,166000,166000,166000,166000,160000,160000,160000,100000,100000,100000,100000],
-    renta_usd:[18.5,19.0,18.8,18.6,14.6,16.0,16.0,27.6,25.9,24.8,23.9,23.4,20.4,21.0,21.5,21.7,20.5,22.0,22.5,22.0,24.8,23.0,22.8,21.5,24.8,25.5,27.1,29.0],
-    renta_cop:[58097,60000,65000,60862,59198,59956,62032,96457,94763,93007,91661,93196,90885,93020,94000,95000,95043,92363,91224,91000,95457,95457,94884,94884,104067,103938,105811,107500]
+    inventario:[31178,31178,31178,31178,31178,31178,31178,96178,96178,96178,96178,96178,96178,96178,96178,96178,96178,96178,96178,96178,96178,96178,96178,96178,96178,74178,74178,74178,74178],
+    vacancia_m2:[3555,688,600,12109,12092,11922,4116,44116,43872,46072,48399,45764,43121,42311,42500,43000,41792,45829,47818,47000,41229,41229,34931,34931,32806,28534,26454,25585,25585],
+    vacancia_pct:[11.4,2.2,1.9,38.8,38.8,38.2,13.2,45.9,45.6,47.9,50.3,47.6,44.8,44.0,44.2,44.7,43.5,47.7,49.7,48.9,42.9,42.9,36.3,36.3,34.1,38.5,35.7,34.5,34.5],
+    absorcion:[0,0,0,-11509,17,187,7993,32993,244,-1956,-4283,-1648,2501,-273,310,300,4536,-1388,-4637,-11,3059,0,6298,0,131,3071,2080,869,0],
+    construccion:[224000,64000,64000,64000,64000,64000,64000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    proyecto:[0,160000,160000,600000,60000,60000,66000,166000,166000,166000,166000,166000,160000,160000,160000,160000,166000,166000,166000,166000,166000,160000,160000,160000,100000,100000,100000,100000,100000],
+    renta_usd:[18.5,19.0,18.8,18.6,14.6,16.0,16.0,27.6,25.9,24.8,23.9,23.4,20.4,21.0,21.5,21.7,20.5,22.0,22.5,22.0,24.8,23.0,22.8,21.5,24.8,25.5,27.1,29.0,29.3],
+    renta_cop:[58097,60000,65000,60862,59198,59956,62032,96457,94763,93007,91661,93196,90885,93020,94000,95000,95043,92363,91224,91000,95457,95457,94884,94884,104067,103938,105811,107500,107500]
   },
   "Chicó":{
-    inventario:[130106,150467,150467,150467,150467,160697,160697,160697,160697,160697,160697,160697,176651,176651,183770,183770,176651,179711,183770,183770,183770,183770,183770,183770,163417,175821,175821,175821],
-    vacancia_m2:[5715,25910,19357,18998,16329,19558,24471,21568,14562,15019,15987,15169,11782,10691,10000,10100,11407,10021,4185,4200,5473,10021,11937,7897,6819,6659,2360,2520],
-    vacancia_pct:[4.4,17.2,12.9,12.6,10.9,12.2,15.2,13.4,9.1,9.3,9.9,9.4,6.7,6.0,5.4,5.5,6.5,5.6,2.3,2.3,3.0,5.5,6.5,4.3,4.2,3.8,1.3,1.4],
-    absorcion:[0,0,0,359,2669,9670,4757,7660,7027,6549,5581,6399,510,4211,5120,5000,10395,1277,9980,-152,36,-4548,-1916,4040,62,440,4299,-160],
-    construccion:[26,10230,10230,10230,10230,19120,19120,19120,21120,13120,13120,13120,9390,9390,5331,5331,9390,9390,5331,5331,5331,5331,5331,5331,5331,5331,5331,21389],
-    proyecto:[0,0,0,0,0,31600,31600,31600,25056,25056,25056,25056,16081,16081,16441,16441,16081,16081,16441,16441,16441,22880,22880,28880,28880,28880,29338,13280],
-    renta_usd:[21.2,23.0,22.8,24.0,19.4,20.2,19.6,23.2,20.8,20.6,19.7,18.8,17.0,17.6,18.2,18.4,16.5,16.9,18.4,18.5,21.2,19.5,18.8,17.8,19.2,20.1,25.9,26.9],
-    renta_cop:[66498,73725,78774,78606,79028,76025,77052,80892,76353,77236,75501,74796,75821,77030,77500,78000,76430,70721,74553,74600,81343,80704,78323,78326,80549,81756,101007,99548]
+    inventario:[130106,150467,150467,150467,150467,160697,160697,160697,160697,160697,160697,160697,176651,176651,183770,183770,176651,179711,183770,183770,183770,183770,183770,183770,163417,175821,175821,175821,175821],
+    vacancia_m2:[5715,25910,19357,18998,16329,19558,24471,21568,14562,15019,15987,15169,11782,10691,10000,10100,11407,10021,4185,4200,5473,10021,11937,7897,6819,6659,2360,2520,2889],
+    vacancia_pct:[4.4,17.2,12.9,12.6,10.9,12.2,15.2,13.4,9.1,9.3,9.9,9.4,6.7,6.0,5.4,5.5,6.5,5.6,2.3,2.3,3.0,5.5,6.5,4.3,4.2,3.8,1.3,1.4,1.6],
+    absorcion:[0,0,0,359,2669,9670,4757,7660,7027,6549,5581,6399,510,4211,5120,5000,10395,1277,9980,-152,36,-4548,-1916,4040,62,440,4299,-160,-369],
+    construccion:[26,10230,10230,10230,10230,19120,19120,19120,21120,13120,13120,13120,9390,9390,5331,5331,9390,9390,5331,5331,5331,5331,5331,5331,5331,5331,5331,21389,21389],
+    proyecto:[0,0,0,0,0,31600,31600,31600,25056,25056,25056,25056,16081,16081,16441,16441,16081,16081,16441,16441,16441,22880,22880,28880,28880,28880,29338,13280,13280],
+    renta_usd:[21.2,23.0,22.8,24.0,19.4,20.2,19.6,23.2,20.8,20.6,19.7,18.8,17.0,17.6,18.2,18.4,16.5,16.9,18.4,18.5,21.2,19.5,18.8,17.8,19.2,20.1,25.9,26.9,26.7],
+    renta_cop:[66498,73725,78774,78606,79028,76025,77052,80892,76353,77236,75501,74796,75821,77030,77500,78000,76430,70721,74553,74600,81343,80704,78323,78326,80549,81756,101007,99548,98010]
   },
   "Nogal-Andino":{
-    inventario:[141757,141757,141757,141757,141757,141757,141757,151657,151657,151657,151657,151657,157457,157457,157457,157457,157457,157457,157457,157457,164270,164270,164270,164270,67056,98989,98989,98989],
-    vacancia_m2:[7636,6289,8153,6619,7686,7037,6451,18575,16110,12735,13396,14160,7053,6889,6900,6950,5920,6933,4995,5000,3174,2532,2813,2756,0,1073,596,229],
-    vacancia_pct:[5.4,4.4,5.8,4.7,5.4,5.0,4.6,12.2,10.6,8.4,8.8,9.3,4.5,4.4,4.4,4.4,4.0,4.4,3.2,3.2,1.9,1.5,1.7,1.7,0.0,1.1,0.6,0.2],
-    absorcion:[0,0,0,1534,-1067,-418,168,-2056,2465,5840,5179,4415,1590,2701,2780,2800,5881,-372,1297,-6,492,642,-281,57,0,-137,477,367],
-    construccion:[41000,11000,11000,11000,11000,23000,23000,12000,7545,5700,5700,5700,17325,17325,17325,17325,17325,17325,17325,17325,17512,17512,17512,17512,17512,17512,17512,84725],
-    proyecto:[0,30000,30000,30000,30000,30000,58000,58000,68512,68512,68512,68512,72313,72313,72313,72313,72313,72313,64700,64700,58000,58000,58000,70000,70000,95213,95213,28000],
-    renta_usd:[27.0,26.0,26.5,25.7,21.3,20.9,20.0,24.9,23.5,21.3,20.2,19.1,18.1,18.5,18.9,19.1,17.6,19.9,20.2,20.0,24.2,22.3,21.2,18.5,18.5,23.2,24.4,25.6],
-    renta_cop:[84686,83719,91662,84079,86517,78629,77760,86985,86079,79865,77288,75972,79463,80010,80500,81000,81596,83440,81913,82000,92833,92306,88274,81404,81404,94305,95000,95000]
+    inventario:[141757,141757,141757,141757,141757,141757,141757,151657,151657,151657,151657,151657,157457,157457,157457,157457,157457,157457,157457,157457,164270,164270,164270,164270,67056,98989,98989,98989,98989],
+    vacancia_m2:[7636,6289,8153,6619,7686,7037,6451,18575,16110,12735,13396,14160,7053,6889,6900,6950,5920,6933,4995,5000,3174,2532,2813,2756,0,1073,596,229,643],
+    vacancia_pct:[5.4,4.4,5.8,4.7,5.4,5.0,4.6,12.2,10.6,8.4,8.8,9.3,4.5,4.4,4.4,4.4,4.0,4.4,3.2,3.2,1.9,1.5,1.7,1.7,0.0,1.1,0.6,0.2,0.6],
+    absorcion:[0,0,0,1534,-1067,-418,168,-2056,2465,5840,5179,4415,1590,2701,2780,2800,5881,-372,1297,-6,492,642,-281,57,0,-137,477,367,-414],
+    construccion:[41000,11000,11000,11000,11000,23000,23000,12000,7545,5700,5700,5700,17325,17325,17325,17325,17325,17325,17325,17325,17512,17512,17512,17512,17512,17512,17512,84725,84725],
+    proyecto:[0,30000,30000,30000,30000,30000,58000,58000,68512,68512,68512,68512,72313,72313,72313,72313,72313,72313,64700,64700,58000,58000,58000,70000,70000,95213,95213,28000,28000],
+    renta_usd:[27.0,26.0,26.5,25.7,21.3,20.9,20.0,24.9,23.5,21.3,20.2,19.1,18.1,18.5,18.9,19.1,17.6,19.9,20.2,20.0,24.2,22.3,21.2,18.5,18.5,23.2,24.4,25.6,25.8],
+    renta_cop:[84686,83719,91662,84079,86517,78629,77760,86985,86079,79865,77288,75972,79463,80010,80500,81000,81596,83440,81913,82000,92833,92306,88274,81404,81404,94305,95000,95000,94661]
   },
   "Salitre":{
-    inventario:[520446,520446,538446,576595,576595,576595,576595,592599,592599,592599,592599,592599,614099,636553,636553,636553,614099,636553,636553,636553,636553,636553,636553,636553,601813,613764,613764,613764],
-    vacancia_m2:[32416,39508,26207,55514,35340,45971,55063,61061,60918,43570,47393,39898,50648,58160,60000,60500,52642,79532,69709,70000,79469,80878,81049,75273,67891,74677,70988,47518],
-    vacancia_pct:[6.2,7.6,4.9,9.6,6.1,8.0,9.5,10.3,10.3,7.4,8.0,6.7,8.2,9.1,9.4,9.5,8.6,12.5,11.0,11.0,12.5,12.7,12.7,11.8,11.3,12.2,11.6,7.7],
-    absorcion:[0,0,0,10063,20174,9543,451,10457,143,17491,13668,21163,7568,2451,2500,2550,2013,1180,10524,-17,-9311,-1409,-168,5807,2655,-156,3689,23470],
-    construccion:[300493,105448,72448,33078,33078,32725,32725,38225,38225,58705,58705,58705,20480,0,0,0,20480,0,0,0,0,0,0,23700,23700,23700,23700,23700],
-    proyecto:[0,210045,210045,210045,210045,230045,230045,208545,208545,188545,188545,188545,245505,277505,277505,277505,245505,277505,277505,277505,277505,277505,277505,275880,222620,222620,222620,237620],
-    renta_usd:[18.4,18.0,17.4,18.6,15.7,16.4,15.5,17.5,17.0,16.9,16.4,16.0,15.2,15.4,15.6,15.8,14.6,16.0,16.5,16.5,17.6,16.5,16.3,15.3,17.3,18.2,19.0,19.9],
-    renta_cop:[57576,59544,60234,60956,63690,61755,60168,60976,62132,63636,62852,63806,67500,68200,69000,69500,67706,67170,66914,67000,67979,68285,68014,67603,72671,74326,73980,73844]
+    inventario:[520446,520446,538446,576595,576595,576595,576595,592599,592599,592599,592599,592599,614099,636553,636553,636553,614099,636553,636553,636553,636553,636553,636553,636553,601813,613764,613764,613764,613764],
+    vacancia_m2:[32416,39508,26207,55514,35340,45971,55063,61061,60918,43570,47393,39898,50648,58160,60000,60500,52642,79532,69709,70000,79469,80878,81049,75273,67891,74677,70988,47518,33854],
+    vacancia_pct:[6.2,7.6,4.9,9.6,6.1,8.0,9.5,10.3,10.3,7.4,8.0,6.7,8.2,9.1,9.4,9.5,8.6,12.5,11.0,11.0,12.5,12.7,12.7,11.8,11.3,12.2,11.6,7.7,5.5],
+    absorcion:[0,0,0,10063,20174,9543,451,10457,143,17491,13668,21163,7568,2451,2500,2550,2013,1180,10524,-17,-9311,-1409,-168,5807,2655,-156,3689,23470,13664],
+    construccion:[300493,105448,72448,33078,33078,32725,32725,38225,38225,58705,58705,58705,20480,0,0,0,20480,0,0,0,0,0,0,23700,23700,23700,23700,23700,23700],
+    proyecto:[0,210045,210045,210045,210045,230045,230045,208545,208545,188545,188545,188545,245505,277505,277505,277505,245505,277505,277505,277505,277505,277505,277505,275880,222620,222620,222620,237620,237620],
+    renta_usd:[18.4,18.0,17.4,18.6,15.7,16.4,15.5,17.5,17.0,16.9,16.4,16.0,15.2,15.4,15.6,15.8,14.6,16.0,16.5,16.5,17.6,16.5,16.3,15.3,17.3,18.2,19.0,19.9,20.1],
+    renta_cop:[57576,59544,60234,60956,63690,61755,60168,60976,62132,63636,62852,63806,67500,68200,69000,69500,67706,67170,66914,67000,67979,68285,68014,67603,72671,74326,73980,73844,73844]
   },
   "Santa Bárbara":{
-    inventario:[207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,41923,49329,49329,49329],
-    vacancia_m2:[19106,15413,15297,15066,13879,17398,25556,27112,29346,25399,27916,27891,13400,12740,12000,12100,12981,10701,9822,9800,6761,6657,5904,5146,556,556,1128,1128],
-    vacancia_pct:[9.2,7.4,7.4,7.2,6.7,8.4,12.3,13.0,14.1,12.2,13.4,13.4,6.4,6.1,5.8,5.8,6.2,5.2,4.7,4.7,3.3,3.2,2.8,2.5,1.3,1.1,2.3,2.3],
-    absorcion:[0,0,0,231,1187,-2332,-10490,-12046,-2234,1728,-789,-764,4647,1966,1800,1850,1304,0,3169,27,783,2821,724,729,0,0,-572,0],
-    construccion:[0,0,0,0,0,0,0,0,0,0,0,5540,0,11100,11100,11100,0,11100,11100,11100,8180,8180,5149,5149,5149,5149,5149,5149],
-    proyecto:[0,0,0,0,0,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738],
-    renta_usd:[24.5,23.0,21.9,22.6,17.9,19.1,19.0,21.3,19.9,19.0,18.7,18.2,16.7,17.2,17.6,17.8,16.3,17.7,19.5,19.5,17.2,19.3,19.1,18.4,21.9,22.5,32.0,33.7],
-    renta_cop:[76780,74754,75726,74225,72865,71622,73572,74305,73103,71351,71614,72542,74714,76040,77000,77500,75352,74129,79151,79200,75688,80256,79486,81322,91753,91752,125000,125000]
+    inventario:[207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,207785,41923,49329,49329,49329,49329],
+    vacancia_m2:[19106,15413,15297,15066,13879,17398,25556,27112,29346,25399,27916,27891,13400,12740,12000,12100,12981,10701,9822,9800,6761,6657,5904,5146,556,556,1128,1128,1128],
+    vacancia_pct:[9.2,7.4,7.4,7.2,6.7,8.4,12.3,13.0,14.1,12.2,13.4,13.4,6.4,6.1,5.8,5.8,6.2,5.2,4.7,4.7,3.3,3.2,2.8,2.5,1.3,1.1,2.3,2.3,2.3],
+    absorcion:[0,0,0,231,1187,-2332,-10490,-12046,-2234,1728,-789,-764,4647,1966,1800,1850,1304,0,3169,27,783,2821,724,729,0,0,-572,0,0],
+    construccion:[0,0,0,0,0,0,0,0,0,0,0,5540,0,11100,11100,11100,0,11100,11100,11100,8180,8180,5149,5149,5149,5149,5149,5149,5149],
+    proyecto:[0,0,0,0,0,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738,49738],
+    renta_usd:[24.5,23.0,21.9,22.6,17.9,19.1,19.0,21.3,19.9,19.0,18.7,18.2,16.7,17.2,17.6,17.8,16.3,17.7,19.5,19.5,17.2,19.3,19.1,18.4,21.9,22.5,32.0,33.7,34.1],
+    renta_cop:[76780,74754,75726,74225,72865,71622,73572,74305,73103,71351,71614,72542,74714,76040,77000,77500,75352,74129,79151,79200,75688,80256,79486,81322,91753,91752,125000,125000,125000]
   },
   "Noroccidente":{
-    inventario:[183682,196182,196182,196182,206182,206182,206182,206182,206182,206182,206182,206182,211722,211722,211722,211722,211722,211722,211722,211722,211722,211722,211722,244722,144380,131106,131106,131106],
-    vacancia_m2:[31700,39372,40597,31599,30460,32235,32960,35497,34863,35288,47020,46078,33192,27842,28000,28200,29275,33207,29324,29300,38620,34889,27579,50431,32701,19772,19768,13101],
-    vacancia_pct:[17.3,20.1,20.7,16.1,14.8,15.6,16.0,17.2,16.9,17.1,22.8,22.3,15.7,13.1,13.2,13.3,13.8,15.7,13.9,13.8,18.2,16.5,13.0,20.6,22.6,15.1,15.1,10.0],
-    absorcion:[0,0,0,8998,11139,9364,8639,6102,634,209,-11523,-10581,0,1637,1600,1650,9627,569,-618,22,-7435,3702,7281,10494,3191,10079,4,6667],
-    construccion:[105077,22928,22928,10000,0,0,0,0,0,0,0,0,33000,33000,33000,33000,33000,33000,33000,33000,33346,33346,33346,0,0,0,0,0],
-    proyecto:[0,71429,71429,71429,71429,89429,89429,89429,89429,89429,89429,89429,137229,137229,137229,137229,137229,137229,137229,137229,137229,137229,137229,137229,137229,119229,119229,119229],
-    renta_usd:[21.6,19.1,18.4,18.9,15.1,16.3,15.8,18.3,17.4,16.4,15.6,14.9,13.9,14.5,15.0,15.2,13.2,15.0,15.5,15.5,17.0,15.4,15.5,15.8,17.4,18.8,19.8,20.8],
-    renta_cop:[67748,62059,63694,61870,61458,61375,61424,64043,63840,61424,59866,59423,62140,63500,64000,64500,61156,62716,62807,62900,65247,64014,64585,69758,73159,76711,77071,77219]
+    inventario:[183682,196182,196182,196182,206182,206182,206182,206182,206182,206182,206182,206182,211722,211722,211722,211722,211722,211722,211722,211722,211722,211722,211722,244722,144380,131106,131106,131106,131106],
+    vacancia_m2:[31700,39372,40597,31599,30460,32235,32960,35497,34863,35288,47020,46078,33192,27842,28000,28200,29275,33207,29324,29300,38620,34889,27579,50431,32701,19772,19768,13101,13101],
+    vacancia_pct:[17.3,20.1,20.7,16.1,14.8,15.6,16.0,17.2,16.9,17.1,22.8,22.3,15.7,13.1,13.2,13.3,13.8,15.7,13.9,13.8,18.2,16.5,13.0,20.6,22.6,15.1,15.1,10.0,10.0],
+    absorcion:[0,0,0,8998,11139,9364,8639,6102,634,209,-11523,-10581,0,1637,1600,1650,9627,569,-618,22,-7435,3702,7281,10494,3191,10079,4,6667,0],
+    construccion:[105077,22928,22928,10000,0,0,0,0,0,0,0,0,33000,33000,33000,33000,33000,33000,33000,33000,33346,33346,33346,0,0,0,0,0,0],
+    proyecto:[0,71429,71429,71429,71429,89429,89429,89429,89429,89429,89429,89429,137229,137229,137229,137229,137229,137229,137229,137229,137229,137229,137229,137229,137229,119229,119229,119229,119229],
+    renta_usd:[21.6,19.1,18.4,18.9,15.1,16.3,15.8,18.3,17.4,16.4,15.6,14.9,13.9,14.5,15.0,15.2,13.2,15.0,15.5,15.5,17.0,15.4,15.5,15.8,17.4,18.8,19.8,20.8,22.8],
+    renta_cop:[67748,62059,63694,61870,61458,61375,61424,64043,63840,61424,59866,59423,62140,63500,64000,64500,61156,62716,62807,62900,65247,64014,64585,69758,73159,76711,77071,77219,83611]
   }
 };
 
@@ -959,9 +953,13 @@ function lDS(label,data,color,dash=false){
 }
 function absCol(arr,pos,neg){return arr.map(v=>v>=0?pos:neg);}
 
-// ═══ ESTADO GLOBAL DE MONEDA ══════════════════════════════════════
-let curMoneda = 'usd'; // 'usd' | 'cop'
-let curSubIdx = 0;     // submercado activo en detalle
+// Colores especiales para el último punto
+function ptColors(arr, lastColor, defColor){ return arr.map((_,i)=>i===LAST?lastColor:defColor); }
+function ptSizes(arr, lastSize, defSize){ return arr.map((_,i)=>i===LAST?lastSize:defSize); }
+
+// ═══ ESTADO GLOBAL ═══════════════════════════════════════════════
+let curMoneda = 'usd';
+let curSubIdx = 0;
 
 function getRentaData(arr_usd, arr_cop){ return curMoneda==='usd' ? arr_usd : arr_cop; }
 function rentaFmt(v){ return curMoneda==='usd' ? 'USD '+v.toFixed(1) : '$'+Math.round(v/1000)+'k'; }
@@ -969,14 +967,11 @@ function rentaFmtFull(v){ return curMoneda==='usd' ? 'USD '+v.toFixed(1) : '$'+v
 function rentaLabel(){ return curMoneda==='usd' ? 'USD/m²/mes' : 'COP/m²/mes'; }
 
 function updateAllRentaCharts(){
-  // 1. Resumen — gráfico renta Bogotá
   mkRentaLineResumen();
-  // 2. Pestaña Rentas — todos los gráficos
   mkRentaLinePrincipal();
   mkRentaSubBar();
   mkRentaVarAnual();
   mkRentaScatter();
-  // 3. Submercado detalle (si ya fue renderizado)
   if(window.cwBuilt) renderSubDetail(curSubIdx);
 }
 
@@ -1001,7 +996,6 @@ window.cwBuilt   = false;
 window.cbreBuilt = false;
 
 document.addEventListener('DOMContentLoaded',()=>{
-  // Toggle global de moneda en topbar
   document.getElementById('currencyToggle').addEventListener('click', e=>{
     const btn = e.target.closest('.cur-btn'); if(!btn) return;
     const cur = btn.dataset.cur;
@@ -1012,7 +1006,6 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(window.cwBuilt) updateAllRentaCharts();
   });
 
-  // Sub-nav
   const nav=document.getElementById('cw-nav');
   if(nav){
     nav.addEventListener('click',e=>{
@@ -1027,13 +1020,11 @@ document.addEventListener('DOMContentLoaded',()=>{
     });
   }
 
-  // Toggle local USD/COP en pestaña Rentas (sincroniza con el global)
   document.querySelectorAll('.tgl[data-renta]').forEach(btn=>{
     btn.addEventListener('click',()=>{
       document.querySelectorAll('.tgl[data-renta]').forEach(b=>b.classList.remove('on'));
       btn.classList.add('on');
       curMoneda = btn.dataset.renta;
-      // sincronizar topbar
       document.querySelectorAll('.cur-btn').forEach(b=>{
         b.classList.toggle('active', b.dataset.cur===curMoneda);
       });
@@ -1041,7 +1032,6 @@ document.addEventListener('DOMContentLoaded',()=>{
     });
   });
 
-  // Tabla toggle
   document.querySelectorAll('.tgl[data-tabla]').forEach(btn=>{
     btn.addEventListener('click',()=>{
       document.querySelectorAll('.tgl[data-tabla]').forEach(b=>b.classList.remove('on'));
@@ -1052,7 +1042,6 @@ document.addEventListener('DOMContentLoaded',()=>{
     });
   });
 
-  // Sub-nav CBRE
   const cbreNav = document.getElementById('cbre-nav');
   if(cbreNav){
     cbreNav.addEventListener('click', e=>{
@@ -1066,7 +1055,6 @@ document.addEventListener('DOMContentLoaded',()=>{
     });
   }
 
-  // Build on first load (view-cw is active)
   buildCWCharts(); window.cwBuilt=true;
 });
 
@@ -1080,12 +1068,25 @@ function buildCWCharts(){
   const absPos=Math.max(...BOG.absorcion)*1.2;
   const zf=absNeg/(absNeg+absPos);
   const vacMax=Math.max(...BOG.vacancia_pct)*1.18;
+
+  // Highlight last bar in absorción
+  const absColors = BOG.absorcion.map((v,i)=>
+    i===LAST ? (v>=0?'rgba(0,212,168,0.9)':'rgba(255,92,92,0.9)')
+             : (v>=0?'rgba(0,212,168,0.45)':'rgba(255,92,92,0.45)')
+  );
+  const absBorders = BOG.absorcion.map((v,i)=>
+    i===LAST ? (v>=0?CW_GREEN:RED)
+             : (v>=0?'rgba(0,212,168,0.7)':'rgba(255,92,92,0.7)')
+  );
+
   mk('cw_r_main',{type:'bar',data:{labels:CWQ,datasets:[
     {label:'Absorción Neta m²',data:BOG.absorcion,
-      backgroundColor:absCol(BOG.absorcion,'rgba(0,212,168,0.45)','rgba(255,92,92,0.45)'),
-      borderColor:absCol(BOG.absorcion,CW_GREEN,RED),borderWidth:1,borderRadius:3,yAxisID:'y1',order:2},
+      backgroundColor:absColors, borderColor:absBorders,
+      borderWidth:1,borderRadius:3,yAxisID:'y1',order:2},
     {type:'line',label:'Vacancia %',data:BOG.vacancia_pct,
-      borderColor:GOLD,backgroundColor:'transparent',borderWidth:2.5,pointRadius:2.5,
+      borderColor:GOLD,backgroundColor:'transparent',borderWidth:2.5,
+      pointRadius:ptSizes(BOG.vacancia_pct,5,2),
+      pointBackgroundColor:ptColors(BOG.vacancia_pct,GOLD,'rgba(240,180,41,0.5)'),
       tension:0.35,yAxisID:'y2',order:1}
   ]},options:{responsive:true,maintainAspectRatio:false,
     plugins:{legend:LCW,tooltip:{...TT,callbacks:{label:ctx=>{
@@ -1100,15 +1101,12 @@ function buildCWCharts(){
         position:'right',min:-(vacMax*zf/(1-zf)),max:vacMax}
     }}});
 
-  // Renta line resumen
-  mk('cw_r_renta',{type:'line',data:{labels:CWQ,datasets:[lDS('USD/m²/mes',BOG.renta_usd,GOLD)]},
-    options:{...bo,scales:{x:{grid:G,ticks:{...TCW,maxRotation:45}},y:{grid:G,ticks:{...TCW,callback:v=>'USD '+v}}}}});
+  mkRentaLineResumen();
 
   // Barras vacancia horizontal (resumen)
-  const datos=[...SNMS.map(n=>({name:n,val:SUB[n].vacancia_pct[27]}))].sort((a,b)=>b.val-a.val);
+  const datos=[...SNMS.map(n=>({name:n,val:SUB[n].vacancia_pct[LAST]}))].sort((a,b)=>b.val-a.val);
   const mxV=Math.max(...datos.map(d=>d.val));
   document.getElementById('cw_vac_bars').innerHTML = datos.map(d=>{
-    const pct=d.val>20?'red-c':d.val>10?'gold-c':'cw-c';
     const color=d.val>20?RED:d.val>10?GOLD:CW_GREEN;
     return `<div class="br-row">
       <span class="br-lbl">${d.name}</span>
@@ -1121,57 +1119,66 @@ function buildCWCharts(){
   mk('cw_o_m2',{type:'line',data:{labels:CWQ,datasets:[{
     label:'Superficie disponible m²',data:BOG.vacancia_m2,
     borderColor:CW_GREEN,backgroundColor:'rgba(0,212,168,0.08)',
-    borderWidth:2,fill:true,tension:0.3,pointRadius:2}]},
+    borderWidth:2,fill:true,tension:0.3,
+    pointRadius:ptSizes(BOG.vacancia_m2,5,2),
+    pointBackgroundColor:ptColors(BOG.vacancia_m2,CW_GREEN,'rgba(0,212,168,0.5)')}]},
     options:{...bo,scales:{x:{grid:G,ticks:{...TCW,maxRotation:45}},
       y:{grid:G,ticks:{...TCW,callback:v=>Math.round(v/1000)+'k'}}}}});
 
   mk('cw_o_vac',{type:'line',data:{labels:CWQ,datasets:[{
     label:'Vacancia %',data:BOG.vacancia_pct,
     borderColor:RED,backgroundColor:'rgba(255,92,92,0.08)',
-    borderWidth:2,fill:true,tension:0.3,pointRadius:2.5}]},
+    borderWidth:2,fill:true,tension:0.3,
+    pointRadius:ptSizes(BOG.vacancia_pct,5,2.5),
+    pointBackgroundColor:ptColors(BOG.vacancia_pct,RED,'rgba(255,92,92,0.5)')}]},
     options:{...bo,scales:{x:{grid:G,ticks:{...TCW,maxRotation:45}},
       y:{grid:G,ticks:{...TCW,callback:v=>v+'%'}}}}});
 
-  const svc=SNMS.map(n=>{const v=SUB[n].vacancia_pct[27];return v>20?'rgba(255,92,92,0.5)':v>10?'rgba(240,180,41,0.5)':'rgba(0,212,168,0.5)';});
-  const svb=SNMS.map(n=>{const v=SUB[n].vacancia_pct[27];return v>20?RED:v>10?GOLD:CW_GREEN;});
+  const svc=SNMS.map(n=>{const v=SUB[n].vacancia_pct[LAST];return v>20?'rgba(255,92,92,0.5)':v>10?'rgba(240,180,41,0.5)':'rgba(0,212,168,0.5)';});
+  const svb=SNMS.map(n=>{const v=SUB[n].vacancia_pct[LAST];return v>20?RED:v>10?GOLD:CW_GREEN;});
 
   mk('cw_o_subm2',{type:'bar',data:{labels:SNMS,datasets:[
-    {label:'Vacancia m²',data:SNMS.map(n=>SUB[n].vacancia_m2[27]),backgroundColor:svc,borderColor:svb,borderWidth:1.5,borderRadius:4,yAxisID:'y'},
-    {type:'line',label:'Vacancia %',data:SNMS.map(n=>SUB[n].vacancia_pct[27]),borderColor:GOLD,backgroundColor:'transparent',borderWidth:2,pointRadius:5,yAxisID:'y2'}
+    {label:'Vacancia m²',data:SNMS.map(n=>SUB[n].vacancia_m2[LAST]),backgroundColor:svc,borderColor:svb,borderWidth:1.5,borderRadius:4,yAxisID:'y'},
+    {type:'line',label:'Vacancia %',data:SNMS.map(n=>SUB[n].vacancia_pct[LAST]),borderColor:GOLD,backgroundColor:'transparent',borderWidth:2,pointRadius:5,yAxisID:'y2'}
   ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:LCW,tooltip:TT},
     scales:{x:{grid:G,ticks:{...TCW,maxRotation:30}},
       y:{grid:G,ticks:{...TCW,callback:v=>Math.round(v/1000)+'k'}},
       y2:{position:'right',grid:{display:false},ticks:{...TCW,callback:v=>v+'%'}}}}});
 
   mk('cw_o_subpct',{type:'bar',data:{labels:SNMS,datasets:[
-    {label:'Vacancia %',data:SNMS.map(n=>SUB[n].vacancia_pct[27]),backgroundColor:svc,borderColor:svb,borderWidth:1.5,borderRadius:4}
+    {label:'Vacancia %',data:SNMS.map(n=>SUB[n].vacancia_pct[LAST]),backgroundColor:svc,borderColor:svb,borderWidth:1.5,borderRadius:4}
   ]},options:{...bo,indexAxis:'y',scales:{x:{grid:G,ticks:{...TCW,callback:v=>v+'%'}},y:{grid:G,ticks:TCW}}}});
 
   // ── ABSORCIÓN ──────────────────────────────────────────────────
   mk('cw_a_trim',{type:'bar',data:{labels:CWQ,datasets:[
     {label:'Absorción Neta m²',data:BOG.absorcion,
-      backgroundColor:absCol(BOG.absorcion,'rgba(0,212,168,0.45)','rgba(255,92,92,0.45)'),
-      borderColor:absCol(BOG.absorcion,CW_GREEN,RED),borderWidth:1,borderRadius:3}
+      backgroundColor:absColors,borderColor:absBorders,borderWidth:1,borderRadius:3}
   ]},options:{...bo,plugins:{legend:{display:false},tooltip:TT}}});
 
-  const anos=['2019','2020','2021','2022','2023','2024','2025'];
-  const anual=anos.map(y=>BOG.absorcion.reduce((s,v,i)=>CWQ[i].startsWith(y)?s+v:s,0));
+  const anos=['2019','2020','2021','2022','2023','2024','2025','2026*'];
+  const anual=anos.map(y=>BOG.absorcion.reduce((s,v,i)=>CWQ[i].startsWith(y.replace('*',''))?s+v:s,0));
+  const anualBg = anual.map((v,i)=>i===anual.length-1
+    ? (v>=0?'rgba(0,212,168,0.35)':'rgba(255,92,92,0.35)')
+    : (v>=0?'rgba(0,212,168,0.55)':'rgba(255,92,92,0.55)'));
+  const anualBd = anual.map((v,i)=>i===anual.length-1?(v>=0?CW_GREEN:RED):'transparent');
   mk('cw_a_anual',{type:'bar',data:{labels:anos,datasets:[
-    {label:'Absorción anual m²',data:anual,
-      backgroundColor:absCol(anual,'rgba(0,212,168,0.5)','rgba(255,92,92,0.5)'),
-      borderColor:absCol(anual,CW_GREEN,RED),borderWidth:1.5,borderRadius:5}
-  ]},options:{...bo,plugins:{legend:{display:false},tooltip:TT},scales:{x:{grid:G,ticks:TCW},y:{grid:G,ticks:TCW}}}});
+    {label:'Absorción anual m²',data:anual,backgroundColor:anualBg,borderColor:anualBd,borderWidth:2,borderRadius:5}
+  ]},options:{...bo,plugins:{legend:{display:false},tooltip:{...TT,callbacks:{label:ctx=>
+    ctx.dataIndex===anual.length-1
+      ? ' YTD Q1: '+(ctx.raw>=0?'+':'')+fmt(ctx.raw)+' m²'
+      : ' '+(ctx.raw>=0?'+':'')+fmt(ctx.raw)+' m²'
+  }}},scales:{x:{grid:G,ticks:TCW},y:{grid:G,ticks:TCW}}}});
 
-  const abs2025=SNMS.map(n=>SUB[n].absorcion.slice(-4).reduce((a,b)=>a+b,0));
+  // Absorción último período por submercado
+  const absLast=SNMS.map(n=>SUB[n].absorcion[LAST]);
   mk('cw_a_sub',{type:'bar',data:{labels:SNMS,datasets:[
-    {label:'Absorción 2025 m²',data:abs2025,
-      backgroundColor:abs2025.map((v,i)=>v>=0?CLR[SNMS[i]]+'99':'rgba(255,92,92,0.5)'),
-      borderColor:abs2025.map((v,i)=>v>=0?CLR[SNMS[i]]:RED),borderWidth:1.5,borderRadius:4}
+    {label:'Absorción 2026-Q1 m²',data:absLast,
+      backgroundColor:absLast.map((v,i)=>v>=0?CLR[SNMS[i]]+'99':'rgba(255,92,92,0.5)'),
+      borderColor:absLast.map((v,i)=>v>=0?CLR[SNMS[i]]:RED),borderWidth:1.5,borderRadius:4}
   ]},options:{...bo,indexAxis:'y',plugins:{legend:{display:false},tooltip:TT},
     scales:{x:{grid:G,ticks:TCW},y:{grid:G,ticks:TCW}}}});
 
   // ── RENTAS ────────────────────────────────────────────────────
-  mkRentaLineResumen();
   mkRentaLinePrincipal();
   mkRentaSubBar();
   mkRentaVarAnual();
@@ -1187,12 +1194,11 @@ function buildCWCharts(){
     options:{...bo,scales:{x:{grid:G,ticks:{...TCW,maxRotation:45}},y:{grid:G,ticks:{...TCW,callback:v=>Math.round(v/1000)+'k'}}}}});
 
   mk('cw_pip_sub',{type:'bar',data:{labels:SNMS,datasets:[
-    {label:'En Construcción',data:SNMS.map(n=>SUB[n].construccion[27]),backgroundColor:'rgba(0,212,168,0.45)',borderColor:CW_GREEN,borderWidth:1,borderRadius:4},
-    {label:'En Proyecto',data:SNMS.map(n=>SUB[n].proyecto[27]),backgroundColor:'rgba(240,180,41,0.3)',borderColor:GOLD,borderWidth:1,borderRadius:4}
+    {label:'En Construcción',data:SNMS.map(n=>SUB[n].construccion[LAST]),backgroundColor:'rgba(0,212,168,0.45)',borderColor:CW_GREEN,borderWidth:1,borderRadius:4},
+    {label:'En Proyecto',data:SNMS.map(n=>SUB[n].proyecto[LAST]),backgroundColor:'rgba(240,180,41,0.3)',borderColor:GOLD,borderWidth:1,borderRadius:4}
   ]},options:{...bo,indexAxis:'y',scales:{x:{grid:G,ticks:{...TCW,callback:v=>Math.round(v/1000)+'k'}},y:{grid:G,ticks:TCW}}}});
 
   // ── SUBMERCADOS ───────────────────────────────────────────────
-  // Chips
   const chipBar=document.getElementById('cw-chip-bar');
   chipBar.innerHTML=SNMS.map((n,i)=>`<span class="sub-chip chip-btn${i===0?' chip-active-cw':''}" data-idx="${i}">${n}</span>`).join('');
   chipBar.addEventListener('click',e=>{
@@ -1203,11 +1209,13 @@ function buildCWCharts(){
   });
   renderSubDetail(0);
 
-  // Evolución comparativa anual
+  // Evolución comparativa — 4Q cada año + 2026-Q1
   const ec=['#00d4a8','#f0b429','#ff5c5c','#a78bfa','#2563b0','#34d399','#fb923c','#94a3b8'];
-  const yrs=['2019','2020','2021','2022','2023','2024','2025'];
-  // 4Q de cada año — índice del último Q de cada año
-  const q4idx=yrs.map(y=>{let last=-1;CWQ.forEach((q,i)=>{if(q.startsWith(y))last=i;});return last;});
+  const yrs=['2019','2020','2021','2022','2023','2024','2025','2026-Q1'];
+  const q4idx=yrs.map(y=>{
+    if(y==='2026-Q1') return LAST;
+    let last=-1;CWQ.forEach((q,i)=>{if(q.startsWith(y))last=i;});return last;
+  });
   mk('cw_sub_evol',{type:'line',data:{labels:yrs,datasets:SNMS.map((n,i)=>({
     label:n,data:q4idx.map(qi=>qi>=0?SUB[n].vacancia_pct[qi]:null),
     borderColor:ec[i],backgroundColor:'transparent',borderWidth:2,pointRadius:4,tension:0.3
@@ -1216,18 +1224,20 @@ function buildCWCharts(){
     scales:{x:{grid:G,ticks:TCW},y:{grid:G,ticks:{...TCW,callback:v=>v+'%'}}}}});
 }
 
-// ── Funciones de renta modulares (usan curMoneda global) ────────
+// ── Funciones de renta modulares ────────────────────────────────
 function mkRentaLineResumen(){
   const data = getRentaData(BOG.renta_usd, BOG.renta_cop);
   const isUSD = curMoneda==='usd';
   document.getElementById('tit-resumen-renta').textContent =
     isUSD ? 'Renta USD/m²/mes — Trimestral' : 'Renta COP/m²/mes — Trimestral';
   document.getElementById('sub-resumen-renta').textContent =
-    isUSD ? 'Mínimo USD 15.5 (2022-Q4) · Máximo USD 23.0 (2025-Q4)'
-           : 'Mínimo $65,721 (2020-Q2) · Máximo $85,303 (2025-Q4)';
+    isUSD ? 'Mínimo USD 15.5 (2022-Q4) · Máximo USD 24.5 (2026-Q1)'
+           : 'Mínimo $65,721 (2020-Q2) · Máximo $90,067 (2026-Q1)';
   mk('cw_r_renta',{type:'line',data:{labels:CWQ,datasets:[{
     label:rentaLabel(),data,borderColor:GOLD,backgroundColor:'rgba(240,180,41,0.08)',
-    borderWidth:2,fill:true,tension:0.3,pointRadius:2
+    borderWidth:2,fill:true,tension:0.3,
+    pointRadius:ptSizes(data,5,2),
+    pointBackgroundColor:ptColors(data,GOLD,'rgba(240,180,41,0.4)')
   }]},options:{responsive:true,maintainAspectRatio:false,
     plugins:{legend:{display:false},tooltip:{...TT,callbacks:{label:ctx=>' '+rentaFmtFull(ctx.raw)}}},
     scales:{x:{grid:G,ticks:{...TCW,maxRotation:45}},y:{grid:G,ticks:{...TCW,callback:v=>rentaFmt(v)}}}}});
@@ -1237,29 +1247,30 @@ function mkRentaLinePrincipal(){
   const data = getRentaData(BOG.renta_usd, BOG.renta_cop);
   const isUSD = curMoneda==='usd';
   document.getElementById('rentaTit').textContent = isUSD
-    ? 'Renta Prime AAA — USD/m²/mes · Trimestral 2019–2025'
-    : 'Renta Prime AAA — COP/m²/mes · Trimestral 2019–2025';
+    ? 'Renta Prime AAA — USD/m²/mes · Trimestral 2019–2026'
+    : 'Renta Prime AAA — COP/m²/mes · Trimestral 2019–2026';
   document.getElementById('rentaSub').textContent = isUSD
-    ? 'Mínimo USD 15.5 (2022-Q4) · Máximo USD 23.0 (2025-Q4) · Fuente: C&W'
-    : 'Mínimo $65,721 (2020-Q2) · Máximo $85,303 (2025-Q4) · Fuente: C&W';
-  // Sincronizar botones locales de la pestaña Rentas
+    ? 'Mínimo USD 15.5 (2022-Q4) · Máximo USD 24.5 (2026-Q1) · TRM 2026-Q1: 3,669 COP/USD · Fuente: C&W'
+    : 'Mínimo $65,721 (2020-Q2) · Máximo $90,067 (2026-Q1) · Incremento anual ~11% · Fuente: C&W';
   document.querySelectorAll('.tgl[data-renta]').forEach(b=>{
     b.classList.toggle('on', b.dataset.renta===curMoneda);
   });
   mk('cw_rent_line',{type:'line',data:{labels:CWQ,datasets:[{
     label:rentaLabel(),data,borderColor:GOLD,backgroundColor:'rgba(240,180,41,0.08)',
-    borderWidth:2.5,fill:true,tension:0.3,pointRadius:2.5
+    borderWidth:2.5,fill:true,tension:0.3,
+    pointRadius:ptSizes(data,6,2.5),
+    pointBackgroundColor:ptColors(data,GOLD,'rgba(240,180,41,0.5)')
   }]},options:{responsive:true,maintainAspectRatio:false,
     plugins:{legend:{display:false},tooltip:{...TT,callbacks:{label:ctx=>' '+rentaFmtFull(ctx.raw)}}},
     scales:{x:{grid:G,ticks:{...TCW,maxRotation:45}},y:{grid:G,ticks:{...TCW,callback:v=>rentaFmt(v)}}}}});
 }
 
 function mkRentaSubBar(){
-  const data = SNMS.map(n=>getRentaData(SUB[n].renta_usd, SUB[n].renta_cop)[27]);
+  const data = SNMS.map(n=>getRentaData(SUB[n].renta_usd, SUB[n].renta_cop)[LAST]);
   const isUSD = curMoneda==='usd';
   document.getElementById('tit-rent-sub').textContent =
-    isUSD ? 'Renta por Submercado — USD/m²/mes · 2025-Q4'
-           : 'Renta por Submercado — COP/m²/mes · 2025-Q4';
+    isUSD ? 'Renta por Submercado — USD/m²/mes · 2026-Q1'
+           : 'Renta por Submercado — COP/m²/mes · 2026-Q1';
   mk('cw_rent_sub',{type:'bar',data:{labels:SNMS,datasets:[
     {label:rentaLabel(),data,backgroundColor:'rgba(240,180,41,0.45)',borderColor:GOLD,borderWidth:1,borderRadius:4}
   ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},
@@ -1288,14 +1299,13 @@ function mkRentaVarAnual(){
 function mkRentaScatter(){
   const isUSD = curMoneda==='usd';
   document.getElementById('tit-rent-scatter').textContent =
-    isUSD ? 'Vacancia vs Renta USD — Por Submercado · Anual 4Q'
-           : 'Vacancia vs Renta COP — Por Submercado · Anual 4Q';
+    isUSD ? 'Vacancia vs Renta USD — Por Submercado · Anual 4Q + 2026-Q1'
+           : 'Vacancia vs Renta COP — Por Submercado · Anual 4Q + 2026-Q1';
   document.getElementById('sub-rent-scatter').textContent =
-    `Un punto por corredor por año (4Q) · Color por submercado · Eje Y en ${isUSD?'USD/m²/mes':'COP/m²/mes'} · Fuente: C&W`;
+    `Un punto por corredor por año (4Q) + 2026-Q1 · Color por submercado · Eje Y en ${isUSD?'USD/m²/mes':'COP/m²/mes'} · Fuente: C&W`;
 
-  // Índices 4Q de cada año en CWQ
   const q4indices = CWQ.reduce((acc, q, i) => {
-    if (q.endsWith('Q4')) acc.push(i);
+    if (q.endsWith('Q4') || i===LAST) acc.push(i);
     return acc;
   }, []);
 
@@ -1316,11 +1326,11 @@ function mkRentaScatter(){
         trimestre: CWQ[i],
         submercado: name
       })),
-      backgroundColor: toRgba(color, 0.6),
+      backgroundColor: q4indices.map(i=>i===LAST?toRgba(color,0.95):toRgba(color,0.55)),
       borderColor: color,
-      borderWidth: 1.5,
-      pointRadius: 7,
-      pointHoverRadius: 10,
+      borderWidth: q4indices.map(i=>i===LAST?2:1.5),
+      pointRadius: q4indices.map(i=>i===LAST?10:6),
+      pointHoverRadius: q4indices.map(i=>i===LAST?13:9),
       pointHoverBorderWidth: 2
     };
   });
@@ -1343,9 +1353,9 @@ function mkRentaScatter(){
             title: () => '',
             label: ctx => {
               const p = ctx.raw;
-              const año = p.trimestre.split('-')[0];
+              const isLast = p.trimestre === '2026-Q1';
               return [
-                `📍 ${p.submercado}  ·  ${año}`,
+                `📍 ${p.submercado}  ·  ${p.trimestre}${isLast?' ◀ NUEVO':''}`,
                 `   Vacancia: ${p.x.toFixed(1)}%`,
                 `   Renta: ${rentaFmtFull(p.y)}`
               ];
@@ -1371,24 +1381,25 @@ function mkRentaScatter(){
 
 // ── Submarket detail ────────────────────────────────────────────
 function renderSubDetail(idx){
-  curSubIdx = idx; // guardar estado global
+  curSubIdx = idx;
   const name=SNMS[idx];
   const d=SUB[name];
-  const n=27;
   const color=CLR[name]||CW_GREEN;
-  const abs2025=d.absorcion.slice(-4).reduce((a,b)=>a+b,0);
-  const vacCls=d.vacancia_pct[n]>20?'red-c':d.vacancia_pct[n]>10?'gold-c':'cw-c';
-  const rentaVal = getRentaData(d.renta_usd, d.renta_cop)[n];
-  const rentaOtraVal = curMoneda==='usd' ? d.renta_cop[n] : d.renta_usd[n];
+  // Absorción YTD 2026-Q1 (solo Q1) + absorción 2025 (últimos 4 trimestres del año)
+  const abs2026Q1=d.absorcion[LAST];
+  const abs2025=d.absorcion.slice(LAST-4,LAST).reduce((a,b)=>a+b,0);
+  const vacCls=d.vacancia_pct[LAST]>20?'red-c':d.vacancia_pct[LAST]>10?'gold-c':'cw-c';
+  const rentaVal = getRentaData(d.renta_usd, d.renta_cop)[LAST];
+  const rentaOtraVal = curMoneda==='usd' ? d.renta_cop[LAST] : d.renta_usd[LAST];
   const rentaOtraLbl = curMoneda==='usd' ? 'Renta COP' : 'Renta USD';
   const rentaOtraFmt = curMoneda==='usd' ? fmtCOP(rentaOtraVal) : 'USD '+rentaOtraVal.toFixed(1);
 
   document.getElementById('cw-detail-name').textContent=name;
   document.getElementById('cw-detail-kpis').innerHTML=`
-    <div class="sub-kpi"><div class="sub-kpi-lbl">Inventario</div><div class="sub-kpi-val">${fmt(d.inventario[n])} m²</div></div>
-    <div class="sub-kpi"><div class="sub-kpi-lbl">Vacancia m²</div><div class="sub-kpi-val ${vacCls}">${fmt(d.vacancia_m2[n])} m²</div></div>
-    <div class="sub-kpi"><div class="sub-kpi-lbl">Vacancia %</div><div class="sub-kpi-val ${vacCls}">${d.vacancia_pct[n].toFixed(1)}%</div></div>
-    <div class="sub-kpi"><div class="sub-kpi-lbl">Absorción 2025</div><div class="sub-kpi-val ${abs2025>=0?'cw-c':'red-c'}">${abs2025>=0?'+':''}${fmt(abs2025)} m²</div></div>
+    <div class="sub-kpi"><div class="sub-kpi-lbl">Inventario</div><div class="sub-kpi-val">${fmt(d.inventario[LAST])} m²</div></div>
+    <div class="sub-kpi"><div class="sub-kpi-lbl">Vacancia m²</div><div class="sub-kpi-val ${vacCls}">${fmt(d.vacancia_m2[LAST])} m²</div></div>
+    <div class="sub-kpi"><div class="sub-kpi-lbl">Vacancia %</div><div class="sub-kpi-val ${vacCls}">${d.vacancia_pct[LAST].toFixed(1)}%</div></div>
+    <div class="sub-kpi"><div class="sub-kpi-lbl">Absorc. 2026-Q1</div><div class="sub-kpi-val ${abs2026Q1>=0?'cw-c':'red-c'}">${abs2026Q1>=0?'+':''}${fmt(abs2026Q1)} m²</div></div>
     <div class="sub-kpi"><div class="sub-kpi-lbl">Renta ${curMoneda.toUpperCase()}</div><div class="sub-kpi-val gold-c">${rentaFmtFull(rentaVal)}</div></div>
     <div class="sub-kpi"><div class="sub-kpi-lbl">${rentaOtraLbl}</div><div class="sub-kpi-val">${rentaOtraFmt}</div></div>
   `;
@@ -1398,18 +1409,19 @@ function renderSubDetail(idx){
 
   mk('cw_det_vac',{type:'line',data:{labels:CWQ,datasets:[{
     label:'Vacancia %',data:d.vacancia_pct,borderColor:color,
-    backgroundColor:color+'18',borderWidth:2,fill:true,tension:0.3,pointRadius:2
+    backgroundColor:color+'18',borderWidth:2,fill:true,tension:0.3,
+    pointRadius:ptSizes(d.vacancia_pct,5,2),
+    pointBackgroundColor:ptColors(d.vacancia_pct,color,color+'66')
   }]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:TT},
     scales:{x:{grid:G,ticks:{...TCW,callback:sk,maxRotation:45}},y:{grid:G,ticks:{...TCW,callback:v=>v+'%'}}}}});
 
   mk('cw_det_abs',{type:'bar',data:{labels:CWQ,datasets:[{
     label:'Absorción m²',data:d.absorcion,
-    backgroundColor:d.absorcion.map(v=>v>=0?color+'99':'rgba(255,92,92,0.5)'),
+    backgroundColor:d.absorcion.map((v,i)=>i===LAST?(v>=0?color:'rgba(255,92,92,0.9)'):(v>=0?color+'99':'rgba(255,92,92,0.5)')),
     borderColor:d.absorcion.map(v=>v>=0?color:RED),borderWidth:1,borderRadius:3
   }]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:TT},
     scales:{x:{grid:G,ticks:{...TCW,callback:sk,maxRotation:45}},y:{grid:G,ticks:TCW}}}});
 
-  // Gráfico de renta del submercado — usa curMoneda
   const rentaSub = getRentaData(d.renta_usd, d.renta_cop);
   const isUSD = curMoneda==='usd';
   document.getElementById('cw-detail-rent-title').textContent =
@@ -1418,7 +1430,9 @@ function renderSubDetail(idx){
     isUSD ? 'Evolución trimestral en USD/m²/mes' : 'Evolución trimestral en COP/m²/mes';
   mk('cw_det_rent',{type:'line',data:{labels:CWQ,datasets:[{
     label:rentaLabel(),data:rentaSub,borderColor:GOLD,
-    backgroundColor:'rgba(240,180,41,0.08)',borderWidth:2,fill:true,tension:0.3,pointRadius:2
+    backgroundColor:'rgba(240,180,41,0.08)',borderWidth:2,fill:true,tension:0.3,
+    pointRadius:ptSizes(rentaSub,5,2),
+    pointBackgroundColor:ptColors(rentaSub,GOLD,'rgba(240,180,41,0.4)')
   }]},options:{responsive:true,maintainAspectRatio:false,
     plugins:{legend:{display:false},tooltip:{...TT,callbacks:{label:ctx=>' '+rentaFmtFull(ctx.raw)}}},
     scales:{x:{grid:G,ticks:{...TCW,callback:sk,maxRotation:45}},
@@ -1441,8 +1455,6 @@ function buildCBRECharts(){
   };
   const fCOP = v => '$'+v.toLocaleString('es-CO');
 
-  // ── RESUMEN ────────────────────────────────────────────────────
-  // Gráfico principal: stacked bar + línea vacancia
   mk('cbre_r_main',{type:'bar',data:{labels:CBRE_Y,datasets:[
     {label:'Área Ocupada m²', data:CBRE_OCCM2,
       backgroundColor:'rgba(59,158,255,0.2)', borderColor:'rgba(59,158,255,0.4)',
@@ -1464,7 +1476,6 @@ function buildCBRECharts(){
       y2:{grid:{display:false},ticks:{...TCBRE,callback:v=>v+'%'},position:'right'}
     }}});
 
-  // Absorción neta anual — resumen
   mk('cbre_r_abs',{type:'bar',data:{labels:CBRE_Y,datasets:[
     {label:'Absorción Neta m²', data:CBRE_ABS,
       backgroundColor:CBRE_ABS.map(v=>v>=0?'rgba(0,212,168,0.5)':'rgba(255,92,92,0.5)'),
@@ -1473,7 +1484,6 @@ function buildCBRECharts(){
   ]},options:{...bo,plugins:{legend:{display:false},tooltip:TT},
     scales:{x:{grid:G,ticks:TCBRE},y:{grid:G,ticks:TCBRE}}}});
 
-  // Vacancia por submercado barras horizontales — resumen
   const svc = CBRE_SUBVPCT.map(v=>v>20?'rgba(255,92,92,0.55)':v>10?'rgba(240,180,41,0.55)':'rgba(59,158,255,0.55)');
   const svb = CBRE_SUBVPCT.map(v=>v>20?RED:v>10?GOLD:CBRE_BLUE);
   mk('cbre_r_subvac',{type:'bar',data:{labels:CBRE_SUBN,datasets:[
@@ -1483,7 +1493,6 @@ function buildCBRECharts(){
     plugins:{legend:{display:false},tooltip:TT},
     scales:{x:{grid:G,ticks:{...TCBRE,callback:v=>v+'%'}},y:{grid:G,ticks:TCBRE}}}});
 
-  // ── OFERTA & VACANCIA ──────────────────────────────────────────
   mk('cbre_o_vac',{type:'line',data:{labels:CBRE_Y,datasets:[
     {...lDS('Vacancia % Total',CBRE_VACPCT,CBRE_BLUE),
       fill:true, backgroundColor:'rgba(59,158,255,0.08)',pointRadius:5}
@@ -1496,7 +1505,6 @@ function buildCBRECharts(){
     {...lDS('Clase B',  CBRE_VAC_B,  '#6b809a'), pointRadius:5}
   ]},options:{...bo,scales:{x:{grid:G,ticks:TCBRE},y:{grid:G,ticks:{...TCBRE,callback:v=>v!=null?v+'%':''}}}}}); 
 
-  // Barras + línea submercados
   mk('cbre_o_subm2',{type:'bar',data:{labels:CBRE_SUBN,datasets:[
     {label:'Vacancia m²', data:CBRE_SUBVAC,
       backgroundColor:svc, borderColor:svb, borderWidth:1.5, borderRadius:4, yAxisID:'y'},
@@ -1511,7 +1519,6 @@ function buildCBRECharts(){
       y2:{grid:{display:false},ticks:{...TCBRE,callback:v=>v+'%'},position:'right'}
     }}});
 
-  // ── ABSORCIÓN & PIPELINE ───────────────────────────────────────
   mk('cbre_a_main',{type:'bar',data:{labels:CBRE_Y,datasets:[
     {label:'Nueva Área m²', data:CBRE_NUEVA,
       backgroundColor:'rgba(167,139,250,0.45)', borderColor:CBRE_PURPLE,
@@ -1536,7 +1543,6 @@ function buildCBRECharts(){
   ]},options:{...bo,plugins:{legend:{display:false},tooltip:TT},
     scales:{x:{grid:G,ticks:TCBRE},y:{grid:G,ticks:{...TCBRE,callback:v=>Math.round(v/1000)+'k'}}}}});
 
-  // ── RENTAS ─────────────────────────────────────────────────────
   mk('cbre_rent_clase',{type:'line',data:{labels:CBRE_Y,datasets:[
     {...lDS('Clase A+',CBRE_PAP,GOLD),    fill:true,backgroundColor:'rgba(240,180,41,0.07)',pointRadius:5},
     {...lDS('Clase A', CBRE_PA, CBRE_BLUE),fill:true,backgroundColor:'rgba(59,158,255,0.07)',pointRadius:5},
@@ -1544,7 +1550,6 @@ function buildCBRECharts(){
   ]},options:{...bo,scales:{x:{grid:G,ticks:TCBRE},
     y:{grid:G,ticks:{...TCBRE,callback:v=>fCOP(v)}}}}});
 
-  // Variación anual por clase
   const varAp=CBRE_PAP.map((v,i)=>i===0?null:+((v/CBRE_PAP[i-1]-1)*100).toFixed(1));
   const varA =CBRE_PA.map((v,i) =>i===0?null:+((v/CBRE_PA[i-1]-1)*100).toFixed(1));
   const varB =CBRE_PB.map((v,i) =>i===0?null:+((v/CBRE_PB[i-1]-1)*100).toFixed(1));
@@ -1558,7 +1563,6 @@ function buildCBRECharts(){
   ]},options:{...bo,scales:{x:{grid:G,ticks:TCBRE},
     y:{grid:G,ticks:{...TCBRE,callback:v=>v==null?'':v+'%'}}}}});
 
-  // Precios por submercado y clase — grouped bar
   mk('cbre_rent_sub',{type:'bar',data:{labels:CBRE_SUBN,datasets:[
     {label:'Clase A+', data:CBRE_SUBPAP.map(v=>v||0),
       backgroundColor:'rgba(240,180,41,0.5)',borderColor:GOLD,borderWidth:1,borderRadius:3},
@@ -1571,8 +1575,6 @@ function buildCBRECharts(){
     scales:{x:{grid:G,ticks:{...TCBRE,maxRotation:30}},
       y:{grid:G,ticks:{...TCBRE,callback:v=>v?fCOP(v):'$0'}}}}});
 
-  // ── SUBMERCADOS ────────────────────────────────────────────────
-  // Evolución vacancia por corredor
   const ec=['#3b9eff','#00d4a8','#f0b429','#ff5c5c','#a78bfa','#34d399','#fb923c'];
   mk('cbre_sub_evol',{type:'line',data:{labels:CBRE_EVOL_Y,datasets:
     Object.entries(CBRE_SUB_EVOL).map(([name,data],i)=>({
@@ -1582,7 +1584,6 @@ function buildCBRECharts(){
     plugins:{legend:{display:true,position:'top',labels:{color:'#a0b4cc',font:{size:10},boxWidth:10}},tooltip:TT},
     scales:{x:{grid:G,ticks:TCBRE},y:{grid:G,ticks:{...TCBRE,callback:v=>v+'%'}}}}});
 
-  // Chips interactivos submercados CBRE
   const chipBarC = document.getElementById('cbre-chip-bar');
   if(chipBarC){
     chipBarC.innerHTML = CBRE_SUBN.map((n,i)=>
@@ -1603,7 +1604,6 @@ function buildCBRECharts(){
     renderCBRESubDetail(0);
   }
 
-  // ── TABLAS CBRE ────────────────────────────────────────────────
   const tbG = document.getElementById('tbCBRE');
   if(tbG){
     tbG.innerHTML = CBRE_Y.map((p,i)=>{
@@ -1632,7 +1632,6 @@ function buildCBRECharts(){
   }
 }
 
-// ── Submarket detail CBRE ────────────────────────────────────────
 function renderCBRESubDetail(idx){
   const name   = CBRE_SUBN[idx];
   const inv    = CBRE_SUBINV[idx];
@@ -1657,7 +1656,6 @@ function renderCBRESubDetail(idx){
     <div class="sub-kpi"><div class="sub-kpi-lbl">Precio B</div><div class="sub-kpi-val">${pB?fmtCOP(pB):'—'}</div></div>
   `;
 
-  // Gráfico evolución vacancia
   ['cbre_det_vac','cbre_det_price'].forEach(id=>{if(charts[id])charts[id].destroy();});
 
   if(evolData){
@@ -1669,7 +1667,6 @@ function renderCBRESubDetail(idx){
       plugins:{legend:{display:false},tooltip:TT},
       scales:{x:{grid:G,ticks:TCBRE},y:{grid:G,ticks:{...TCBRE,callback:v=>v+'%'},min:0}}}});
   } else {
-    // Si no hay serie histórica mostrar el valor actual como barra única
     mk('cbre_det_vac',{type:'bar',data:{labels:['4Q 2025'],datasets:[{
       label:'Vacancia %', data:[vpct],
       backgroundColor:'rgba(59,158,255,0.5)',borderColor:CBRE_BLUE,borderWidth:1.5,borderRadius:6
@@ -1678,7 +1675,6 @@ function renderCBRESubDetail(idx){
       scales:{x:{grid:G,ticks:TCBRE},y:{grid:G,ticks:{...TCBRE,callback:v=>v+'%'},min:0}}}});
   }
 
-  // Gráfico precios por clase
   const priceLabels=['Clase A+','Clase A','Clase B'].filter((_,i)=>[pAp,pA,pB][i]);
   const priceData  =[pAp,pA,pB].filter(v=>v);
   const priceColors=['rgba(240,180,41,0.55)','rgba(59,158,255,0.5)','rgba(107,128,154,0.4)'].filter((_,i)=>[pAp,pA,pB][i]);
@@ -1693,13 +1689,15 @@ function renderCBRESubDetail(idx){
       y:{grid:G,ticks:{...TCBRE,callback:v=>'$'+Math.round(v/1000)+'k'}}}}});
 }
 
-
+// ── TABLAS ──────────────────────────────────────────────────────
 window.datosDone=false;
 function buildTablas(){
   window.datosDone=true;
   document.getElementById('tbBog').innerHTML=CWQ.map((q,i)=>{
     const a=BOG.absorcion[i];
-    return `<tr><td>${q}</td><td>${fmt(BOG.vacancia_m2[i])}</td><td>${BOG.vacancia_pct[i].toFixed(1)}%</td>
+    const isNew = i===LAST;
+    return `<tr${isNew?' class="new-row"':''}><td>${q}${isNew?' ◀':''}</td>
+      <td>${fmt(BOG.vacancia_m2[i])}</td><td>${BOG.vacancia_pct[i].toFixed(1)}%</td>
       <td><span class="${a>=0?'bg-g':'bg-r'}">${a>=0?'+':''}${fmt(a)}</span></td>
       <td>${fmt(BOG.construccion[i])}</td><td>${fmt(BOG.proyecto[i])}</td>
       <td>USD ${BOG.renta_usd[i].toFixed(1)}</td><td>${fmtCOP(BOG.renta_cop[i])}</td></tr>`;
@@ -1709,7 +1707,8 @@ function buildTablas(){
     const d=SUB[name];
     CWQ.forEach((q,i)=>{
       const a=d.absorcion[i];
-      rows.push(`<tr><td>${q}</td>
+      const isNew = i===LAST;
+      rows.push(`<tr${isNew?' class="new-row"':''}><td>${q}${isNew?' ◀':''}</td>
         <td><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:${CLR[name]};margin-right:6px;vertical-align:middle"></span>${name}</td>
         <td>${fmt(d.inventario[i])}</td><td>${fmt(d.vacancia_m2[i])}</td>
         <td>${d.vacancia_pct[i].toFixed(1)}%</td>
