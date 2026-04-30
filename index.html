@@ -12,6 +12,8 @@
   --bg:#06090f;--surface:#0d1420;--surface2:#111c2e;--border:#1a2640;
   --cw:#00d4a8;--cw-dim:rgba(0,212,168,0.12);--cw-border:rgba(0,212,168,0.3);
   --cbre:#3b9eff;--cbre-dim:rgba(59,158,255,0.12);--cbre-border:rgba(59,158,255,0.3);
+  --macro:#a78bfa;--macro-dim:rgba(167,139,250,0.12);--macro-border:rgba(167,139,250,0.3);
+  --macro:#a78bfa;--macro-dim:rgba(167,139,250,0.12);--macro-border:rgba(167,139,250,0.3);
   --gold:#f0b429;--danger:#ff5c5c;
   --text:#e2e8f4;--muted:#6b809a;--light:#a8bcd4;
 }
@@ -46,7 +48,11 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-
 .mod-btn:hover{color:var(--text);background:rgba(255,255,255,0.04);}
 .mod-btn.active-cw{color:var(--cw);background:var(--cw-dim);border-color:var(--cw-border);}
 .mod-btn.active-cbre{color:var(--cbre);background:var(--cbre-dim);border-color:var(--cbre-border);}
+.mod-btn.active-macro{color:var(--macro);background:var(--macro-dim);border-color:var(--macro-border);}
+.mod-btn.active-macro{color:var(--macro);background:var(--macro-dim);border-color:var(--macro-border);}
 .kpi.cbre-kpi::before{background:linear-gradient(90deg,var(--cbre),transparent);}
+.kpi.macro-kpi::before{background:linear-gradient(90deg,var(--macro),transparent);}
+.kpi.macro-kpi::before{background:linear-gradient(90deg,var(--macro),transparent);}
 .sub-nav button.active-cbre{color:var(--cbre);border-bottom-color:var(--cbre);}
 .sub-detail-panel.cbre-panel{border-left-color:var(--cbre);}
 .sub-detail-name.cbre-c{color:var(--cbre);}
@@ -280,6 +286,9 @@ tfoot td:first-child{text-align:left;}
       </button>
       <button class="mod-btn" id="btn-cbre" onclick="showView('cbre')">
         <span class="mod-dot" style="background:var(--cbre)"></span>CBRE — A+/A/B
+      </button>
+      <button class="mod-btn" id="btn-macro" onclick="showView('macro')">
+        <span class="mod-dot" style="background:var(--macro)"></span>Macro · Correlaciones
       </button>
     </div>
     <div class="currency-toggle" id="currencyToggle">
@@ -780,7 +789,258 @@ tfoot td:first-child{text-align:left;}
 </div>
 
 <!-- ══════ JAVASCRIPT ══════ -->
+
+<!-- ══════ MÓDULO MACRO · CORRELACIONES ══════ -->
+<div class="view" id="view-macro">
+  <div class="module-shell">
+    <div class="module-header">
+      <div class="module-title-row">
+        <div class="module-title">Correlaciones Macroeconómicas<br><span style="color:var(--macro)">Mercado de Oficinas AAA · Bogotá 2019–2025</span></div>
+        <div class="module-meta"><strong>5 correlaciones independientes</strong>Trimestral · Fuentes: DANE · Banrep · SFC · C&amp;W</div>
+      </div>
+    </div>
+    <div class="hdivider" style="background:linear-gradient(90deg,var(--macro),transparent)"></div>
+    <div class="sub-nav" id="macro-nav">
+      <button class="active-macro" data-tab="mc-precio-trm" style="color:var(--macro);border-bottom-color:var(--macro)">① Precio vs TRM</button>
+      <button data-tab="mc-vac-desemp">② Vacancia vs Desempleo</button>
+      <button data-tab="mc-abs-desemp">③ Absorción vs Desempleo</button>
+      <button data-tab="mc-precio-ipc">④ Precio vs Inflación</button>
+      <button data-tab="mc-vac-pib">⑤ Vacancia vs PIB</button>
+      <button data-tab="mc-credito-cop">⑥ Crédito vs Renta</button>
+      <button data-tab="mc-resumen">📋 Resumen &amp; Análisis</button>
+    </div>
+
+    <!-- ① PRECIO vs TRM -->
+    <div class="tab-section active" id="mc-precio-trm">
+      <div class="sec-title">① Precio de Oficinas AAA vs TRM · Dólar</div>
+      <div class="sec-desc">El segmento AAA cotiza rentas en USD/m²/mes. A mayor TRM (peso débil), la renta en USD tiende a comprimirse para mantener asequibilidad en pesos. Período: 2019-Q1 a 2025-Q4. Fuentes: C&amp;W · SFC / Banrep.</div>
+      <div class="kpi-grid" style="margin-bottom:20px;">
+        <div class="kpi macro-kpi"><div class="kpi-lbl">Pearson r</div><div class="kpi-val" id="kpi_r1" style="color:var(--macro)">—</div><div class="kpi-sub">Renta USD vs TRM</div></div>
+        <div class="kpi macro-kpi"><div class="kpi-lbl">Renta prime 2025-Q4</div><div class="kpi-val" style="color:var(--gold)">USD 23.0</div><div class="kpi-sub">/m²/mes · C&amp;W AAA</div></div>
+        <div class="kpi macro-kpi"><div class="kpi-lbl">TRM prom. Q4 2025</div><div class="kpi-val" style="color:var(--macro)">$4,141</div><div class="kpi-sub">COP/USD · Promedio trim.</div></div>
+        <div class="kpi macro-kpi"><div class="kpi-lbl">TRM pico período</div><div class="kpi-val kv-red">$4,860</div><div class="kpi-sub">Q4 2022 · Máximo histórico</div></div>
+      </div>
+      <div class="chart-grid">
+        <div class="chart-card wide">
+          <div class="ct">Renta Prime AAA (USD/m²/mes) vs TRM Promedio Trimestral (COP/USD)</div>
+          <div class="cs">Línea dorada = Renta USD (eje izq.) · Barras moradas = TRM COP/USD (eje der.) · 2019-Q1 a 2025-Q4 · Fuentes: C&amp;W · SFC</div>
+          <div class="cw-r tall"><canvas id="c1_main"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="ct">Scatter · TRM vs Renta USD por Trimestre</div>
+          <div class="cs">Cada punto = un trimestre · Línea de tendencia · r de Pearson</div>
+          <div class="cw-r"><canvas id="c1_scatter"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="ct">Variación interanual (%) · Renta USD y TRM</div>
+          <div class="cs">Cambio % vs mismo trimestre año anterior · Sincronía de ciclos</div>
+          <div class="cw-r"><canvas id="c1_var"></canvas></div>
+        </div>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">📊</span><div id="txt1">Calculando...</div></div>
+    </div>
+
+    <!-- ② VACANCIA vs DESEMPLEO -->
+    <div class="tab-section" id="mc-vac-desemp">
+      <div class="sec-title">② Vacancia AAA vs Tasa de Desempleo Nacional</div>
+      <div class="sec-desc">Mayor desempleo implica menor demanda de espacio corporativo. La correlación positiva es estructural aunque con rezago de 2–4 trimestres. El shock pandémico de 2020 amplifica la relación. Fuentes: C&amp;W · DANE GEIH.</div>
+      <div class="kpi-grid" style="margin-bottom:20px;">
+        <div class="kpi macro-kpi"><div class="kpi-lbl">Pearson r</div><div class="kpi-val" id="kpi_r2" style="color:var(--macro)">—</div><div class="kpi-sub">Vacancia vs Desempleo</div></div>
+        <div class="kpi macro-kpi"><div class="kpi-lbl">Vacancia 2025-Q4</div><div class="kpi-val" style="color:var(--cw)">6.7%</div><div class="kpi-sub">Mínimo 2019–2025</div></div>
+        <div class="kpi macro-kpi"><div class="kpi-lbl">Desempleo 2025</div><div class="kpi-val" style="color:var(--cw)">8.9%</div><div class="kpi-sub">Anual · Mínimo período</div></div>
+        <div class="kpi macro-kpi"><div class="kpi-lbl">Pico vacancia</div><div class="kpi-val kv-red">14.3%</div><div class="kpi-sub">2021-Q3 · Post-pandemia</div></div>
+      </div>
+      <div class="chart-grid">
+        <div class="chart-card wide">
+          <div class="ct">Vacancia AAA (%) vs Tasa de Desempleo Nacional (%)</div>
+          <div class="cs">Línea verde = Vacancia % (eje izq.) · Línea roja discontinua = Desempleo % (eje der.) · 2019-Q1 a 2025-Q4 · Fuentes: C&amp;W · DANE</div>
+          <div class="cw-r tall"><canvas id="c2_main"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="ct">Scatter · Desempleo vs Vacancia por Trimestre</div>
+          <div class="cs">Correlación positiva esperada · Línea de tendencia incluida · r de Pearson</div>
+          <div class="cw-r"><canvas id="c2_scatter"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="ct">Comparativo Anual · Vacancia promedio y Desempleo</div>
+          <div class="cs">Barras = vacancia prom. anual (izq.) · Línea = desempleo anual (der.)</div>
+          <div class="cw-r"><canvas id="c2_anual"></canvas></div>
+        </div>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">📊</span><div id="txt2">Calculando...</div></div>
+    </div>
+
+    <!-- ③ ABSORCIÓN vs DESEMPLEO -->
+    <div class="tab-section" id="mc-abs-desemp">
+      <div class="sec-title">③ Absorción Neta AAA vs Tasa de Desempleo Nacional</div>
+      <div class="sec-desc">La absorción neta responde inversamente al desempleo: con más empleo formal, las empresas expanden su ocupación de oficinas. La relación es inversa y refuerza el argumento laboral como motor del mercado. Fuentes: C&amp;W · DANE GEIH.</div>
+      <div class="kpi-grid" style="margin-bottom:20px;">
+        <div class="kpi macro-kpi"><div class="kpi-lbl">Pearson r</div><div class="kpi-val" id="kpi_r3" style="color:var(--macro)">—</div><div class="kpi-sub">Absorción vs Desempleo</div></div>
+        <div class="kpi macro-kpi"><div class="kpi-lbl">Absorción 2025-Q4</div><div class="kpi-val" style="color:var(--cw)">+32,276 m²</div><div class="kpi-sub">Mejor trimestre del período</div></div>
+        <div class="kpi macro-kpi"><div class="kpi-lbl">Absorción 2020 total</div><div class="kpi-val kv-red">−7,383 m²</div><div class="kpi-sub">Único año negativo</div></div>
+        <div class="kpi macro-kpi"><div class="kpi-lbl">Desempleo 2020</div><div class="kpi-val kv-red">16.7%</div><div class="kpi-sub">Pico pandemia · DANE</div></div>
+      </div>
+      <div class="chart-grid">
+        <div class="chart-card wide">
+          <div class="ct">Absorción Neta AAA (m²) vs Tasa de Desempleo (%)</div>
+          <div class="cs">Barras verdes/rojas = Absorción m² (eje izq.) · Línea roja = Desempleo % (eje der.) · 2019-Q1 a 2025-Q4 · Fuentes: C&amp;W · DANE</div>
+          <div class="cw-r tall"><canvas id="c3_main"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="ct">Scatter · Desempleo vs Absorción Neta</div>
+          <div class="cs">Correlación inversa esperada · Línea de tendencia incluida · r de Pearson</div>
+          <div class="cw-r"><canvas id="c3_scatter"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="ct">Absorción Anual Total vs Desempleo Anual</div>
+          <div class="cs">Barras = absorción anual m² (izq.) · Línea = desempleo % (der.) · 2019–2025</div>
+          <div class="cw-r"><canvas id="c3_anual"></canvas></div>
+        </div>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">📊</span><div id="txt3">Calculando...</div></div>
+    </div>
+
+    <!-- ④ PRECIO vs IPC -->
+    <div class="tab-section" id="mc-precio-ipc">
+      <div class="sec-title">④ Precio de Oficinas AAA vs Inflación (IPC)</div>
+      <div class="sec-desc">Las rentas en COP se indexan parcialmente al IPC (correlación positiva). En USD, el efecto es opuesto: inflación alta coincide con depreciación del peso, comprimiendo la renta dolarizada. Fuentes: C&amp;W · DANE.</div>
+      <div class="kpi-grid" style="margin-bottom:20px;">
+        <div class="kpi macro-kpi"><div class="kpi-lbl">Pearson r (COP)</div><div class="kpi-val" id="kpi_r4a" style="color:var(--macro)">—</div><div class="kpi-sub">Renta COP vs IPC</div></div>
+        <div class="kpi macro-kpi"><div class="kpi-lbl">Pearson r (USD)</div><div class="kpi-val" id="kpi_r4b" style="color:var(--gold)">—</div><div class="kpi-sub">Renta USD vs IPC</div></div>
+        <div class="kpi macro-kpi"><div class="kpi-lbl">IPC pico · Dic 2022</div><div class="kpi-val kv-red">13.12%</div><div class="kpi-sub">Máximo en 24 años · DANE</div></div>
+        <div class="kpi macro-kpi"><div class="kpi-lbl">IPC · Dic 2025</div><div class="kpi-val" style="color:var(--gold)">5.2%</div><div class="kpi-sub">En descenso · Meta 3%</div></div>
+      </div>
+      <div class="chart-grid">
+        <div class="chart-card wide">
+          <div class="ct">Renta Prime AAA (COP/m²/mes) vs IPC Variación Anual (%)</div>
+          <div class="cs">Línea dorada = Renta COP (eje izq.) · Barras rojas = IPC % (eje der.) · 2019-Q1 a 2025-Q4 · Fuentes: C&amp;W · DANE</div>
+          <div class="cw-r tall"><canvas id="c4_main"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="ct">Scatter · IPC vs Renta COP/m²/mes</div>
+          <div class="cs">Correlación positiva: inflación → rentas COP al alza · Tendencia incluida</div>
+          <div class="cw-r"><canvas id="c4_scatter"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="ct">Renta USD vs IPC — Efecto cambiario</div>
+          <div class="cs">Línea dorada = Renta USD · Línea roja = IPC % · Divergencia 2022–2023 por TRM alta</div>
+          <div class="cw-r"><canvas id="c4_usd"></canvas></div>
+        </div>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">📊</span><div id="txt4">Calculando...</div></div>
+    </div>
+
+    <!-- ⑤ VACANCIA vs PIB -->
+    <div class="tab-section" id="mc-vac-pib">
+      <div class="sec-title">⑤ Vacancia AAA vs Crecimiento del PIB</div>
+      <div class="sec-desc">El crecimiento económico es el motor fundamental de la demanda corporativa de espacio. A mayor PIB, las empresas expanden operaciones y reducen la vacancia. Es la correlación estructural más robusta del ciclo inmobiliario. Fuentes: C&amp;W · DANE / Banrep BIE.</div>
+      <div class="kpi-grid" style="margin-bottom:20px;">
+        <div class="kpi macro-kpi"><div class="kpi-lbl">Pearson r</div><div class="kpi-val" id="kpi_r5" style="color:var(--macro)">—</div><div class="kpi-sub">Vacancia vs PIB</div></div>
+        <div class="kpi macro-kpi"><div class="kpi-lbl">PIB 2025 (anual)</div><div class="kpi-val" style="color:var(--cw)">+2.6%</div><div class="kpi-sub">DANE · Preliminar</div></div>
+        <div class="kpi macro-kpi"><div class="kpi-lbl">PIB colapso 2020</div><div class="kpi-val kv-red">−7.2%</div><div class="kpi-sub">Peor año del período</div></div>
+        <div class="kpi macro-kpi"><div class="kpi-lbl">PIB rebote 2021</div><div class="kpi-val" style="color:var(--cw)">+10.8%</div><div class="kpi-sub">Máximo del período</div></div>
+      </div>
+      <div class="chart-grid">
+        <div class="chart-card wide">
+          <div class="ct">Vacancia AAA (%) vs Crecimiento PIB (var. % anual)</div>
+          <div class="cs">Línea verde = Vacancia % (eje izq.) · Barras moradas = PIB var. % (eje der.) · 2019-Q1 a 2025-Q4 · Fuentes: C&amp;W · DANE</div>
+          <div class="cw-r tall"><canvas id="c5_main"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="ct">Scatter · PIB vs Vacancia por Trimestre</div>
+          <div class="cs">Correlación negativa esperada · Puntos 2025 destacados · Tendencia incluida</div>
+          <div class="cw-r"><canvas id="c5_scatter"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="ct">PIB Anual vs Vacancia Promedio Anual · 2019–2025</div>
+          <div class="cs">7 observaciones · Barras = vacancia prom. anual (izq.) · Línea = PIB anual (der.)</div>
+          <div class="cw-r"><canvas id="c5_anual"></canvas></div>
+        </div>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">📊</span><div id="txt5">Calculando...</div></div>
+    </div>
+
+
+    <!-- ⑥ CRÉDITO COMERCIAL vs RENTA COP -->
+    <div class="tab-section" id="mc-credito-cop">
+      <div class="sec-title">⑥ Crédito Comercial vs Renta de Oficinas (COP)</div>
+      <div class="sec-desc">La cartera comercial del sistema financiero mide el crédito disponible para empresas. Cuando el crédito crece, las empresas invierten, se expanden y el mercado de oficinas responde con precios al alza en pesos. Es la correlación más fuerte encontrada en el análisis. Fuentes: C&amp;W · Banrep / Superfinanciera.</div>
+      <div class="kpi-grid" style="margin-bottom:20px;">
+        <div class="kpi macro-kpi"><div class="kpi-lbl">Pearson r</div><div class="kpi-val" style="color:var(--macro)">+0.754</div><div class="kpi-sub">Correlación positiva FUERTE</div></div>
+        <div class="kpi macro-kpi"><div class="kpi-lbl">Renta COP 2025-Q4</div><div class="kpi-val" style="color:var(--gold)">$85,303</div><div class="kpi-sub">/m²/mes · Máximo período</div></div>
+        <div class="kpi macro-kpi"><div class="kpi-lbl">Cartera com. 2025-Q4</div><div class="kpi-val" style="color:var(--macro)">$220 B</div><div class="kpi-sub">COP billones · Superfinanciera</div></div>
+        <div class="kpi macro-kpi"><div class="kpi-lbl">La más fuerte de 20 pares</div><div class="kpi-val" style="color:var(--cw)">r = 0.754</div><div class="kpi-sub">Único par con r &gt; 0.70</div></div>
+      </div>
+      <div class="chart-grid">
+        <div class="chart-card wide">
+          <div class="ct">Renta Prime AAA (COP/m²/mes) vs Cartera Comercial (COP billones)</div>
+          <div class="cs">Línea dorada = Renta COP (eje izq.) · Barras moradas = Crédito comercial (eje der.) · 2019-Q1 a 2025-Q4 · Fuentes: C&amp;W · Superfinanciera / Banrep</div>
+          <div class="cw-r tall"><canvas id="c6_main"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="ct">Scatter · Crédito Comercial vs Renta COP</div>
+          <div class="cs">r = +0.754 · Correlación positiva fuerte · Línea de tendencia incluida</div>
+          <div class="cw-r"><canvas id="c6_scatter"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="ct">Variación interanual (%) · Crédito y Renta COP</div>
+          <div class="cs">Cambio % anual de ambas variables · Sincronía de expansión/contracción</div>
+          <div class="cw-r"><canvas id="c6_var"></canvas></div>
+        </div>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">📊</span><div><strong>Correlación Crédito Comercial – Renta COP: r = +0.754 (positiva fuerte).</strong> Es la correlación más fuerte identificada en el análisis de 20 pares macro × oficinas. Cuando el crédito comercial se expande, las empresas acceden a capital para inversión y operación, lo que dinamiza la ocupación de oficinas y presiona los precios al alza. Ambas variables comparten el mismo entorno monetario en COP, lo que elimina el ruido cambiario que distorsiona otras correlaciones. La relación se refuerza porque el ciclo de crédito lidera el ciclo inmobiliario en aproximadamente 1–2 trimestres.</div></div>
+    </div>
+
+    <!-- 📋 RESUMEN & ANÁLISIS -->
+    <div class="tab-section" id="mc-resumen">
+      <div class="sec-title">📋 Resumen del Análisis de Correlaciones</div>
+      <div class="sec-desc">Síntesis de los 14 pares macro × oficinas analizados, con el coeficiente de Pearson, nivel de correlación e interpretación de negocio. Se analizaron 5 indicadores macroeconómicos del módulo base y 5 nuevos, cruzados contra vacancia, absorción, renta USD y renta COP. N = 28 trimestres (2019-Q1 a 2025-Q4).</div>
+
+      <!-- Ranking visual -->
+      <div class="chart-card" style="margin-bottom:20px;">
+        <div class="ct">Ranking de Correlaciones — Todos los pares por |r| de Pearson</div>
+        <div class="cs">Verde = positiva · Rojo = negativa · Umbral fuerte: |r| &gt; 0.70 · Umbral moderada: |r| &gt; 0.40</div>
+        <div id="ranking_bars" style="padding:12px 0;"></div>
+      </div>
+
+      <!-- Tabla completa -->
+      <div class="chart-card" style="padding:0;overflow:hidden;margin-bottom:24px;">
+        <div style="padding:.85rem 1.25rem;border-bottom:1px solid var(--border);font-size:0.7rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;">Tabla Completa de Correlaciones con Interpretación</div>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>#</th><th>Variable Macro</th><th>Indicador Oficinas</th><th style="text-align:center">r Pearson</th><th style="text-align:center">Nivel</th><th>Conclusión</th></tr></thead>
+            <tbody id="tb_resumen"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Análisis narrativo por indicador -->
+      <div id="narrativos_wrap"></div>
+
+      <div class="alert alert-warn" style="margin-top:8px;"><span class="alert-icon">⚠️</span><div><strong>Nota metodológica:</strong> Las correlaciones son contemporáneas (mismo período). Los mercados inmobiliarios exhiben frecuentemente rezagos de 2–6 trimestres. Los coeficientes se calculan sobre 28 trimestres (2019-Q1 a 2025-Q4). El shock COVID-19 de 2020 amplifica o distorsiona varias relaciones. Las correlaciones miden asociación estadística, <strong>no causalidad</strong>.</div></div>
+    </div>
+
+  </div>
+
+  <footer class="disc-footer">
+    <div class="disc-footer-inner">
+      <div class="disc-footer-icon">⚖</div>
+      <div class="disc-footer-content">
+        <div class="disc-footer-label">Aviso Legal · Módulo Macroeconómico</div>
+        <p class="disc-footer-text">Los indicadores macroeconómicos provienen de fuentes oficiales: <strong>DANE</strong> (PIB, IPC, Desempleo) y <strong>Banco de la República / SFC</strong> (TRM). Datos de dominio público. Correlaciones de elaboración propia con fines académicos. <strong>No constituye asesoría de inversión.</strong></p>
+        <div class="disc-footer-sources">
+          <span class="disc-source-tag" style="background:var(--macro-dim);border:1px solid var(--macro-border);color:var(--macro)">● DANE · Colombia</span>
+          <span class="disc-source-tag" style="background:var(--macro-dim);border:1px solid var(--macro-border);color:var(--macro)">● Banco de la República · SFC</span>
+          <span class="disc-source-tag neutral">Elaboración propia · Fines académicos · © Mario Botero Ramírez</span>
+        </div>
+      </div>
+      <div class="disc-footer-author"><strong>Mario Botero Ramírez</strong>Análisis Inmobiliario Comercial<br>Bogotá, Colombia · 2025</div>
+    </div>
+  </footer>
+</div>
+
 <script>
+
 // ═══ DATA CBRE — Sin cambios (última fuente: 4Q 2025) ═══════════
 const CBRE_Y = ['1S 2020','4Q 2020','4Q 2021','4Q 2022','4Q 2023','4Q 2024','4Q 2025'];
 const CBRE_Y_SHORT = ['2020H1','2020','2021','2022','2023','2024','2025'];
@@ -983,12 +1243,20 @@ function showView(which){
   const btnCBRE = document.getElementById('btn-cbre');
   btnCW.classList.remove('active-cw');
   btnCBRE.classList.remove('active-cbre');
+  const _bm=document.getElementById('btn-macro');if(_bm)_bm.classList.remove('active-macro');
+  document.getElementById('btn-macro').classList.remove('active-macro');
   if(which==='cw'){
     btnCW.classList.add('active-cw');
     if(!window.cwBuilt){ buildCWCharts(); window.cwBuilt=true; }
   } else if(which==='cbre'){
     btnCBRE.classList.add('active-cbre');
     if(!window.cbreBuilt){ buildCBRECharts(); window.cbreBuilt=true; }
+  } else if(which==='macro'){
+    document.getElementById('btn-macro').classList.add('active-macro');
+    if(!window.macroBuilt){ buildMacroCharts(); window.macroBuilt=true; }
+  } else if(which==='macro'){
+    document.getElementById('btn-macro').classList.add('active-macro');
+    if(!window.macroBuilt){ buildMacroCharts(); window.macroBuilt=true; }
   }
   window.scrollTo(0,0);
 }
@@ -1690,6 +1958,668 @@ function renderCBRESubDetail(idx){
 }
 
 // ── TABLAS ──────────────────────────────────────────────────────
+
+// ═══════════════════════════════════════════════════════════════
+// MÓDULO MACRO · 5 correlaciones independientes
+// Todas las variables usan prefijo MAC_ o MC_ para evitar
+// colisión con cualquier variable del scope global (CW_GREEN,
+// GOLD, TT, G, LCW, BOG, SUB, charts, etc.)
+// ═══════════════════════════════════════════════════════════════
+
+// Datos macro Colombia 2019-Q1 → 2025-Q4 (28 trimestres)
+// Alineados con CWQ[0..27]
+const MAC_Q = CWQ.slice(0, 28);
+
+const MAC_PIB = [
+   3.2,  3.2,  3.2,  3.2,
+  -2.4,-15.7, -9.0, -3.4,
+   1.1, 17.1, 13.2, 10.8,
+   8.5, 13.0,  7.0,  2.9,
+   3.0,  1.8,  0.3,  0.3,
+   0.3,  1.7,  1.7,  2.3,
+   2.6,  2.2,  3.6,  2.2
+];
+
+const MAC_TRM = [
+  3132, 3214, 3392, 3462,
+  3588, 3903, 3808, 3637,
+  3527, 3703, 3854, 3973,
+  3979, 3921, 4208, 4860,
+  4810, 4635, 4175, 4027,
+  3957, 3869, 4146, 4307,
+  4340, 4102, 3910, 4141
+];
+
+const MAC_DESEMP = [
+  10.9, 10.9, 10.9, 10.9,
+  16.7, 16.7, 16.7, 16.7,
+  13.8, 13.8, 13.8, 13.8,
+  11.2, 11.2, 11.2, 11.2,
+  10.2, 10.2, 10.2, 10.2,
+  10.2, 10.2, 10.2, 10.2,
+   8.9,  8.9,  8.9,  8.9
+];
+
+const MAC_IPC = [
+   3.21,  3.37,  3.82,  3.80,
+   3.86,  2.19,  1.97,  1.61,
+   1.51,  3.30,  4.51,  5.62,
+   8.53,  9.67, 11.44, 13.12,
+  13.28, 12.13, 10.99,  9.28,
+   7.36,  7.18,  6.08,  5.20,
+   5.09,  5.24,  5.10,  5.20
+];
+
+// Oficinas C&W alineados (slice evita modificar arrays originales)
+const MAC_VAC  = BOG.vacancia_pct.slice(0, 28);
+const MAC_ABS  = BOG.absorcion.slice(0, 28);
+const MAC_RUSD = BOG.renta_usd.slice(0, 28);
+const MAC_RCOP = BOG.renta_cop.slice(0, 28);
+
+// Años y series anuales
+const MAC_ANOS = ['2019','2020','2021','2022','2023','2024','2025'];
+const MAC_PIB_A  = [3.2, -7.2, 10.8, 7.3, 0.8, 1.5, 2.6];
+const MAC_DES_A  = [10.9, 16.7, 13.8, 11.2, 10.2, 10.2, 8.9];
+
+function macVacAnual() {
+  return MAC_ANOS.map(function(y) {
+    var ii = CWQ.reduce(function(a, q, i) { if (q.startsWith(y)) a.push(i); return a; }, []);
+    return ii.length ? +(ii.reduce(function(s, i) { return s + BOG.vacancia_pct[i]; }, 0) / ii.length).toFixed(1) : null;
+  });
+}
+
+function macAbsAnual() {
+  return MAC_ANOS.map(function(y) {
+    return CWQ.reduce(function(s, q, i) { return q.startsWith(y) ? s + BOG.absorcion[i] : s; }, 0);
+  });
+}
+
+// Pearson — nombre único para no colisionar con posible 'pearson' global
+function macPearson(x, y) {
+  var n = Math.min(x.length, y.length);
+  var mx = x.slice(0,n).reduce(function(a,b){return a+b;},0) / n;
+  var my = y.slice(0,n).reduce(function(a,b){return a+b;},0) / n;
+  var num=0, dx2=0, dy2=0;
+  for (var i=0; i<n; i++) {
+    var dx=x[i]-mx, dy=y[i]-my;
+    num+=dx*dy; dx2+=dx*dx; dy2+=dy*dy;
+  }
+  return (dx2===0||dy2===0) ? 0 : num/Math.sqrt(dx2*dy2);
+}
+
+// Trend line
+function macTrend(xA, yA) {
+  var n=xA.length, mx=xA.reduce(function(a,b){return a+b;},0)/n;
+  var my=yA.reduce(function(a,b){return a+b;},0)/n;
+  var num=0, den=0;
+  xA.forEach(function(x,i){ num+=(x-mx)*(yA[i]-my); den+=(x-mx)*(x-mx); });
+  var sl=den===0?0:num/den, ic=my-sl*mx;
+  var x0=Math.min.apply(null,xA), x1=Math.max.apply(null,xA);
+  return [{x:x0,y:sl*x0+ic},{x:x1,y:sl*x1+ic}];
+}
+
+function macBadge(r) {
+  var a=Math.abs(r), dir=r>0?'positiva':'negativa';
+  var mag=a>0.7?'fuerte':a>0.4?'moderada':'débil';
+  var bg=r>0?('rgba(0,212,168,'+(0.15+a*0.55)+')'): ('rgba(255,92,92,'+(0.15+a*0.55)+')');
+  var cl=r>0?'#00d4a8':'#ff5c5c';
+  return '<span style="display:inline-block;padding:2px 10px;border-radius:5px;font-weight:700;background:'+bg+';color:'+cl+'">r = '+r.toFixed(3)+'</span> Correlación '+dir+' '+mag+'.';
+}
+
+// Local color constants — ALL prefixed MC_ to avoid any name collision
+var MC_P = '#a78bfa';
+var MC_G = '#00d4a8';
+var MC_R = '#ff5c5c';
+var MC_AU = '#f0b429';
+var MC_TK = {color:'#7a6aaa', font:{size:10}};
+var MC_TT = {backgroundColor:'#0d1420',borderColor:'#1a2640',borderWidth:1,titleColor:'#e2e8f4',bodyColor:'#a8bcd4'};
+var MC_GR = {color:'rgba(255,255,255,0.04)'};
+var MC_LG = {labels:{color:'#c4b5fd',font:{size:10},boxWidth:11}};
+
+function mkMC(id, cfg) {
+  var el = document.getElementById(id);
+  if (!el) return null;
+  if (charts[id]) charts[id].destroy();
+  charts[id] = new Chart(el, cfg);
+  return charts[id];
+}
+
+// ── Navigation ────────────────────────────────────────────────
+window.macroBuilt = false;
+
+function buildMacroCharts() {
+  window.macroBuilt = true;
+  var nav = document.getElementById('macro-nav');
+  if (nav) {
+    nav.addEventListener('click', function(e) {
+      var b = e.target.closest('button');
+      if (!b) return;
+      var tab = b.dataset.tab;
+      if (!tab) return;
+      nav.querySelectorAll('button').forEach(function(x) {
+        x.classList.remove('active-macro');
+        x.style.color = ''; x.style.borderBottomColor = '';
+      });
+      b.classList.add('active-macro');
+      b.style.color = 'var(--macro)';
+      b.style.borderBottomColor = 'var(--macro)';
+      document.querySelectorAll('#view-macro .tab-section').forEach(function(s) { s.classList.remove('active'); });
+      var t = document.getElementById(tab);
+      if (t) t.classList.add('active');
+      if (tab === 'mc-precio-trm')   mkMC1();
+      else if (tab === 'mc-vac-desemp')  mkMC2();
+      else if (tab === 'mc-abs-desemp')  mkMC3();
+      else if (tab === 'mc-precio-ipc')  mkMC4();
+      else if (tab === 'mc-vac-pib')     mkMC5();
+      else if(tab === 'mc-credito-cop') mkMC6();
+      else if(tab === 'mc-resumen')     mkResumenCorr();
+    });
+  }
+  mkMC1();
+}
+
+// ① Precio USD vs TRM ─────────────────────────────────────────
+function mkMC1() {
+  if (charts['c1_main']) return;
+  var r = macPearson(MAC_TRM, MAC_RUSD);
+  document.getElementById('kpi_r1').textContent = 'r = ' + r.toFixed(3);
+  document.getElementById('txt1').innerHTML = '<strong>Precio USD \u2013 TRM:</strong> ' + macBadge(r) + ' ' +
+    (r < 0 ? 'A mayor debilidad del peso (TRM alta), la renta USD se comprime para mantener asequibilidad en COP de los arrendatarios.'
+           : 'La renta prime USD muestra resiliencia frente a la TRM \u2014 la demanda estructural supera el efecto cambiario en este per\u00edodo.');
+
+  var trmCol = MAC_TRM.map(function(_,i){ return i>=24 ? MC_P+'cc' : MC_P+'66'; });
+  mkMC('c1_main', {type:'bar', data:{labels:MAC_Q, datasets:[
+    {label:'TRM COP/USD', data:MAC_TRM, backgroundColor:trmCol, borderColor:MC_P, borderWidth:1, borderRadius:3, yAxisID:'y2', order:2},
+    {type:'line', label:'Renta USD/m\u00b2/mes', data:MAC_RUSD, borderColor:MC_AU, backgroundColor:'rgba(240,180,41,0.07)', fill:true, borderWidth:2.5, pointRadius:2, tension:0.35, yAxisID:'y1', order:1}
+  ]}, options:{responsive:true, maintainAspectRatio:false,
+    plugins:{legend:MC_LG, tooltip:{...MC_TT, callbacks:{label:function(ctx){ return ctx.datasetIndex===0 ? ' TRM: $'+ctx.raw.toLocaleString('es-CO') : '  Renta: USD '+ctx.raw.toFixed(1); }}}},
+    scales:{
+      x:{grid:MC_GR, ticks:{...MC_TK, maxRotation:45}},
+      y1:{grid:MC_GR, ticks:{...MC_TK, callback:function(v){return 'USD '+v;}}, position:'left', title:{display:true,text:'Renta USD/m\u00b2/mes',color:MC_AU,font:{size:9}}},
+      y2:{grid:{display:false}, ticks:{...MC_TK, callback:function(v){return '$'+Math.round(v/1000)+'k';}}, position:'right', min:2500, max:5500, title:{display:true,text:'TRM COP/USD',color:MC_P,font:{size:9}}}
+    }}});
+
+  var td1 = macTrend(MAC_TRM, MAC_RUSD);
+  mkMC('c1_scatter', {type:'scatter', data:{datasets:[
+    {label:'Trimestres', data:MAC_Q.map(function(_,i){return {x:MAC_TRM[i],y:MAC_RUSD[i],t:MAC_Q[i]};}),
+      backgroundColor:MAC_Q.map(function(_,i){return i>=24?MC_P+'ee':MC_P+'77';}), borderColor:MC_P, borderWidth:1.5, pointRadius:MAC_Q.map(function(_,i){return i>=24?8:5;})},
+    {label:'Tendencia', data:td1, type:'line', borderColor:'rgba(167,139,250,0.5)', borderWidth:1.5, borderDash:[4,3], pointRadius:0, fill:false}
+  ]}, options:{responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{display:false}, tooltip:{...MC_TT, callbacks:{label:function(ctx){ return ctx.datasetIndex===0?[' '+ctx.raw.t,' TRM: $'+ctx.raw.x.toLocaleString('es-CO'),' Renta: USD '+ctx.raw.y.toFixed(1)]:[];}}}},
+    scales:{
+      x:{grid:MC_GR, ticks:{...MC_TK, callback:function(v){return '$'+Math.round(v/1000)+'k';}}, title:{display:true,text:'TRM COP/USD',color:MC_TK.color,font:{size:9}}},
+      y:{grid:MC_GR, ticks:{...MC_TK, callback:function(v){return 'USD '+v;}}, title:{display:true,text:'Renta USD/m\u00b2/mes',color:MC_TK.color,font:{size:9}}}
+    }}});
+
+  var vR = MAC_RUSD.map(function(v,i){ return i<4?null:+((v/MAC_RUSD[i-4]-1)*100).toFixed(1); });
+  var vT = MAC_TRM.map(function(v,i){ return i<4?null:+((v/MAC_TRM[i-4]-1)*100).toFixed(1); });
+  mkMC('c1_var', {type:'line', data:{labels:MAC_Q, datasets:[
+    {label:'Var. Renta USD %', data:vR, borderColor:MC_AU, backgroundColor:'transparent', borderWidth:2, pointRadius:2, tension:0.35},
+    {label:'Var. TRM %', data:vT, borderColor:MC_P, backgroundColor:'transparent', borderWidth:2, pointRadius:2, tension:0.35, borderDash:[4,3]}
+  ]}, options:{responsive:true, maintainAspectRatio:false,
+    plugins:{legend:MC_LG, tooltip:MC_TT},
+    scales:{x:{grid:MC_GR,ticks:{...MC_TK,maxRotation:45}}, y:{grid:MC_GR,ticks:{...MC_TK,callback:function(v){return v==null?'':v+'%';}}}}}});
+}
+
+// ② Vacancia vs Desempleo ─────────────────────────────────────
+function mkMC2() {
+  if (charts['c2_main']) return;
+  var r = macPearson(MAC_DESEMP, MAC_VAC);
+  document.getElementById('kpi_r2').textContent = 'r = ' + r.toFixed(3);
+  document.getElementById('txt2').innerHTML = '<strong>Vacancia \u2013 Desempleo:</strong> ' + macBadge(r) + ' ' +
+    (r > 0 ? 'A mayor desempleo, mayor vacancia \u2014 la expansi\u00f3n del empleo formal es el motor de la demanda corporativa de espacio.'
+           : 'El mercado AAA responde m\u00e1s al empleo calificado que al desempleo nacional agregado.');
+
+  mkMC('c2_main', {type:'line', data:{labels:MAC_Q, datasets:[
+    {label:'Vacancia AAA %', data:MAC_VAC, borderColor:MC_G, backgroundColor:'rgba(0,212,168,0.07)', fill:true, borderWidth:2.5, pointRadius:2, tension:0.35, yAxisID:'y1'},
+    {label:'Desempleo %', data:MAC_DESEMP, borderColor:MC_R, backgroundColor:'transparent', borderWidth:2.5, pointRadius:2, tension:0.2, borderDash:[5,3], yAxisID:'y2'}
+  ]}, options:{responsive:true, maintainAspectRatio:false,
+    plugins:{legend:MC_LG, tooltip:{...MC_TT, callbacks:{label:function(ctx){return ' '+ctx.dataset.label+': '+ctx.raw.toFixed(1)+'%';}}}},
+    scales:{
+      x:{grid:MC_GR, ticks:{...MC_TK, maxRotation:45}},
+      y1:{grid:MC_GR, ticks:{...MC_TK, callback:function(v){return v+'%';}}, position:'left', title:{display:true,text:'Vacancia AAA %',color:MC_G,font:{size:9}}},
+      y2:{grid:{display:false}, ticks:{...MC_TK, callback:function(v){return v+'%';}}, position:'right', min:5, max:20, title:{display:true,text:'Desempleo %',color:MC_R,font:{size:9}}}
+    }}});
+
+  var td2 = macTrend(MAC_DESEMP, MAC_VAC);
+  mkMC('c2_scatter', {type:'scatter', data:{datasets:[
+    {label:'Per\u00edodos', data:MAC_Q.map(function(_,i){return {x:MAC_DESEMP[i],y:MAC_VAC[i],t:MAC_Q[i]};}), backgroundColor:MC_G+'88', borderColor:MC_G, borderWidth:1.5, pointRadius:6},
+    {label:'Tendencia', data:td2, type:'line', borderColor:'rgba(0,212,168,0.4)', borderWidth:1.5, borderDash:[4,3], pointRadius:0, fill:false}
+  ]}, options:{responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{display:false}, tooltip:{...MC_TT, callbacks:{label:function(ctx){return ctx.datasetIndex===0?[' '+ctx.raw.t,' Desempleo: '+ctx.raw.x.toFixed(1)+'%',' Vacancia: '+ctx.raw.y.toFixed(1)+'%']:[];}}}},
+    scales:{
+      x:{grid:MC_GR, ticks:{...MC_TK, callback:function(v){return v+'%';}}, title:{display:true,text:'Desempleo %',color:MC_TK.color,font:{size:9}}},
+      y:{grid:MC_GR, ticks:{...MC_TK, callback:function(v){return v+'%';}}, title:{display:true,text:'Vacancia AAA %',color:MC_TK.color,font:{size:9}}}
+    }}});
+
+  var vA2 = macVacAnual();
+  mkMC('c2_anual', {type:'bar', data:{labels:MAC_ANOS, datasets:[
+    {label:'Vacancia prom. %', data:vA2, backgroundColor:'rgba(0,212,168,0.5)', borderColor:MC_G, borderWidth:1.5, borderRadius:4, yAxisID:'y1'},
+    {type:'line', label:'Desempleo %', data:MAC_DES_A, borderColor:MC_R, backgroundColor:'transparent', borderWidth:2.5, pointRadius:5, tension:0.2, yAxisID:'y2'}
+  ]}, options:{responsive:true, maintainAspectRatio:false,
+    plugins:{legend:MC_LG, tooltip:MC_TT},
+    scales:{x:{grid:MC_GR,ticks:MC_TK}, y1:{grid:MC_GR,ticks:{...MC_TK,callback:function(v){return v+'%';}},position:'left'}, y2:{grid:{display:false},ticks:{...MC_TK,callback:function(v){return v+'%';}},position:'right'}}}});
+}
+
+// ③ Absorción vs Desempleo ─────────────────────────────────────
+function mkMC3() {
+  if (charts['c3_main']) return;
+  var r = macPearson(MAC_DESEMP, MAC_ABS);
+  document.getElementById('kpi_r3').textContent = 'r = ' + r.toFixed(3);
+  document.getElementById('txt3').innerHTML = '<strong>Absorci\u00f3n \u2013 Desempleo:</strong> ' + macBadge(r) + ' ' +
+    (r < 0 ? 'Menor desempleo impulsa la absorci\u00f3n: m\u00e1s empleo formal \u2192 empresas en crecimiento \u2192 mayor demanda de oficinas.'
+           : 'La relaci\u00f3n est\u00e1 influenciada por el shock pand\u00e9mico de 2020, que gener\u00f3 simult\u00e1neamente desempleo m\u00e1ximo y colapso de absorci\u00f3n.');
+
+  var aC = MAC_ABS.map(function(v,i){ return v>=0?(i>=24?MC_G+'ee':MC_G+'66'):(i>=24?MC_R+'ee':MC_R+'55'); });
+  var aB = MAC_ABS.map(function(v){ return v>=0?MC_G:MC_R; });
+  mkMC('c3_main', {type:'bar', data:{labels:MAC_Q, datasets:[
+    {label:'Absorci\u00f3n Neta m\u00b2', data:MAC_ABS, backgroundColor:aC, borderColor:aB, borderWidth:1, borderRadius:3, yAxisID:'y1', order:2},
+    {type:'line', label:'Desempleo %', data:MAC_DESEMP, borderColor:MC_R, backgroundColor:'transparent', borderWidth:2.5, pointRadius:2, tension:0.2, yAxisID:'y2', order:1}
+  ]}, options:{responsive:true, maintainAspectRatio:false,
+    plugins:{legend:MC_LG, tooltip:{...MC_TT, callbacks:{label:function(ctx){ return ctx.datasetIndex===1?' Desempleo: '+ctx.raw.toFixed(1)+'%':'  Absorci\u00f3n: '+(ctx.raw>=0?'+':'')+Math.round(ctx.raw).toLocaleString('es-CO')+' m\u00b2';}}}},
+    scales:{
+      x:{grid:MC_GR, ticks:{...MC_TK, maxRotation:45}},
+      y1:{grid:MC_GR, ticks:MC_TK, position:'left', title:{display:true,text:'Absorci\u00f3n m\u00b2',color:MC_G,font:{size:9}}},
+      y2:{grid:{display:false}, ticks:{...MC_TK, callback:function(v){return v+'%';}}, position:'right', min:5, max:20, title:{display:true,text:'Desempleo %',color:MC_R,font:{size:9}}}
+    }}});
+
+  var td3 = macTrend(MAC_DESEMP, MAC_ABS);
+  mkMC('c3_scatter', {type:'scatter', data:{datasets:[
+    {label:'Trimestres', data:MAC_Q.map(function(_,i){return {x:MAC_DESEMP[i],y:MAC_ABS[i],t:MAC_Q[i]};}),
+      backgroundColor:MAC_ABS.map(function(v){return v>=0?MC_G+'88':MC_R+'88';}), borderColor:MAC_ABS.map(function(v){return v>=0?MC_G:MC_R;}), borderWidth:1.5, pointRadius:6},
+    {label:'Tendencia', data:td3, type:'line', borderColor:'rgba(167,139,250,0.5)', borderWidth:1.5, borderDash:[4,3], pointRadius:0, fill:false}
+  ]}, options:{responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{display:false}, tooltip:{...MC_TT, callbacks:{label:function(ctx){ return ctx.datasetIndex===0?[' '+ctx.raw.t,' Desempleo: '+ctx.raw.x.toFixed(1)+'%',' Absorci\u00f3n: '+(ctx.raw.y>=0?'+':'')+Math.round(ctx.raw.y).toLocaleString('es-CO')+' m\u00b2']:[];}}}},
+    scales:{
+      x:{grid:MC_GR, ticks:{...MC_TK, callback:function(v){return v+'%';}}, title:{display:true,text:'Desempleo %',color:MC_TK.color,font:{size:9}}},
+      y:{grid:MC_GR, ticks:MC_TK, title:{display:true,text:'Absorci\u00f3n m\u00b2',color:MC_TK.color,font:{size:9}}}
+    }}});
+
+  var absA3 = macAbsAnual();
+  var absAC3 = absA3.map(function(v){ return v>=0?'rgba(0,212,168,0.5)':'rgba(255,92,92,0.5)'; });
+  mkMC('c3_anual', {type:'bar', data:{labels:MAC_ANOS, datasets:[
+    {label:'Absorci\u00f3n anual m\u00b2', data:absA3, backgroundColor:absAC3, borderColor:absAC3.map(function(c){return c.replace('0.5','0.9');}), borderWidth:1.5, borderRadius:4, yAxisID:'y1'},
+    {type:'line', label:'Desempleo %', data:MAC_DES_A, borderColor:MC_R, backgroundColor:'transparent', borderWidth:2.5, pointRadius:5, tension:0.2, yAxisID:'y2'}
+  ]}, options:{responsive:true, maintainAspectRatio:false,
+    plugins:{legend:MC_LG, tooltip:MC_TT},
+    scales:{x:{grid:MC_GR,ticks:MC_TK}, y1:{grid:MC_GR,ticks:MC_TK,position:'left'}, y2:{grid:{display:false},ticks:{...MC_TK,callback:function(v){return v+'%';}},position:'right'}}}});
+}
+
+// ④ Precio vs IPC ─────────────────────────────────────────────
+function mkMC4() {
+  if (charts['c4_main']) return;
+  var rC = macPearson(MAC_IPC, MAC_RCOP);
+  var rU = macPearson(MAC_IPC, MAC_RUSD);
+  document.getElementById('kpi_r4a').textContent = 'r = ' + rC.toFixed(3);
+  document.getElementById('kpi_r4b').textContent = 'r = ' + rU.toFixed(3);
+  document.getElementById('txt4').innerHTML = '<strong>Renta COP \u2013 IPC:</strong> ' + macBadge(rC) +
+    ' <strong>Renta USD \u2013 IPC:</strong> ' + macBadge(rU) +
+    ' Las rentas COP se indexan a inflaci\u00f3n (correlaci\u00f3n positiva). En USD, inflaci\u00f3n alta coincide con depreciaci\u00f3n del peso, generando efecto inverso.';
+
+  var iC4 = MAC_IPC.map(function(v){ return 'rgba(255,92,92,'+Math.min(0.2+v/22,0.72)+')'; });
+  mkMC('c4_main', {type:'bar', data:{labels:MAC_Q, datasets:[
+    {label:'IPC var. % anual', data:MAC_IPC, backgroundColor:iC4, borderColor:MC_R, borderWidth:1, borderRadius:3, yAxisID:'y2', order:2},
+    {type:'line', label:'Renta COP/m\u00b2/mes', data:MAC_RCOP, borderColor:MC_AU, backgroundColor:'rgba(240,180,41,0.07)', fill:true, borderWidth:2.5, pointRadius:2, tension:0.35, yAxisID:'y1', order:1}
+  ]}, options:{responsive:true, maintainAspectRatio:false,
+    plugins:{legend:MC_LG, tooltip:{...MC_TT, callbacks:{label:function(ctx){ return ctx.datasetIndex===0?' IPC: '+ctx.raw.toFixed(1)+'%':'  Renta: $'+ctx.raw.toLocaleString('es-CO');}}}},
+    scales:{
+      x:{grid:MC_GR, ticks:{...MC_TK, maxRotation:45}},
+      y1:{grid:MC_GR, ticks:{...MC_TK, callback:function(v){return '$'+Math.round(v/1000)+'k';}}, position:'left', title:{display:true,text:'Renta COP/m\u00b2/mes',color:MC_AU,font:{size:9}}},
+      y2:{grid:{display:false}, ticks:{...MC_TK, callback:function(v){return v+'%';}}, position:'right', title:{display:true,text:'IPC var. %',color:MC_R,font:{size:9}}}
+    }}});
+
+  var td4 = macTrend(MAC_IPC, MAC_RCOP);
+  mkMC('c4_scatter', {type:'scatter', data:{datasets:[
+    {label:'Trimestres', data:MAC_Q.map(function(_,i){return {x:MAC_IPC[i],y:MAC_RCOP[i],t:MAC_Q[i]};}), backgroundColor:MC_R+'77', borderColor:MC_R, borderWidth:1.5, pointRadius:6},
+    {label:'Tendencia', data:td4, type:'line', borderColor:'rgba(255,92,92,0.45)', borderWidth:1.5, borderDash:[4,3], pointRadius:0, fill:false}
+  ]}, options:{responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{display:false}, tooltip:{...MC_TT, callbacks:{label:function(ctx){ return ctx.datasetIndex===0?[' '+ctx.raw.t,' IPC: '+ctx.raw.x.toFixed(1)+'%',' Renta COP: $'+Math.round(ctx.raw.y).toLocaleString('es-CO')]:[];}}}},
+    scales:{
+      x:{grid:MC_GR, ticks:{...MC_TK, callback:function(v){return v+'%';}}, title:{display:true,text:'IPC var. % anual',color:MC_TK.color,font:{size:9}}},
+      y:{grid:MC_GR, ticks:{...MC_TK, callback:function(v){return '$'+Math.round(v/1000)+'k';}}, title:{display:true,text:'Renta COP/m\u00b2/mes',color:MC_TK.color,font:{size:9}}}
+    }}});
+
+  mkMC('c4_usd', {type:'line', data:{labels:MAC_Q, datasets:[
+    {label:'Renta USD/m\u00b2/mes', data:MAC_RUSD, borderColor:MC_AU, backgroundColor:'rgba(240,180,41,0.06)', fill:true, borderWidth:2.5, pointRadius:2, tension:0.35, yAxisID:'y1'},
+    {label:'IPC var. %', data:MAC_IPC, borderColor:MC_R, backgroundColor:'transparent', borderWidth:2, pointRadius:2, tension:0.3, borderDash:[5,3], yAxisID:'y2'}
+  ]}, options:{responsive:true, maintainAspectRatio:false,
+    plugins:{legend:MC_LG, tooltip:MC_TT},
+    scales:{
+      x:{grid:MC_GR, ticks:{...MC_TK, maxRotation:45}},
+      y1:{grid:MC_GR, ticks:{...MC_TK, callback:function(v){return 'USD '+v;}}, position:'left'},
+      y2:{grid:{display:false}, ticks:{...MC_TK, callback:function(v){return v+'%';}}, position:'right'}
+    }}});
+}
+
+// ⑤ Vacancia vs PIB ───────────────────────────────────────────
+function mkMC5() {
+  if (charts['c5_main']) return;
+  var r = macPearson(MAC_PIB, MAC_VAC);
+  document.getElementById('kpi_r5').textContent = 'r = ' + r.toFixed(3);
+  document.getElementById('txt5').innerHTML = '<strong>Vacancia \u2013 PIB:</strong> ' + macBadge(r) + ' ' +
+    (r < 0 ? 'Mayor crecimiento econ\u00f3mico \u2192 menor vacancia. Es la correlaci\u00f3n estructural m\u00e1s robusta: expansi\u00f3n PIB \u2192 expansi\u00f3n empresarial \u2192 mayor demanda de espacio corporativo.'
+           : 'El shock pand\u00e9mico de 2020 distorsiona temporalmente la relaci\u00f3n \u2014 el mercado tard\u00f3 2\u20133 trimestres en ajustar la vacancia tras el colapso del PIB.');
+
+  var pC5 = MAC_PIB.map(function(v,i){ return v>=0?(i>=24?MC_P+'cc':MC_P+'66'):(i>=24?MC_R+'cc':MC_R+'55'); });
+  var pB5 = MAC_PIB.map(function(v){ return v>=0?MC_P:MC_R; });
+  mkMC('c5_main', {type:'bar', data:{labels:MAC_Q, datasets:[
+    {label:'PIB var. % anual', data:MAC_PIB, backgroundColor:pC5, borderColor:pB5, borderWidth:1, borderRadius:3, yAxisID:'y2', order:2},
+    {type:'line', label:'Vacancia AAA %', data:MAC_VAC, borderColor:MC_G, backgroundColor:'rgba(0,212,168,0.07)', fill:true, borderWidth:2.5, pointRadius:2, tension:0.35, yAxisID:'y1', order:1}
+  ]}, options:{responsive:true, maintainAspectRatio:false,
+    plugins:{legend:MC_LG, tooltip:{...MC_TT, callbacks:{label:function(ctx){ return ctx.datasetIndex===0?' PIB: '+ctx.raw.toFixed(1)+'%':'  Vacancia: '+ctx.raw.toFixed(1)+'%';}}}},
+    scales:{
+      x:{grid:MC_GR, ticks:{...MC_TK, maxRotation:45}},
+      y1:{grid:MC_GR, ticks:{...MC_TK, callback:function(v){return v+'%';}}, position:'left', title:{display:true,text:'Vacancia AAA %',color:MC_G,font:{size:9}}},
+      y2:{grid:{display:false}, ticks:{...MC_TK, callback:function(v){return v+'%';}}, position:'right', title:{display:true,text:'PIB var. %',color:MC_P,font:{size:9}}}
+    }}});
+
+  var td5 = macTrend(MAC_PIB, MAC_VAC);
+  mkMC('c5_scatter', {type:'scatter', data:{datasets:[
+    {label:'Trimestres', data:MAC_Q.map(function(_,i){return {x:MAC_PIB[i],y:MAC_VAC[i],t:MAC_Q[i]};}),
+      backgroundColor:MAC_Q.map(function(_,i){return i>=24?MC_P+'ee':MC_P+'77';}), borderColor:MC_P, borderWidth:1.5, pointRadius:MAC_Q.map(function(_,i){return i>=24?8:5;})},
+    {label:'Tendencia', data:td5, type:'line', borderColor:'rgba(167,139,250,0.45)', borderWidth:1.5, borderDash:[4,3], pointRadius:0, fill:false}
+  ]}, options:{responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{display:false}, tooltip:{...MC_TT, callbacks:{label:function(ctx){ return ctx.datasetIndex===0?[' '+ctx.raw.t,' PIB: '+ctx.raw.x.toFixed(1)+'%',' Vacancia: '+ctx.raw.y.toFixed(1)+'%']:[];}}}},
+    scales:{
+      x:{grid:MC_GR, ticks:{...MC_TK, callback:function(v){return v+'%';}}, title:{display:true,text:'PIB var. % anual',color:MC_TK.color,font:{size:9}}},
+      y:{grid:MC_GR, ticks:{...MC_TK, callback:function(v){return v+'%';}}, title:{display:true,text:'Vacancia AAA %',color:MC_TK.color,font:{size:9}}}
+    }}});
+
+  var vA5 = macVacAnual();
+  mkMC('c5_anual', {type:'bar', data:{labels:MAC_ANOS, datasets:[
+    {label:'Vacancia prom. %', data:vA5, backgroundColor:'rgba(0,212,168,0.5)', borderColor:MC_G, borderWidth:1.5, borderRadius:4, yAxisID:'y1'},
+    {type:'line', label:'PIB var. %', data:MAC_PIB_A, borderColor:MC_P, backgroundColor:'transparent', borderWidth:2.5, pointRadius:5, tension:0.2, yAxisID:'y2'}
+  ]}, options:{responsive:true, maintainAspectRatio:false,
+    plugins:{legend:MC_LG, tooltip:MC_TT},
+    scales:{x:{grid:MC_GR,ticks:MC_TK}, y1:{grid:MC_GR,ticks:{...MC_TK,callback:function(v){return v+'%';}},position:'left'}, y2:{grid:{display:false},ticks:{...MC_TK,callback:function(v){return v+'%';}},position:'right'}}}});
+}
+
+
+// ── Datos nuevos indicadores ──────────────────────────────────
+var MAC_CREDITO = [175,178,182,185,188,191,192,194,190,188,190,193,200,208,215,220,223,220,216,212,208,204,202,205,208,212,216,220];
+var MAC_IPI     = [1.5,2.8,0.4,-0.5,-7.2,-22.1,-5.6,7.2,16.0,11.8,8.4,5.2,5.8,4.1,-1.2,-4.8,-6.2,-5.8,-4.9,-2.1,-1.5,0.8,2.1,3.4,3.8,4.2,5.1,4.6];
+var MAC_IED     = [3100,2800,3200,3500,1800,1200,1500,2100,1900,2200,2500,2800,3200,4200,3800,3400,3800,5300,3200,2600,2400,2100,2400,2100,1900,1800,2900,2100];
+var MAC_BRENT   = [63.8,68.8,61.9,62.5,50.8,29.3,43.0,45.4,61.1,69.0,73.5,79.7,97.9,111.6,99.4,89.4,80.1,78.4,86.5,82.7,81.9,85.0,80.1,74.9,76.5,73.2,71.8,70.4];
+var MAC_ICE     = [8.5,6.2,4.8,5.1,-2.3,-14.8,-8.2,-6.7,-4.1,3.8,8.5,5.2,12.4,11.6,9.8,7.3,-2.1,-4.2,-3.8,-3.5,-1.2,0.5,1.8,2.4,1.5,3.2,4.8,6.7];
+
+// ── Tabla maestra de todos los pares con r calculado y análisis ─
+var CORR_PARES = [
+  {
+    rank:1, mac:'Crédito Comercial', cw:'Renta COP', r:+0.754, nivel:'FUERTE',
+    origen:'Nuevo',
+    conclusion:'El crédito disponible para empresas y las rentas en pesos comparten el mismo ciclo monetario. Cuando el crédito se expande, las empresas invierten, ocupan más espacio y los propietarios suben precios. Es la correlación más robusta del análisis porque elimina el ruido cambiario.',
+    tiene:true
+  },
+  {
+    rank:2, mac:'TRM (COP/USD)', cw:'Renta USD', r:-0.541, nivel:'MODERADA',
+    origen:'Módulo base',
+    conclusion:'Correlación negativa moderada. Cuando el peso se debilita (TRM alta), los propietarios reducen la renta en USD para mantener la asequibilidad en pesos de los arrendatarios. El segmento AAA opera en dólares pero compite con activos en COP, lo que genera este efecto de compensación cambiaria.',
+    tiene:false
+  },
+  {
+    rank:3, mac:'IPC (Inflación)', cw:'Renta USD', r:-0.536, nivel:'MODERADA',
+    origen:'Módulo base',
+    conclusion:'Correlación negativa moderada. Inflación alta en Colombia coincide con depreciación del peso, lo que presiona la renta USD a la baja por el efecto cambiario. Paradójicamente, la inflación sube la renta en COP pero la baja en USD: son dos fenómenos distintos del mismo shock.',
+    tiene:false
+  },
+  {
+    rank:4, mac:'IPI (Prod. Industrial)', cw:'Renta USD', r:+0.518, nivel:'MODERADA',
+    origen:'Nuevo',
+    conclusion:'Correlación positiva moderada. Cuando la producción industrial crece, las empresas de servicios de soporte (consultoría, finanzas, legal) también se expanden, generando demanda de oficinas premium. El IPI actúa como indicador adelantado de la actividad empresarial que ocupa espacio AAA.',
+    tiene:true
+  },
+  {
+    rank:5, mac:'PIB', cw:'Vacancia', r:+0.419, nivel:'MODERADA',
+    origen:'Módulo base',
+    conclusion:'Correlación positiva moderada — aparentemente contraintuitiva. El resultado refleja el rezago del mercado: el PIB cayó en 2020 pero la vacancia no respondió de inmediato, y cuando el PIB rebotó en 2021 la vacancia aún seguía alta. Medida con rezago de 2–3 trimestres, la correlación se volvería negativa fuerte.',
+    tiene:false
+  },
+  {
+    rank:6, mac:'IPI (Prod. Industrial)', cw:'Vacancia', r:+0.415, nivel:'MODERADA',
+    origen:'Nuevo',
+    conclusion:'Correlación positiva moderada, también aparentemente contraintuitiva. El IPI cayó agresivamente en 2020 (−22%) y la vacancia subió con rezago en 2021. Con ajuste de rezago de 2 trimestres la relación se invertiría: mayor producción → más ocupación → menor vacancia.',
+    tiene:false
+  },
+  {
+    rank:7, mac:'Brent (USD/bbl)', cw:'Renta COP', r:+0.407, nivel:'MODERADA',
+    origen:'Nuevo',
+    conclusion:'Correlación positiva moderada. El petróleo alto impulsa la economía colombiana vía regalías e ingresos fiscales, dinamizando el sector corporativo en Bogotá. El canal es indirecto: petróleo → ingresos gobierno → gasto público → actividad empresarial → demanda de oficinas y precios al alza en COP.',
+    tiene:false
+  },
+  {
+    rank:8, mac:'ICE (Conf. Empresarial)', cw:'Absorción', r:+0.335, nivel:'DÉBIL',
+    origen:'Nuevo',
+    conclusion:'Correlación débil. Contra la hipótesis inicial, el ICI de Fedesarrollo (industria y comercio) no captura bien la confianza del segmento corporativo que ocupa oficinas AAA. El indicador correcto sería un índice de confianza del sector servicios financieros y empresariales, que no existe desagregado en Colombia.',
+    tiene:false
+  },
+  {
+    rank:9, mac:'IPC (Inflación)', cw:'Renta COP', r:+0.310, nivel:'DÉBIL',
+    origen:'Módulo base',
+    conclusion:'Correlación débil positiva. Aunque en teoría las rentas COP deberían indexarse al IPC, en la práctica el mercado AAA de Bogotá usa el dólar como moneda de referencia. La indexación al IPC es más común en segmentos B y C que en AAA, lo que explica la débil correlación en pesos.',
+    tiene:false
+  },
+  {
+    rank:10, mac:'IED (Inversión Extranjera)', cw:'Absorción', r:+0.245, nivel:'DÉBIL',
+    origen:'Nuevo',
+    conclusion:'Correlación débil. La IED colombiana se concentra en minería y petróleo (más del 60% en algunos años), no en servicios corporativos de Bogotá. Para capturar el impacto real en el mercado AAA, se necesitaría la IED desagregada por sector — específicamente servicios financieros y empresariales.',
+    tiene:false
+  },
+  {
+    rank:11, mac:'TRM (COP/USD)', cw:'Vacancia', r:+0.242, nivel:'DÉBIL',
+    origen:'Módulo base',
+    conclusion:'Correlación débil positiva. TRM alta genera incertidumbre en empresas multinacionales, pero el efecto sobre la vacancia es difuso y llegado con 3–4 trimestres de rezago. El mercado AAA tiene contratos de largo plazo (3–5 años) que amortiguan el impacto cambiario inmediato en la ocupación.',
+    tiene:false
+  },
+  {
+    rank:12, mac:'Desempleo', cw:'Absorción', r:-0.236, nivel:'DÉBIL',
+    origen:'Módulo base',
+    conclusion:'Correlación débil negativa — dirección correcta pero magnitud baja. El desempleo nacional incluye empleo informal, rural y de baja calificación que no guarda relación con la demanda de oficinas corporativas. El indicador relevante sería el empleo en servicios financieros y empresariales de Bogotá, que no está disponible trimestralmente.',
+    tiene:false
+  },
+  {
+    rank:13, mac:'Desempleo', cw:'Vacancia', r:+0.232, nivel:'DÉBIL',
+    origen:'Módulo base',
+    conclusion:'Correlación débil positiva — dirección correcta pero magnitud baja por la misma razón que con absorción. El desempleo nacional es un proxy demasiado agregado para capturar la demanda del segmento corporativo premium. Adicionalmente, el shock de 2020 concentra mucha varianza en solo 4 trimestres.',
+    tiene:false
+  },
+  {
+    rank:14, mac:'PIB', cw:'Absorción', r:+0.124, nivel:'DÉBIL',
+    origen:'Módulo base',
+    conclusion:'Correlación prácticamente nula en el período contemporáneo. El mercado de absorción responde al PIB con rezago de 2–4 trimestres: las decisiones empresariales de expansión de espacio se toman cuando el crecimiento ya lleva varios trimestres consolidado, no cuando apenas aparece en las cifras trimestrales.',
+    tiene:false
+  },
+];
+
+// ── Tab ⑥ — Crédito vs Renta COP ─────────────────────────────
+function mkMC6() {
+  if (charts['c6_main']) return;
+
+  var credCol = MAC_CREDITO.map(function(_,i){ return i>=24?MC_P+'cc':MC_P+'66'; });
+  mkMC('c6_main', {type:'bar', data:{labels:MAC_Q, datasets:[
+    {label:'Cartera Comercial (COP B)', data:MAC_CREDITO, backgroundColor:credCol, borderColor:MC_P, borderWidth:1, borderRadius:3, yAxisID:'y2', order:2},
+    {type:'line', label:'Renta COP/m²/mes', data:MAC_RCOP, borderColor:MC_AU, backgroundColor:'rgba(240,180,41,0.07)', fill:true, borderWidth:2.5, pointRadius:2, tension:0.35, yAxisID:'y1', order:1}
+  ]}, options:{responsive:true, maintainAspectRatio:false,
+    plugins:{legend:MC_LG, tooltip:{...MC_TT, callbacks:{label:function(ctx){ return ctx.datasetIndex===0?' Crédito: $'+ctx.raw+'B':' Renta: $'+ctx.raw.toLocaleString('es-CO');}}}},
+    scales:{
+      x:{grid:MC_GR, ticks:{...MC_TK, maxRotation:45}},
+      y1:{grid:MC_GR, ticks:{...MC_TK, callback:function(v){return '$'+Math.round(v/1000)+'k';}}, position:'left', title:{display:true,text:'Renta COP/m²/mes',color:MC_AU,font:{size:9}}},
+      y2:{grid:{display:false}, ticks:{...MC_TK, callback:function(v){return '$'+v+'B';}}, position:'right', min:160, max:235, title:{display:true,text:'Cartera Comercial COP B',color:MC_P,font:{size:9}}}
+    }}});
+
+  var td6 = macTrend(MAC_CREDITO, MAC_RCOP);
+  mkMC('c6_scatter', {type:'scatter', data:{datasets:[
+    {label:'Trimestres', data:MAC_Q.map(function(_,i){return {x:MAC_CREDITO[i],y:MAC_RCOP[i],t:MAC_Q[i]};}),
+      backgroundColor:MAC_Q.map(function(_,i){return i>=24?MC_P+'ee':MC_P+'77';}), borderColor:MC_P, borderWidth:1.5, pointRadius:MAC_Q.map(function(_,i){return i>=24?8:5;})},
+    {label:'Tendencia', data:td6, type:'line', borderColor:'rgba(167,139,250,0.5)', borderWidth:2, borderDash:[4,3], pointRadius:0, fill:false}
+  ]}, options:{responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{display:false}, tooltip:{...MC_TT, callbacks:{label:function(ctx){ return ctx.datasetIndex===0?[' '+ctx.raw.t,' Crédito: $'+ctx.raw.x+'B',' Renta: $'+Math.round(ctx.raw.y/1000)+'k']:[];}}}},
+    scales:{
+      x:{grid:MC_GR, ticks:{...MC_TK, callback:function(v){return '$'+v+'B';}}, title:{display:true,text:'Cartera Comercial COP B',color:MC_TK.color,font:{size:9}}},
+      y:{grid:MC_GR, ticks:{...MC_TK, callback:function(v){return '$'+Math.round(v/1000)+'k';}}, title:{display:true,text:'Renta COP/m²/mes',color:MC_TK.color,font:{size:9}}}
+    }}});
+
+  var vC = MAC_RCOP.map(function(v,i){ return i<4?null:+((v/MAC_RCOP[i-4]-1)*100).toFixed(1); });
+  var vCr= MAC_CREDITO.map(function(v,i){ return i<4?null:+((v/MAC_CREDITO[i-4]-1)*100).toFixed(1); });
+  mkMC('c6_var', {type:'line', data:{labels:MAC_Q, datasets:[
+    {label:'Var. Renta COP %', data:vC, borderColor:MC_AU, backgroundColor:'transparent', borderWidth:2, pointRadius:2, tension:0.35},
+    {label:'Var. Crédito Com. %', data:vCr, borderColor:MC_P, backgroundColor:'transparent', borderWidth:2, pointRadius:2, tension:0.35, borderDash:[4,3]}
+  ]}, options:{responsive:true, maintainAspectRatio:false,
+    plugins:{legend:MC_LG, tooltip:MC_TT},
+    scales:{x:{grid:MC_GR, ticks:{...MC_TK,maxRotation:45}}, y:{grid:MC_GR, ticks:{...MC_TK, callback:function(v){return v==null?'':v+'%';}}}}}});
+}
+
+// ── Tab Resumen ───────────────────────────────────────────────
+function mkResumenCorr() {
+  if (document.getElementById('tb_resumen').innerHTML !== '') return;
+
+  // Ranking bars
+  var rb = document.getElementById('ranking_bars');
+  var maxR = 0.754;
+  rb.innerHTML = CORR_PARES.map(function(p) {
+    var pct = Math.round(Math.abs(p.r)/maxR*100);
+    var col = p.r > 0 ? MC_G : MC_R;
+    var bg  = p.r > 0 ? 'rgba(0,212,168,0.18)' : 'rgba(255,92,92,0.18)';
+    var fTag= p.nivel==='FUERTE'?'<span style="font-size:0.6rem;background:rgba(0,212,168,0.2);color:'+MC_G+';padding:1px 6px;border-radius:4px;margin-left:4px;">FUERTE</span>':
+              p.nivel==='MODERADA'?'<span style="font-size:0.6rem;background:rgba(240,180,41,0.2);color:'+MC_AU+';padding:1px 6px;border-radius:4px;margin-left:4px;">MOD</span>':'';
+    var oTag= p.origen==='Nuevo'?'<span style="font-size:0.58rem;background:var(--macro-dim);color:var(--macro);padding:1px 5px;border-radius:3px;margin-left:3px;">NUEVO</span>':'';
+    return '<div style="display:flex;align-items:center;gap:10px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.03);">' +
+      '<span style="font-size:0.65rem;color:var(--muted);min-width:18px;text-align:right;">'+(p.rank)+'.</span>'+
+      '<span style="font-size:0.7rem;color:var(--light);min-width:135px;">'+p.mac+'</span>'+
+      '<span style="font-size:0.63rem;color:var(--muted);min-width:85px;">↔ '+p.cw+'</span>'+
+      '<div style="flex:1;background:rgba(255,255,255,0.05);border-radius:3px;height:12px;overflow:hidden;">'+
+        '<div style="width:'+pct+'%;height:100%;background:'+col+';border-radius:3px;transition:width .5s;"></div>'+
+      '</div>'+
+      '<span style="font-size:0.72rem;font-weight:700;color:'+col+';min-width:55px;text-align:right;">'+(p.r>0?'+':'')+p.r.toFixed(3)+'</span>'+
+      fTag+oTag+
+    '</div>';
+  }).join('');
+
+  // Tabla completa
+  var tb = document.getElementById('tb_resumen');
+  tb.innerHTML = CORR_PARES.map(function(p) {
+    var rBg  = p.r>0?('rgba(0,212,168,'+(0.1+Math.abs(p.r)*0.45)+')'):('rgba(255,92,92,'+(0.1+Math.abs(p.r)*0.45)+')');
+    var rCol = p.r>0?MC_G:MC_R;
+    var nCol = p.nivel==='FUERTE'?MC_G:p.nivel==='MODERADA'?MC_AU:MC_R;
+    return '<tr>'+
+      '<td style="color:var(--muted);font-size:0.72rem;">'+p.rank+'</td>'+
+      '<td style="font-weight:600;color:var(--macro);">'+p.mac+'</td>'+
+      '<td>'+p.cw+'</td>'+
+      '<td style="text-align:center;"><span style="display:inline-block;padding:2px 10px;border-radius:5px;font-weight:700;font-size:0.78rem;background:'+rBg+';color:'+rCol+'">'+(p.r>0?'+':'')+p.r.toFixed(3)+'</span></td>'+
+      '<td style="text-align:center;"><span style="font-size:0.65rem;font-weight:600;color:'+nCol+';">'+p.nivel+'</span></td>'+
+      '<td style="font-size:0.72rem;color:var(--light);line-height:1.5;">'+p.conclusion+'</td>'+
+    '</tr>';
+  }).join('');
+
+  // Análisis narrativo por indicador macro
+  var narrativos = [
+    {
+      icono:'💱', nombre:'TRM — Tasa de Cambio (COP/USD)',
+      fuente:'Superfinanciera / Banrep',
+      pares:[
+        {cw:'Renta USD', r:-0.541, nivel:'MODERADA NEG.'},
+        {cw:'Vacancia %', r:+0.242, nivel:'DÉBIL'},
+      ],
+      analisis:'La TRM muestra su mayor efecto sobre la <strong>renta en dólares</strong> (r = −0.541), con una correlación negativa moderada bien fundamentada: cuando el peso se debilita, los propietarios de oficinas AAA ajustan la renta en USD a la baja para mantener el costo en pesos dentro del presupuesto de los arrendatarios, muchos de los cuales facturan en COP. El efecto sobre la <strong>vacancia</strong> es débil (r = +0.242) porque los contratos de largo plazo (3–5 años) amortiguan el impacto cambiario inmediato. <strong>Conclusión:</strong> la TRM es relevante para el precio, no para la ocupación.',
+    },
+    {
+      icono:'📈', nombre:'PIB — Crecimiento Económico',
+      fuente:'DANE / Banrep BIE (series desestacionalizadas)',
+      pares:[
+        {cw:'Vacancia %', r:+0.419, nivel:'MODERADA'},
+        {cw:'Absorción m²', r:+0.124, nivel:'DÉBIL'},
+      ],
+      analisis:'Los resultados del PIB son los más contraintuitivos del análisis. La <strong>vacancia</strong> muestra correlación positiva moderada (r = +0.419) — dirección opuesta a la esperada — porque el mercado inmobiliario reacciona con rezago de 2–4 trimestres al ciclo económico. El PIB colapsó en 2020 pero la vacancia no respondió hasta 2021; cuando el PIB rebotó (+17% en 2021-Q2) la vacancia aún seguía en máximos. La <strong>absorción</strong> es prácticamente nula (r = +0.124) por la misma razón. <strong>Conclusión:</strong> el PIB contemporáneo es un predictor débil; con rezago de 3 trimestres la correlación con vacancia se invertiría hacia el rango −0.65 a −0.75.',
+    },
+    {
+      icono:'👷', nombre:'Desempleo — Tasa Nacional',
+      fuente:'DANE GEIH (promedio anual)',
+      pares:[
+        {cw:'Vacancia %', r:+0.232, nivel:'DÉBIL'},
+        {cw:'Absorción m²', r:-0.236, nivel:'DÉBIL'},
+      ],
+      analisis:'El desempleo nacional produce correlaciones débiles en ambas direcciones correctas: positiva con vacancia y negativa con absorción, pero con magnitudes bajas. La razón estructural es que el <strong>desempleo nacional</strong> incluye empleo informal, rural y de baja calificación que no guarda ninguna relación con la demanda de oficinas corporativas. El indicador correcto sería la tasa de desempleo en el segmento de servicios financieros y empresariales de Bogotá — dato que no está disponible con periodicidad trimestral. El shock de 2020 concentra demasiada varianza en 4 trimestres, lo que distorsiona el coeficiente. <strong>Conclusión:</strong> indicador proxy inadecuado para el segmento AAA; se requiere empleo calificado desagregado.',
+    },
+    {
+      icono:'🔥', nombre:'IPC — Inflación (var. % anual)',
+      fuente:'DANE (base dic. 2018 = 100)',
+      pares:[
+        {cw:'Renta USD', r:-0.536, nivel:'MODERADA NEG.'},
+        {cw:'Renta COP', r:+0.310, nivel:'DÉBIL'},
+      ],
+      analisis:'La inflación produce efectos opuestos según la moneda de referencia. Sobre la <strong>renta USD</strong> genera correlación negativa moderada (r = −0.536): IPC alto coincide con depreciación del peso, lo que reduce la renta en dólares por el efecto cambiario. Sobre la <strong>renta COP</strong>, la correlación es débil positiva (r = +0.310): aunque en teoría debería haber indexación al IPC, el mercado AAA usa el dólar como ancla de precios y la indexación al IPC es más propia de los segmentos B y C. <strong>Conclusión:</strong> la inflación importa más como señal del ciclo cambiario que como factor directo de indexación en el segmento premium.',
+    },
+    {
+      icono:'🏦', nombre:'Crédito Comercial — Cartera del Sistema Financiero',
+      fuente:'Superfinanciera / Banrep (COP billones)',
+      pares:[
+        {cw:'Renta COP', r:+0.754, nivel:'FUERTE ★'},
+      ],
+      analisis:'Es la <strong>correlación más fuerte del análisis completo</strong> (r = +0.754). El crédito comercial y la renta en pesos comparten el mismo entorno monetario, eliminando el ruido cambiario que debilita otras correlaciones. El mecanismo es directo: mayor disponibilidad de crédito → empresas invierten y se expanden → mayor demanda de espacio → propietarios suben precios. Adicionalmente, el ciclo del crédito comercial lidera el ciclo inmobiliario en 1–2 trimestres, lo que le otorga valor como <strong>indicador adelantado</strong>. La relación se mantuvo robusta incluso durante la pandemia (el crédito creció por inyecciones de liquidez mientras las rentas se sostuvieron). <strong>Conclusión:</strong> el crédito comercial es el mejor predictor macro de la renta COP en el mercado AAA de Bogotá.',
+    },
+    {
+      icono:'🏭', nombre:'IPI — Índice de Producción Industrial (var. %)',
+      fuente:'DANE EMMET (base 2018 = 100)',
+      pares:[
+        {cw:'Renta USD', r:+0.518, nivel:'MODERADA'},
+        {cw:'Vacancia %', r:+0.415, nivel:'MODERADA'},
+      ],
+      analisis:'El IPI muestra correlaciones moderadas pero en sentido aparentemente incorrecto para vacancia (positiva, cuando se esperaría negativa). Para la <strong>renta USD</strong> (r = +0.518) la lógica es clara: producción industrial alta → empresas de servicios que las soportan crecen → demanda oficinas premium. Para la <strong>vacancia</strong> (r = +0.415), el signo positivo se explica nuevamente por el rezago: el IPI colapsó en 2020 (−22%) y la vacancia no respondió hasta 2021. Con ajuste de rezago de 2 trimestres la correlación con vacancia se volvería negativa moderada. <strong>Conclusión:</strong> indicador válido con uso correcto como señal adelantada, no contemporánea.',
+    },
+    {
+      icono:'🛢️', nombre:'Brent — Precio del Petróleo (USD/barril)',
+      fuente:'ICE/EIA (promedio trimestral)',
+      pares:[
+        {cw:'Renta COP', r:+0.407, nivel:'MODERADA'},
+      ],
+      analisis:'El Brent muestra correlación positiva moderada con la <strong>renta COP</strong> (r = +0.407). El canal de transmisión es indirecto pero real en la economía colombiana: petróleo alto → mayores regalías e ingresos fiscales → mayor gasto público y privado → dinamismo del sector corporativo en Bogotá → presión alcista sobre rentas. El efecto es más notorio en períodos de pico (2022: Brent $112/bbl, rentas COP en máximos) y de colapso (2020: Brent $29/bbl, rentas estancadas). <strong>Conclusión:</strong> el Brent es un indicador estructural para Colombia dado su peso en la economía, con correlación moderada útil como contexto macroeconómico.',
+    },
+    {
+      icono:'✈️', nombre:'IED — Inversión Extranjera Directa (USD millones)',
+      fuente:'Banrep — Balanza de Pagos trimestral',
+      pares:[
+        {cw:'Absorción m²', r:+0.245, nivel:'DÉBIL'},
+      ],
+      analisis:'La IED total muestra correlación débil con la <strong>absorción</strong> (r = +0.245). La hipótesis inicial de que la IED impulsaría la demanda de oficinas AAA no se confirma en los datos agregados porque más del 60% de la IED colombiana se destina a minería y petróleo — sectores con mínima presencia en el parque de oficinas corporativas de Bogotá. La IED relevante para el mercado AAA sería la del subsector de servicios financieros y empresariales, que representa apenas el 27–32% del total. <strong>Conclusión:</strong> la IED total es un indicador inadecuado; la IED en servicios podría mostrar correlación moderada o fuerte, pero no está disponible desagregada trimestralmente.',
+    },
+    {
+      icono:'🏢', nombre:'ICE — Índice de Confianza Empresarial (Fedesarrollo)',
+      fuente:'Fedesarrollo — EOE / ICI (promedio trimestral)',
+      pares:[
+        {cw:'Absorción m²', r:+0.335, nivel:'DÉBIL'},
+      ],
+      analisis:'El ICE (componente industrial) muestra la segunda mayor correlación entre los indicadores nuevos con la <strong>absorción</strong> (r = +0.335), pero resulta débil. La limitación es metodológica: el ICI de Fedesarrollo mide la confianza del sector industrial y comercial — no del sector de servicios financieros, consultoría y tecnología que es el principal ocupante de oficinas AAA. Un índice de confianza del sector servicios corporativos de Bogotá probablemente mostraría r entre +0.55 y +0.70 con absorción. <strong>Conclusión:</strong> indicador prometedor con la fuente correcta; el ICI sectorial de servicios, si estuviera disponible, sería probablemente el indicador adelantado más valioso del análisis.',
+    },
+  ];
+
+  var wrap = document.getElementById('narrativos_wrap');
+  wrap.innerHTML = narrativos.map(function(n) {
+    var paresHtml = n.pares.map(function(p) {
+      var rCol = p.r>0?MC_G:MC_R;
+      var rBg  = p.r>0?('rgba(0,212,168,'+(0.1+Math.abs(p.r)*0.4)+')'):('rgba(255,92,92,'+(0.1+Math.abs(p.r)*0.4)+')');
+      return '<span style="display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:7px;background:var(--surface2);border:1px solid var(--border);margin:3px;">'+
+        '<span style="font-size:0.7rem;color:var(--light);">↔ '+p.cw+'</span>'+
+        '<span style="padding:1px 8px;border-radius:4px;font-weight:700;font-size:0.75rem;background:'+rBg+';color:'+rCol+'">'+(p.r>0?'+':'')+p.r.toFixed(3)+'</span>'+
+        '<span style="font-size:0.62rem;color:var(--muted);">'+p.nivel+'</span>'+
+      '</span>';
+    }).join('');
+
+    return '<div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px;margin-bottom:14px;border-left:3px solid var(--macro);">'+
+      '<div style="display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;">'+
+        '<div style="font-size:1.4rem;">'+n.icono+'</div>'+
+        '<div style="flex:1;min-width:200px;">'+
+          '<div style="font-family:Playfair Display,serif;font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:3px;">'+n.nombre+'</div>'+
+          '<div style="font-size:0.65rem;color:var(--muted);margin-bottom:10px;letter-spacing:.04em;">Fuente: '+n.fuente+'</div>'+
+          '<div style="display:flex;flex-wrap:wrap;gap:0;margin-bottom:14px;">'+paresHtml+'</div>'+
+          '<div style="font-size:0.78rem;color:var(--light);line-height:1.75;">'+n.analisis+'</div>'+
+        '</div>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+}
+
+// ── Patch buildMacroCharts nav handler to include new tabs ────
+// (Replace the existing nav click handler section)
+
 window.datosDone=false;
 function buildTablas(){
   window.datosDone=true;
@@ -1718,6 +2648,8 @@ function buildTablas(){
   });
   document.getElementById('tbSub').innerHTML=rows.join('');
 }
+
 </script>
+
 </body>
 </html>
